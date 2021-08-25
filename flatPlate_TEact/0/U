@@ -36,8 +36,8 @@ boundaryField
     left
     {
         type            uniformFixedValue;
-        uniformValue    constant (20 0 0);
-        value           uniform (20 0 0);
+        uniformValue    constant (10 0 0);
+        value           uniform (10 0 0);
     }
     cylinder
     {
@@ -46,8 +46,8 @@ boundaryField
     slot
     {
         type            uniformFixedValue;
-        uniformValue    constant (50 0 0);
-        value           uniform (50 0 0;)
+        uniformValue    constant (20 0 0);
+        value           uniform (20 0 0;)
     }
     defaultFaces
     {
