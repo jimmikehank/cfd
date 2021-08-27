@@ -30,7 +30,6 @@ boundaryField
         type            uniformFixedValue;
         uniformValue    0;
         value           uniform 0;
-
     }
 
     up
@@ -40,7 +39,9 @@ boundaryField
 
     left
     {
-        type            zeroGradient;
+        type            uniformFixedValue;
+        uniformValue    0;
+        value           uniform 0;
     }
 
     cylinder

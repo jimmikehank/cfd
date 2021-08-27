@@ -16,20 +16,20 @@ FoamFile
 
 dimensions      [0 2 -1 0 0 0 0];
 
-internalField   uniform 0.14;
+internalField   uniform 0.;
 
 boundaryField
 {
     left
     {
         type            freestream;
-        freestreamValue uniform 0;
+        freestreamValue uniform 0.;
     }
 
     right
     {
         type            freestream;
-        freestreamValue uniform 0;
+        freestreamValue uniform 0.;
     }
 
     cylinder
@@ -41,7 +41,7 @@ boundaryField
     slot
     {
         type            freestream;
-        freestreamValue uniform 0.14;
+        freestreamValue uniform 0.000781;
     }
 
     down
