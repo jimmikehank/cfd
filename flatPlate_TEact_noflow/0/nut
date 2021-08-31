@@ -16,7 +16,7 @@ FoamFile
 
 dimensions      [0 2 -1 0 0 0 0];
 
-val             .01;
+val             .14;
 
 internalField   uniform $val;
 
