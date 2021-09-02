@@ -17,7 +17,7 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField uniform (20 0 0);
+internalField uniform (5 0 0);
 
 boundaryField
 {
@@ -36,8 +36,8 @@ boundaryField
     left
     {
         type            uniformFixedValue;
-        uniformValue    constant (10 0 0);
-        value           uniform (10 0 0);
+        uniformValue    constant (5 0 0);
+        value           uniform (5 0 0);
     }
     cylinder
     {
@@ -45,9 +45,25 @@ boundaryField
     }
     slot
     {
-        type            uniformFixedValue;
-        uniformValue    constant (20 0 0);
-        value           uniform (20 0 0;)
+        type            codedFixedValue;
+        value           uniform (0 0 0);
+        name            parabolicVelocity;
+        code
+        #{
+            const vectorField& Cf = patch().Cf();
+            vectorField& field = *this;
+
+            const scalar Umax = 5;
+            const scalar h = 0.005;
+            //const scalar pi = Foam::constant::mathematical::pi;
+
+            forAll(Cf, faceI)
+            {
+                const scalar y = Cf[faceI][1];
+                field[faceI] = vector(Umax*(1-(pow((y/h),2))),0,0);
+            }
+        #};
+
     }
     defaultFaces
     {

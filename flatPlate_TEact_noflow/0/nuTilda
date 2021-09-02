@@ -42,7 +42,8 @@ boundaryField
 
     slot
     {
-        type            slip;
+        type            freestream;
+        freestreamValue uniform 0.4;
     }
 
     down

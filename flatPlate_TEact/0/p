@@ -48,7 +48,8 @@ boundaryField
 
     slot
     {
-        type            zeroGradient;
+        type            fixedGradient;
+        gradient        uniform 1e-4;
     }
 
     defaultFaces

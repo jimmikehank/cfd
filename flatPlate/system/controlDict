@@ -25,14 +25,14 @@ stopAt           endTime;
 
 endTime         15;
 
-deltaT          .005;
+deltaT          .001;
 
 writeControl     timeStep;
 
     div(phi,U)      bounded Gauss linear;
     div(div(phi,U)) Gauss linear;
 
-writeInterval    200;
+writeInterval    500;
 
 purgeWrite      0;
 
@@ -47,6 +47,11 @@ timeFormat      general;
 timePrecision   6;
 
 runTimeModifiable true;
+
+functions
+{
+    #include "forces"
+}
 
 
 

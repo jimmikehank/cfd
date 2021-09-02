@@ -21,41 +21,41 @@ FoamFile
     {
         type            symmetryPlane;
         inGroups        List<word> 1(symmetryPlane);
-        nFaces          610;
-        startFace       496224;
+        nFaces          300;
+        startFace       238800;
     }
     right
     {
         type            patch;
-        nFaces          416;
-        startFace       496834;
+        nFaces          300;
+        startFace       239100;
     }
     up
     {
         type            symmetryPlane;
         inGroups        List<word> 1(symmetryPlane);
-        nFaces          610;
-        startFace       497250;
+        nFaces          300;
+        startFace       239400;
     }
     left
     {
         type            patch;
-        nFaces          416;
-        startFace       497860;
+        nFaces          300;
+        startFace       239700;
     }
     cylinder
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          540;
-        startFace       498276;
+        nFaces          1200;
+        startFace       240000;
     }
     defaultFaces
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          497520;
-        startFace       498816;
+        nFaces          240000;
+        startFace       241200;
     }
 )
 
