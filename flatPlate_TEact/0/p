@@ -46,11 +46,17 @@ boundaryField
         type            zeroGradient;
     }
 
+    // cylinderInner
+    // {
+    //     type            zeroGradient;
+    // }
+
     slot
     {
-        type            fixedGradient;
-        gradient        uniform 1e-4;
+        type            zeroGradient;
+
     }
+
 
     defaultFaces
     {

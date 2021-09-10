@@ -38,10 +38,16 @@ boundaryField
         value           uniform 0;
     }
 
+    // cylinderInner
+    // {
+    //     type            fixedValue;
+    //     value           uniform 0;
+    // }
+
     slot
     {
         type            freestream;
-        freestreamValue uniform .14;
+        freestreamValue uniform 0.14;
     }
 
     down

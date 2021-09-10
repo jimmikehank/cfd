@@ -43,28 +43,20 @@ boundaryField
     {
         type            noSlip;
     }
+
+    // cylinderInner
+    // {
+    //     type            noSlip;
+    // }
+
     slot
     {
-        type            codedFixedValue;
-        value           uniform (0 0 0);
-        name            parabolicVelocity;
-        code
-        #{
-            const vectorField& Cf = patch().Cf();
-            vectorField& field = *this;
-
-            const scalar Umax = 5;
-            const scalar h = 0.005;
-            //const scalar pi = Foam::constant::mathematical::pi;
-
-            forAll(Cf, faceI)
-            {
-                const scalar y = Cf[faceI][1];
-                field[faceI] = vector(Umax*(1-(pow((y/h),2))),0,0);
-            }
-        #};
-
+        type            flowRateInletVelocity;
+        massFlowRate    uniform .02;
+        rho             rho;
+        rhoInlet        1.0;
     }
+
     defaultFaces
     {
         type            empty;
