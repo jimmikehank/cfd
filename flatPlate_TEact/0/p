@@ -46,10 +46,10 @@ boundaryField
         type            zeroGradient;
     }
 
-    // cylinderInner
-    // {
-    //     type            zeroGradient;
-    // }
+    cylinderInner
+    {
+        type            zeroGradient;
+    }
 
     slot
     {

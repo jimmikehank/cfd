@@ -12,7 +12,7 @@ forces
     libs          ("libforces.so");
 
     writeControl  timeStep;
-    writeInterval  250;
+    writeInterval  8000;
 
     log           no;
 

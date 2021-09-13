@@ -44,15 +44,15 @@ boundaryField
         type            noSlip;
     }
 
-    // cylinderInner
-    // {
-    //     type            noSlip;
-    // }
+    cylinderInner
+    {
+        type            noSlip;
+    }
 
     slot
     {
         type            flowRateInletVelocity;
-        massFlowRate    uniform .02;
+        massFlowRate    uniform .1;
         rho             rho;
         rhoInlet        1.0;
     }
