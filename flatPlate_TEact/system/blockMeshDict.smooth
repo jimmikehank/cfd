@@ -1,0 +1,209 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale           1;
+
+dU          0.005;
+dL         -0.005;
+
+hU            .05;
+hL           -.05;
+
+wT              5;
+wB             -5;
+
+pR            .45;
+pL           -.45;
+
+bk            -.1;
+fr             .1;
+
+cL            -.5;
+cR             .5;
+
+aL          -5.45;
+aR           5.45;
+
+tE         .49975;
+
+DU             .5;
+DL            -.5;
+
+th          11.48;
+TH          84.26;
+
+
+vertices
+(
+    ($pL $wB $bk) // 0
+    ($pL $wB $fr) // 1
+    ($pL $hL $bk) // 2
+    ($pL $hL $fr) // 3
+    ($cL   0 $bk) // 4
+    ($cL   0 $fr) // 5
+    ($aL   0 $bk) // 6
+    ($aL   0 $fr) // 7
+    ($pL $hU $bk) // 8
+    ($pL $hU $fr) // 9
+    ($pL $wT $bk) // 10
+    ($pL $wT $fr) // 11
+    (  0 $hU $bk) // 12
+    (  0 $hU $fr) // 13
+    (  0 $wT $bk) // 14
+    (  0 $wT $fr) // 15
+    ($pR $hU $bk) // 16
+    ($pR $hU $fr) // 17
+    ($pR $wT $bk) // 18
+    ($pR $wT $fr) // 19
+    ($tE $dU $bk) // 20
+    ($tE $dU $fr) // 21
+    ($aR $DU $bk) // 22
+    ($aR $DU $fr) // 23
+    ($tE $dL $bk) // 24
+    ($tE $dL $fr) // 25
+    ($aR $DL $bk) // 26
+    ($aR $DL $fr) // 27
+    ($pR $hL $bk) // 28
+    ($pR $hL $fr) // 29
+    ($pR $wB $bk) // 30
+    ($pR $wB $fr) // 31
+    (  0 $hL $bk) // 32
+    (  0 $hL $fr) // 33
+    (  0 $wB $bk) // 34
+    (  0 $wB $fr) // 35
+);
+
+blocks
+(
+    hex ( 2  4  6  0  3  5  7  1 ) (100 160 1) simpleGrading ( 1 2000 1)
+    hex ( 4  8 10  6  5  9 11  7 ) (100 160 1) simpleGrading ( 1 2000 1)
+    hex ( 8 12 14 10  9 13 15 11 ) (100 160 1) simpleGrading (32 2000 1)
+    hex (12 16 18 14 13 17 19 15 ) (100 160 1) simpleGrading (.03125 2000 1)
+    hex (16 20 22 18 17 21 23 19 ) (200 160 1) simpleGrading ( .025 2000 1)
+    hex (20 24 26 22 21 25 27 23 ) (180 160 1) simpleGrading ( 1 2000 1)  // Slot Exit
+    hex (24 28 30 26 25 29 31 27 ) (200 160 1) simpleGrading ( 40 2000 1)
+    hex (28 32 34 30 29 33 35 31 ) (100 160 1) simpleGrading (32 2000 1)
+    hex (32  2  0 34 33  3  1 35 ) (100 160 1) simpleGrading (.03125 2000 1)
+);
+
+edges
+(
+    arc   0   6   90.0  (0 0 -1)
+    arc   1   7   90.0  (0 0 -1)
+    arc   2   4   90.0  (0 0 -1)
+    arc   3   5   90.0  (0 0 -1)
+    arc   4   8   90.0  (0 0 -1)
+    arc   5   9   90.0  (0 0 -1)
+    arc   6  10   90.0  (0 0 -1)
+    arc   7  11   90.0  (0 0 -1)
+    arc  18  22   $TH   (0 0 -1)
+    arc  19  23   $TH   (0 0 -1)
+    arc  16  20   $TH   (0 0 -1)
+    arc  17  21   $TH   (0 0 -1)
+    arc  22  26   $th   (0 0 -1)
+    arc  23  27   $th   (0 0 -1)
+    arc  20  24   $th   (0 0 -1)
+    arc  21  25   $th   (0 0 -1)
+    arc  24  28   $TH   (0 0 -1)
+    arc  25  29   $TH   (0 0 -1)
+    arc  26  30   $TH   (0 0 -1)
+    arc  27  31   $TH   (0 0 -1)
+);
+
+boundary
+(
+
+    down
+    {
+        type symmetryPlane;
+        faces
+        (
+            (0 1 35 34)
+            (34 35 31 30)
+        );
+    }
+
+    right
+    {
+        type patch;
+        faces
+        (
+            (30 31 27 26)
+            (26 27 23 22)
+            (22 23 19 18)
+        );
+    }
+
+    up
+    {
+        type symmetryPlane;
+        faces
+        (
+            (10 11 15 14)
+            (14 15 19 18)
+        );
+    }
+
+    left
+    {
+        type patch;
+        faces
+        (
+            (0 1 7 6)
+            (6 7 11 10)
+        );
+    }
+
+    cylinder
+    {
+        type wall;
+        faces
+        (
+            (24 25 29 28)
+            (28 29 33 32)
+            (32 33 3 2)
+            (2 3 5 4)
+            (4 5 9 8)
+            (8 9 13 12)
+            (12 13 17 16)
+            (16 17 21 20)
+        );
+    }
+
+    // cover
+    // {
+    //     type wall;
+    //     faces
+    //     (
+    //         (20 21 25 24)
+    //     );
+    // }
+
+    slot
+    {
+        type patch;
+        faces
+        (
+            (20 21 25 24)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

@@ -17,7 +17,7 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField uniform (5 0 0);
+internalField uniform (10 0 0);
 
 boundaryField
 {
@@ -36,8 +36,8 @@ boundaryField
     left
     {
         type            uniformFixedValue;
-        uniformValue    constant (5 0 0);
-        value           uniform (5 0 0);
+        uniformValue    constant (10 0 0);
+        value           uniform (10 0 0);
     }
     cylinder
     {
@@ -52,9 +52,8 @@ boundaryField
     slot
     {
         type            flowRateInletVelocity;
-        massFlowRate    uniform .1;
-        rho             rho;
-        rhoInlet        1.0;
+        massFlowRate    uniform 0;
+        rhoInlet        1;
     }
 
     defaultFaces

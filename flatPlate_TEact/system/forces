@@ -16,7 +16,7 @@ forces
 
     log           no;
 
-    patches       ("cylinder" "slot");
+    patches       ("cylinder" "cylinderInner" "slot");
     rho           rhoInf;     // Indicates incompressible
     log           true;
     rhoInf        1;          // Redundant for incompressible
