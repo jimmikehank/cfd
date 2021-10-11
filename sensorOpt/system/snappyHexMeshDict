@@ -31,8 +31,8 @@ geometry
     refinementBox
     {
       type  searchableBox;
-      min ( -13 -3 -.5 );
-      max ( -7 3 .5 );
+      min (-13 -3 -.5 );
+      max (  0  3  .5 );
     }
 };
 
@@ -50,7 +50,7 @@ castellatedMeshControls
     {
         wing
         {
-            level ( 5 5 );
+            level ( 4 7 );
         }
     }
 
@@ -65,7 +65,7 @@ castellatedMeshControls
         }
     }
 
-    locationInMesh ( -10 0 0 );
+    locationInMesh ( 0 0 0 );
 
 
     allowFreeStandingZoneFaces true;

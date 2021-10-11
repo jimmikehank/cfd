@@ -12,7 +12,7 @@ start_folder = str(3*timestep)
 print(start_folder)
 
 N = 6
-angles = np.linspace(0,15,N)
+angles = np.linspace(9,15,N)
 
 def check_float(textin):
     try:
@@ -56,7 +56,7 @@ for i in range(N):
                 shutil.rmtree(item)
 
     new_converged = str(max(boop))
-    new_name = 'con_{}'.format(max(boop))
+    new_name = 'con_{}'.format(angle)
     os.rename(new_converged,new_name)
 
     retain = retain + [new_name]

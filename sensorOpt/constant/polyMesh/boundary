@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-5
+6
 (
     down
     {
@@ -43,12 +43,19 @@ FoamFile
         nFaces          200;
         startFace       160400;
     }
-    defaultFaces
+    front
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          160000;
+        nFaces          80000;
         startFace       160600;
+    }
+    back
+    {
+        type            empty;
+        inGroups        List<word> 1(empty);
+        nFaces          80000;
+        startFace       240600;
     }
 )
 

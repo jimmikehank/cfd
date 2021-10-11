@@ -54,8 +54,8 @@ boundaryField
 
     slot
     {
-        type            fixedValue;
-        value           uniform .01;
+        type            zeroGradient;
+        // gradient        uniform 1000000;
 
         // type                      plenumPressure;
         // value                     1e5;
