@@ -38,6 +38,12 @@ boundaryField
         value           uniform 0;
     }
 
+    cylinderInner
+    {
+        type            nutUSpaldingWallFunction;
+        value           uniform 0;
+    }
+
     slot
     {
         type            freestream;

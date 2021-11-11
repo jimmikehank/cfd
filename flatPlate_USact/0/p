@@ -38,7 +38,8 @@ boundaryField
 
     left
     {
-        type            zeroGradient;
+        type            fixedValue;
+        value           uniform 0;
     }
 
     cylinder
@@ -46,10 +47,30 @@ boundaryField
         type            zeroGradient;
     }
 
-    slot
+    cylinderInner
     {
         type            zeroGradient;
     }
+
+    slot
+    {
+        type            fixedGradient;
+        gradient        uniform 1000000;
+
+        // type                      plenumPressure;
+        // value                     1e5;
+        // gamma                     1.4;
+        // R                         287;
+        // supplyMassFlowRate        0.0005;
+        // supplyTotalTemperature    300;
+        // plenumVolume              0.0005;
+        // plenumDensity             1;
+        // plenumTemperature         300;
+        // inletAreaRatio            1;
+        // inletDischargeCoefficient 0.5;
+        // rho                       1;
+    }
+
 
     defaultFaces
     {

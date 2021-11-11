@@ -25,30 +25,39 @@ boundaryField
     {
         type            symmetryPlane;
     }
+
     right
     {
         type            zeroGradient;
     }
+
     up
     {
         type            symmetryPlane;
     }
+
     left
     {
         type            uniformFixedValue;
         uniformValue    constant (5 0 0);
-        value           uniform  (5 0 0);
+        value           uniform (5 0 0);
     }
+
     cylinder
     {
         type            noSlip;
     }
+
+    cylinderInner
+    {
+        type            noSlip;
+    }
+
     slot
     {
-        type            uniformFixedValue;
-        uniformValue    constant (0 20 0);
-        value           uniform  (0 20 0);
+        type            zeroGradient;
     }
+
     defaultFaces
     {
         type            empty;
