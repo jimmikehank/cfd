@@ -4,15 +4,12 @@ import numpy as np
 
 retain = ['0', 'constant', 'system','autoCFD.py','con','sensorOptimization.ipynb','.ipynb_checkpoints','autoWing.py']
 
-
 boop = []
 
 timestep = .00010;
-start_folder = str(3e-05)
-print(start_folder)
 
 N = 31
-angles = np.linspace(0,15,N)
+angles = np.linspace(0,-15,N)
 
 def check_float(textin):
     try:
@@ -32,8 +29,6 @@ def setup():
     os.system('blockMesh')
     os.system('snappyHexMesh -overwrite')
     os.system('extrudeMesh')
-
-
 
 for i in range(N):
     boop = []
@@ -58,13 +53,13 @@ for i in range(N):
                 shutil.rmtree(item)
 
     new_converged = str(max(boop))
-    new_name = '{}'.format(angle)
+    new_name = '{}_deg'.format(angle)
     os.system('mkdir con/{}'.format(new_name))
-    os.system('cp {} con/{}'.format(new_converged,new_name))
-    for item in copy
-    os.system('cp {} con/{} -r'.format(start_folder,new_name))
+    os.system('mv {} con/{}'.format(new_converged,new_name))
 
-    retain = retain + [new_name]
+    for item in copy:
+        os.system('cp {} con/{} -r'.format(item,new_name))
+
     dirs = os.listdir()
 
     for item in dirs:
