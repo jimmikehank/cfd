@@ -2,14 +2,14 @@ import os
 import shutil
 import numpy as np
 
-retain = ['0', 'constant', 'system','autoCFD.py','con','sensorOptimization.ipynb','.ipynb_checkpoints','autoWing.py']
+retain = ['0', 'constant', 'system','autoCFD.py','con','sensorOptimization.ipynb','.ipynb_checkpoints','autoWing.py','autoVTK.py']
 
 boop = []
 
 timestep = .00010;
 
-N = 31
-angles = np.linspace(0,-15,N)
+N = 13
+angles = np.linspace(-9,-15,N)
 
 def check_float(textin):
     try:
@@ -53,7 +53,7 @@ for i in range(N):
                 shutil.rmtree(item)
 
     new_converged = str(max(boop))
-    new_name = '{}_deg'.format(angle)
+    new_name = '{}_deg'.format(-angle)
     os.system('mkdir con/{}'.format(new_name))
     os.system('mv {} con/{}'.format(new_converged,new_name))
 
