@@ -22,47 +22,47 @@ FoamFile
         type            symmetryPlane;
         inGroups        List<word> 1(symmetryPlane);
         nFaces          400;
-        startFace       217735;
+        startFace       226333;
     }
     right
     {
         type            patch;
         nFaces          200;
-        startFace       218135;
+        startFace       226733;
     }
     up
     {
         type            symmetryPlane;
         inGroups        List<word> 1(symmetryPlane);
         nFaces          400;
-        startFace       218335;
+        startFace       226933;
     }
     left
     {
         type            patch;
         nFaces          200;
-        startFace       218735;
+        startFace       227333;
     }
     front
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          109013;
-        startFace       218935;
+        nFaces          113255;
+        startFace       227533;
     }
     back
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          109013;
-        startFace       327948;
+        nFaces          113255;
+        startFace       340788;
     }
     wing
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          448;
-        startFace       436961;
+        nFaces          352;
+        startFace       454043;
     }
 )
 
