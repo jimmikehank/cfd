@@ -8,8 +8,8 @@ boop = []
 
 timestep = .00010;
 
-N = 31
-angles = np.linspace(0,15,N)
+N = 18
+angles = np.linspace(6.5,15,N)
 
 def check_float(textin):
     try:
