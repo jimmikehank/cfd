@@ -32,11 +32,6 @@ boundaryField
         freestreamValue uniform 0.14;
     }
 
-    cylinder
-    {
-        type            fixedValue;
-        value           uniform 0;
-    }
 
     down
     {
