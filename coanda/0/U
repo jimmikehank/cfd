@@ -17,13 +17,13 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField uniform (30 0 0);
+internalField uniform (40 0 0);
 
 boundaryField
 {
     down
     {
-        type            symmetryPlane;
+        type            slip;
     }
     right
     {
@@ -31,13 +31,13 @@ boundaryField
     }
     up
     {
-        type            symmetryPlane;
+        type            slip;
     }
     meanFlow
     {
         type            uniformFixedValue;
-        uniformValue    constant (30 0 0);
-        value           uniform (30 0 0);
+        uniformValue    constant (40 0 0);
+        value           uniform (40 0 0);
     }
     surface
     {

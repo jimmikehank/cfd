@@ -19,49 +19,47 @@ FoamFile
 (
     down
     {
-        type            symmetryPlane;
-        inGroups        List<word> 1(symmetryPlane);
-        nFaces          130;
-        startFace       206740;
+        type            patch;
+        nFaces          400;
+        startFace       210510;
     }
     right
     {
         type            patch;
-        nFaces          480;
-        startFace       206870;
+        nFaces          530;
+        startFace       210910;
     }
     up
     {
-        type            symmetryPlane;
-        inGroups        List<word> 1(symmetryPlane);
-        nFaces          150;
-        startFace       207350;
+        type            patch;
+        nFaces          240;
+        startFace       211440;
     }
     meanFlow
     {
         type            patch;
-        nFaces          200;
-        startFace       207500;
+        nFaces          220;
+        startFace       211680;
     }
     surface
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          1480;
-        startFace       207700;
+        nFaces          1510;
+        startFace       211900;
     }
     coandaInlet
     {
         type            patch;
         nFaces          80;
-        startFace       209180;
+        startFace       213410;
     }
     defaultFaces
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          208000;
-        startFace       209260;
+        nFaces          212000;
+        startFace       213490;
     }
 )
 

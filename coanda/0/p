@@ -14,31 +14,32 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -2 0 0 0 0];
+dimensions      [1 -1 -2 0 0 0 0];
 
-internalField   uniform 0;
+internalField   uniform 100000;
 
 boundaryField
 {
     down
     {
-        type            symmetryPlane;
+        type            slip;
     }
 
     right
     {
         type            fixedValue;
-        value           uniform 0;
+        value           uniform 100000;
     }
 
     up
     {
-        type            symmetryPlane;
+        type            slip;
     }
 
     meanFlow
     {
-        type            zeroGradient;
+        type            fixedValue;
+        value           uniform 100000;
     }
 
     surface
@@ -47,8 +48,9 @@ boundaryField
     }
     coandaInlet
     {
-        type            fixedValue;
-        value           uniform 70000;
+        type            totalPressure;
+        value           uniform 170000;
+        p0              uniform 170000;
     }
 
     defaultFaces

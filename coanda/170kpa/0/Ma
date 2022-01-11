@@ -1,0 +1,59 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      Ma;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 0 0 0 0];
+
+internalField   uniform 0.115412;
+
+boundaryField
+{
+    down
+    {
+        type            symmetryPlane;
+    }
+    right
+    {
+        type            calculated;
+        value           uniform 0.115412;
+    }
+    up
+    {
+        type            symmetryPlane;
+    }
+    meanFlow
+    {
+        type            calculated;
+        value           uniform 0.115412;
+    }
+    surface
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    coandaInlet
+    {
+        type            calculated;
+        value           uniform 0.115412;
+    }
+    defaultFaces
+    {
+        type            empty;
+    }
+}
+
+
+// ************************************************************************* //

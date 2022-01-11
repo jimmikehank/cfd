@@ -1,0 +1,224 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale             1;
+
+// Bounding box coordinates:
+
+bD             -0.5;
+bU              0.5;
+bL             -0.5;
+bR              0.5;
+bk              -0.5;
+fr               0.5;
+
+// Coanda plenum coordinates:
+st                0;
+
+l0             7e-2;
+h0           7.5e-3;
+ri             2e-3;
+li           7.2e-2;
+wi             3e-3;
+pu          10.5e-3;
+lu           4.5e-2;
+in           2.5e-2;
+
+// Coanda cylinder coordinates:
+l1           7.7e-2;
+cu             7e-3;
+cl            -3e-3;
+tu           7.8e-3;
+eu           1.5e-1;
+su             2e-1;
+el             1e-1;
+ol         -6.75e-3;
+om          3.75e-3;
+
+
+vertices
+(
+    ($in $st $bk) //  0
+    ($in $st $fr) //  1
+    ($l0 $st $bk) //  2
+    ($l0 $st $fr) //  3
+    ($lu $h0 $bk) //  4
+    ($lu $h0 $fr) //  5
+    ($in $h0 $bk) //  6
+    ($in $h0 $fr) //  7
+    ($li $ri $bk) //  8
+    ($li $ri $fr) //  9
+    ($l0 $h0 $bk) //  10
+    ($l0 $h0 $fr) //  11
+    ($l1 $cu $bk) //  12
+    ($l1 $cu $fr) //  13
+    ($l1 $h0 $bk) //  14
+    ($l1 $h0 $fr) //  15
+    ($l1 $cl $bk) //  16
+    ($l1 $cl $fr) //  17
+    ($st $cl $bk) //  18
+    ($st $cl $fr) //  19
+    ($st $bD $bk) //  20
+    ($st $bD $fr) //  21
+    ($l1 $bD $bk) //  22
+    ($l1 $bD $fr) //  23
+    ($bR $bD $bk) //  24
+    ($bR $bD $fr) //  25
+    ($bR -.1 $bk) //  26
+    ($bR -.1 $fr) //  27
+    ($bR $el $bk) //  28
+    ($bR $el $fr) //  29
+    ($bR $eu $bk) //  30
+    ($bR $eu $fr) //  31
+    ($bR $su $bk) //  32
+    ($bR $su $fr) //  33
+    ($bR $bU $bk) //  34
+    ($bR $bU $fr) //  35
+    ($l1 $bU $bk) //  36
+    ($l1 $bU $fr) //  37
+    ($l0 $bU $bk) //  38
+    ($l0 $bU $fr) //  39
+    ($st $bU $bk) //  40
+    ($st $bU $fr) //  41
+    ($st $pu $bk) //  42
+    ($st $pu $fr) //  43
+    ($l0 $pu $bk) //  44
+    ($l0 $pu $fr) //  45
+    ($l1 $tu $bk) //  46
+    ($l1 $tu $fr) //  47
+    ($bL $st $bk) //  48
+    ($bL $st $fr) //  49
+    ($ol $om $bk) //  50
+    ($ol $om $fr) //  51
+
+);
+
+blocks
+(
+    hex ( 0  2  4  6  1  3  5  7) ( 50  80 1) simpleGrading (  1    1  1) // 0
+    hex ( 2  8 10  4  3  9 11  5) ( 80  80 1) simpleGrading (.25    1  1) // 1
+    hex ( 8 12 14 10  9 13 15 11) (120  80 1) simpleGrading (  1    1  1) // 2
+    hex (20 22 16 18 21 23 17 19) (300  50 1) simpleGrading ( .5 .004  1) // 3
+    hex (24 26 16 22 25 27 17 23) ( 50 100 1) simpleGrading (.004 .004 1) // 4
+    hex (26 28 12 16 27 29 13 17) (250 100 1) simpleGrading (  1 .004  1) // 5
+    hex (28 30 14 12 29 31 15 13) ( 80 100 1) simpleGrading (  1 .004  1) // 6
+    hex (30 32 46 14 31 33 47 15) (100 100 1) simpleGrading (  1 .004  1) // 7
+    hex (32 34 36 46 33 35 37 47) ( 50 100 1) simpleGrading (250 .004  1) // 8
+    hex (36 38 44 46 37 39 45 47) ( 50  50 1) simpleGrading (  1 .004  1) // 9
+    hex (38 40 42 44 39 41 43 45) ( 90  50 1) simpleGrading (  1 .004  1) // 10
+    hex (40 48 50 42 41 49 51 43) (110  50 1) simpleGrading (  1 .004  1) // 11
+    hex (48 20 18 50 49 21 19 51) (110  50 1) simpleGrading (  1 .004  1) // 12
+);
+
+edges
+(
+    arc   2  8  90.0 (0 0  1)
+    arc   3  9  90.0 (0 0  1)
+    arc   8 12  90.0 (0 0 -1)
+    arc   9 13  90.0 (0 0 -1)
+    arc  12 16 180.0 (0 0 -1)
+    arc  13 17 180.0 (0 0 -1)
+    arc  44 46  15.0 (0 0 -1)
+    arc  45 47  15.0 (0 0 -1)
+    arc  40 48  90.0 (0 0  1)
+    arc  41 49  90.0 (0 0  1)
+    arc  48 20  90.0 (0 0  1)
+    arc  49 21  90.0 (0 0  1)
+    arc  42 50  90.0 (0 0  1)
+    arc  43 51  90.0 (0 0  1)
+    arc  50 18  90.0 (0 0  1)
+    arc  51 19  90.0 (0 0  1)
+);
+
+boundary
+(
+    down
+    {
+        type symmetryPlane;
+        faces
+        (
+            (20 22 23 21)
+            (22 24 25 23)
+        );
+    }
+    right
+    {
+        type patch;
+        faces
+        (
+            (24 26 27 25)
+            (26 28 29 27)
+            (28 30 31 29)
+            (30 32 33 31)
+            (32 34 35 33)
+        );
+    }
+    up
+    {
+        type symmetryPlane;
+        faces
+        (
+            (34 36 37 35)
+            (36 38 39 37)
+            (38 40 41 39)
+        );
+    }
+    meanFlow
+    {
+        type patch;
+        faces
+        (
+            (40 48 49 41)
+            (48 20 21 49)
+        );
+    }
+
+    surface
+    {
+        type wall;
+        faces
+        (
+            (42 44 45 43)
+            (44 46 47 45)
+            (46 14 15 47)
+            (14 10 11 15)
+            (10  4  5 11)
+            ( 4  6  7  5)
+            ( 0  2  3  1)
+            ( 2  8  9  3)
+            ( 8 12 13  9)
+            (12 16 17 13)
+            (16 18 19 17)
+            (42 50 51 43)
+            (50 18 19 51)
+        );
+    }
+
+    coandaInlet
+    {
+        type patch;
+        faces
+        (
+            (0 6 7 1)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //
