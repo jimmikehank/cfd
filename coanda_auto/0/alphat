@@ -27,6 +27,12 @@ boundaryField
         value           uniform 0;
     }
 
+    surfaceInner
+    {
+        type            compressible::alphatWallFunction;
+        value           uniform 0;
+    }
+
     meanFlow
     {
         type            calculated;
@@ -47,12 +53,14 @@ boundaryField
 
     up
     {
-        type slip;
+        type            calculated;
+        value           uniform 0;
     }
 
     down
     {
-        type slip;
+        type            calculated;
+        value           uniform 0;
     }
 }
 

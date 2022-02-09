@@ -1,38 +1,65 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import sys
+
+# Command line argument handler:
+
+args = sys.argv
+
+#---------- Control Variables handled by this block ----------#
+
+def arg_handle(args):
+    # Default Values
+    Rc = 0.003   # Coanda cylinder radius
+    te = 0.00015  # R/te = 20
+    tu = 0.00018  # Upper surface thickness at exit
+    ru = 0.5    # Contour radius of upper surface to exit
+    ai = 60.0   # Contraction angle inside plenum
+
+    for i in range(np.size(args)):
+        current = args[i].lower()
+        if current == '-rc':
+            Rc = float(args[i+1])
+        elif current == '-te':
+            te = float(args[i+1])
+        elif current == '-tu':
+            tu = float(args[i+1])
+        elif current == '-ru':
+            ru = float(args[i+1])
+        elif current == '-ai':
+            ai = float(args[i+1])
+    return Rc, te, tu, ru, ai
+
+Rc, te, tu, ru, ai = arg_handle(args)
+
+#-------------------------------------------------------------#
+
+print('\nCoanda Surface Radius = {}\nSlot Exit Width = {}\nExit Surface Thickness = {}\nUpper Surface Contour Radius = {}\nInner Surface Contraction Angle = {}\n'.format(Rc, te, tu, ru, ai))
 
 # blockMeshDefaults
 scale = 1
 
-# Control Variables:
+# Physical Non control Shape Parameters
 
-Rc = 0.01   # Coanda cylinder radius
-te = 0.001  # R/te = 10
-tu = 0.002  # Upper surface thickness at exit
-ru = 0.50    # Contour radius of upper surface to exit
-ai = 60.0   # Contraction angle inside plenum
+pw =  0.0015    # Plenum wall thickness
+pl =  0.1       # Plenum external length
+p0 =  0.05      # Plenum internal length
 
 # Bounding Box:
 
 bU =  1.0 # Upper bound
 bD = -1.0 # Lower bound
-bL = -1.0     # Left bound
+bL = -1.0 # Left bound
 bR =  1.0 # Right bound
-fr =  0.5   # Front bound
-bk = -0.5   # Back bound
-
-# Additional Coanda Dimensions:
-
-pl =  0.10  # Plenum internal length
-pi =  0.03  # Plenum additional mesh length
-pw =  0.008 # Plenum wall thickness
+fr =  0.5 # Front bound
+bk = -0.5 # Back bound
 
 # Mesh expansion for coanda cylinder
 
-rL = -0.1            # Lower point for cylinder expansion
-rU =  0.1            # Upper point for cylinder expansion
-sU =  rU + 4 * te    # Upper point for slot expansion
-gU =  sU + 2 * tu    # Upper point for top plate expansion
+rL = -0.25          # Lower point for cylinder expansion
+rU =  0.25          # Upper point for cylinder expansion
+sU =  rU + 8 * te   # Upper point for slot expansion
+gU =  sU + 4 * tu   # Upper point for top plate expansion
 
 # Dependent Dimensions
 
@@ -54,17 +81,29 @@ fil[0,0] = le - (np.sin(np.radians(ai)) * (Rc+ri))
 fil[0,1] = 0
 fil[1,0] = le - Rc * np.sin(np.radians(ai))
 fil[1,1] = CC + Rc * np.cos(np.radians(ai))
-#print(fil)
+
+# Additional Coanda Dimensions:
+
+
+pi =  le - p0/2  # Plenum additional mesh length
+pst =  le - p0
+
+hcon = pw - tu
+phi = np.arccos(1-(hcon/ru))
+fil2 = le - ru*np.sin(phi/2)
+
+
+# print(fil,p0)
 topang = np.degrees(np.arctan(abs(us-eu)/abs(le-fil[0,0]))) # Fillet for upper surface to exit
 
 pback = np.zeros([26,2])
 
 # Define Point Matrix:
 
-pback[ 0,:] = np.array([0,0])
+pback[ 0,:] = np.array([pst,0])
 pback[ 1,:] = fil[0,:]
 pback[ 2,:] = np.array([pi,hi])
-pback[ 3,:] = np.array([0,hi])
+pback[ 3,:] = np.array([pst,hi])
 pback[ 4,:] = fil[1,:]
 pback[ 5,:] = np.array([pl,hi])
 pback[ 6,:] = np.array([le,ly])
@@ -83,20 +122,57 @@ pback[18,:] = np.array([le,bU])
 pback[19,:] = np.array([fil[0,0],bU])
 pback[20,:] = np.array([0,bU])
 pback[21,:] = np.array([0,us])
-pback[22,:] = np.array([fil[0,0],us])
+pback[22,:] = np.array([fil2,us])
 pback[23,:] = np.array([le,eu])
 pback[24,:] = np.array([bL,pm])
 pback[25,:] = np.array([pn,pm])
 
-print(pback[0:10,:])
-plt.plot(pback[0:10,0],pback[0:10,1])
-plt.show()
+# print(pback[0:10,:])
+# plt.plot(pback[0:10,0],pback[0:10,1])
+# plt.show()
 #pback = np.around(pback,5)
 
+# Finally: Define the blocking and grading parameters!
+blocks_x_in  = 20
+blocks_y_in  = 20
+blocks_x_exf = 5
+blocks_x_out = 50
+blocks_y_out = 50
 
-header = ['/*---------------------------------*- C++ -*-----------------------------------*/\n','//    //////////////      ///////////////\n','//    //////////////      //////////////\n','//         ////           ////             /////       ////  //  /// //// ////\n','//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///\n','//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///\n','//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///\n','//     /////              ////            /////       ///// ///  ///   ///  ///\n','/*---------------------------------*- C++ -*-----------------------------------*/\n\n']
+grade_x_flat = 1
+grade_y_flat = 1000
 
-opener = ['FoamFile','\n','{','\n','version\t\t\t2.0;','\n','format\t\t\tascii;','\n','class\t\t\t\tdictionary;','\n','object\t\t\tblockMeshDict;','\n','}\n\n','// ***************************************************************************** //\n\n']
+grade_x_curve = 1
+grade_y_curve = 500
+
+header = [
+    '/*---------------------------------*- C++ -*-----------------------------------*/\n',
+    '//    //////////////      ///////////////\n',
+    '//    //////////////      //////////////\n',
+    '//         ////           ////             /////       ////  //  /// //// ////\n',
+    '//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///\n',
+    '//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///\n',
+    '//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///\n',
+    '//     /////              ////            /////       ///// ///  ///   ///  ///\n',
+    '/*---------------------------------*- C++ -*-----------------------------------*/\n\n'
+]
+
+opener = [
+    'FoamFile',
+    '\n',
+    '{',
+    '\n',
+    '\t\tversion\t\t\t2.0;',
+    '\n',
+    '\t\tformat\t\t\tascii;',
+    '\n',
+    '\t\tclass\t\t\t\tdictionary;',
+    '\n',
+    '\t\tobject\t\t\tblockMeshDict;',
+    '\n',
+    '}\n\n',
+    '// ***************************************************************************** //\n\n'
+]
 
 scale = 'scale\t\t\t\t1;\n\n'
 
@@ -114,9 +190,46 @@ def makepoints(points_back,back,front):
     pointsdef.append(');\n\n')
     return pointsdef
 
-blocks = ['blocks\n(\n','\t\thex ( 0  2  4  6  1  3  5  7) ( 50  80 1) simpleGrading (  1     1  1) // 0\n','\t\thex ( 2  8 10  4  3  9 11  5) ( 40  80 1) simpleGrading (.25     1  1) // 1\n','\t\thex ( 8 12 14 10  9 13 15 11) (120  80 1) simpleGrading (  1     1  1) // 2\n','\t\thex (20 22 16 18 21 23 17 19) (300  50 1) simpleGrading ( .5  .004  1) // 3\n','\t\thex (24 26 16 22 25 27 17 23) ( 50 100 1) simpleGrading (.004 .004  1) // 4\n','\t\thex (26 28 12 16 27 29 13 17) (150 100 1) simpleGrading (  1  .004  1) // 5\n','\t\thex (28 30 14 12 29 31 15 13) ( 80 100 1) simpleGrading (  1  .004  1) // 6\n','\t\thex (30 32 46 14 31 33 47 15) (100 100 1) simpleGrading (  1  .004  1) // 7\n','\t\thex (32 34 36 46 33 35 37 47) ( 50 100 1) simpleGrading (250  .004  1) // 8\n','\t\thex (36 38 44 46 37 39 45 47) ( 50  50 1) simpleGrading (  1  .004  1) // 9\n','\t\thex (38 40 42 44 39 41 43 45) ( 90  50 1) simpleGrading (  1  .004  1) // 10\n','\t\thex (40 48 50 42 41 49 51 43) (110  50 1) simpleGrading (  1  .004  1) // 11\n','\t\thex (48 20 18 50 49 21 19 51) (110  50 1) simpleGrading (  1  .004  1) // 12\n',');\n\n']
+# Block order is inside coanda plenum 0, 1, 2 then 3 is the block directly below the surface, the rest follow counter-clockwise
 
-edges = ['edges\n(\n','\t\tarc   2  8  {} (0 0  1)\n'.format(ai),'\t\tarc   3  9  {} (0 0  1)\n'.format(ai),'\t\tarc   8 12  {} (0 0 -1)\n'.format(ai),'\t\tarc   9 13  {} (0 0 -1)\n'.format(ai),'\t\tarc  12 16 180.0 (0 0 -1)\n','\t\tarc  13 17 180.0 (0 0 -1)\n','\t\tarc  44 46 {} (0 0 -1)\n'.format(topang),'\t\tarc  45 47 {} (0 0 -1)\n'.format(topang),'\t\tarc  40 48  90.0 (0 0  1)\n','\t\tarc  41 49  90.0 (0 0  1)\n','\t\tarc  48 20  90.0 (0 0  1)\n','\t\tarc  49 21  90.0 (0 0  1)\n','\t\tarc  42 50  90.0 (0 0  1)\n','\t\tarc  43 51  90.0 (0 0  1)\n','\t\tarc  50 18  90.0 (0 0  1)\n','\t\tarc  51 19  90.0 (0 0  1)\n',');\n\n']
+blocks = [
+    'blocks\n(\n',
+    '\t\thex ( 0  2  4  6  1  3  5  7) ({} {} 1) simpleGrading ( 1   1  1) // 0\n'.format(blocks_x_in, blocks_y_in),
+    '\t\thex ( 2  8 10  4  3  9 11  5) ({} {} 1) simpleGrading (.25  1  1) // 1\n'.format(blocks_x_in, blocks_y_in),
+    '\t\thex ( 8 12 14 10  9 13 15 11) ({} {} 1) simpleGrading ( 1   1  1) // 2\n'.format(blocks_x_in, blocks_y_in),
+    '\t\thex (20 22 16 18 21 23 17 19) ({} {} 1) simpleGrading ( 1  {}  1) // 3\n'.format(blocks_x_out+20, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (24 26 16 22 25 27 17 23) ({} {} 1) simpleGrading ({}  {}  1) // 4\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat, 1/grade_y_curve),
+    '\t\thex (26 28 12 16 27 29 13 17) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_curve),
+    '\t\thex (28 30 14 12 29 31 15 13) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_y_in, blocks_y_out, 1/grade_y_curve),
+    '\t\thex (30 32 46 14 31 33 47 15) ({} {} 1) simpleGrading ( 1  {}  1) // 7\n'.format(blocks_x_exf, blocks_y_out, 1/grade_y_curve),
+    '\t\thex (32 34 36 46 33 35 37 47) ({} {} 1) simpleGrading ({}  {}  1) // 8\n'.format(blocks_x_out, blocks_y_out, grade_y_flat, 1/grade_y_curve),
+    '\t\thex (36 38 44 46 37 39 45 47) ({} {} 1) simpleGrading ( 1  {}  1) // 9\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (38 40 42 44 39 41 43 45) ({} {} 1) simpleGrading ( 1  {}  1) // 10\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (40 48 50 42 41 49 51 43) ({} {} 1) simpleGrading ( 1  {}  1) // 11\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (48 20 18 50 49 21 19 51) ({} {} 1) simpleGrading ( 1  {}  1) // 12\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
+    ');\n\n'
+]
+
+edges = [
+    'edges\n(\n',
+    '\t\tarc   2  8  {} (0 0  1)\n'.format(ai),
+    '\t\tarc   3  9  {} (0 0  1)\n'.format(ai),
+    '\t\tarc   8 12  {} (0 0 -1)\n'.format(ai),
+    '\t\tarc   9 13  {} (0 0 -1)\n'.format(ai),
+    '\t\tarc  12 16 180.0 (0 0 -1)\n',
+    '\t\tarc  13 17 180.0 (0 0 -1)\n',
+    '\t\tarc  44 46  {} (0 0 -1)\n'.format(topang),
+    '\t\tarc  45 47  {} (0 0 -1)\n'.format(topang),
+    '\t\tarc  40 48  90.0 (0 0  1)\n',
+    '\t\tarc  41 49  90.0 (0 0  1)\n',
+    '\t\tarc  48 20  90.0 (0 0  1)\n',
+    '\t\tarc  49 21  90.0 (0 0  1)\n',
+    '\t\tarc  42 50  90.0 (0 0  1)\n',
+    '\t\tarc  43 51  90.0 (0 0  1)\n',
+    '\t\tarc  50 18  90.0 (0 0  1)\n',
+    '\t\tarc  51 19  90.0 (0 0  1)\n',
+    ');\n\n'
+]
 
 pointsdef = makepoints(pback,bk,fr)
 
@@ -128,5 +241,5 @@ with open('./system/blockMeshDict','w') as f:
     f.writelines(pointsdef)
     f.writelines(blocks)
     f.writelines(edges)
-    with open('faces','r') as g:
+    with open('./system/faces','r') as g:
         f.writelines(g.readlines())

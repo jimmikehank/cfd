@@ -38,12 +38,12 @@ boundaryField
 
     down
     {
-        type            slip;
+        type            zeroGradient;
     }
 
     up
     {
-        type            slip;
+        type            zeroGradient;
     }
 
     right
@@ -54,6 +54,11 @@ boundaryField
 
 
     surface
+    {
+        type            zeroGradient;
+    }
+
+    surfaceInner
     {
         type            zeroGradient;
     }

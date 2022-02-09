@@ -23,7 +23,7 @@ startTime       0;
 
 stopAt           endTime;
 
-endTime         .05;
+endTime         .015;
 
 deltaT          1e-6;
 
@@ -32,7 +32,7 @@ writeControl     timeStep;
     div(phi,U)      bounded Gauss linear;
     div(div(phi,U)) Gauss linear;
 
-writeInterval    500;
+writeInterval    2500;
 
 purgeWrite      0;
 

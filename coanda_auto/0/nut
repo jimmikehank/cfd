@@ -36,15 +36,23 @@ boundaryField
 
     down
     {
-        type            slip;
+        type            freestream;
+        freestreamValue $def_pl;
     }
 
     up
     {
-        type            slip;
+        type            freestream;
+        freestreamValue $def_pl;
     }
 
     surface
+    {
+        type            nutUSpaldingWallFunction;
+        value           uniform 0;
+    }
+
+    surfaceInner
     {
         type            nutUSpaldingWallFunction;
         value           uniform 0;
