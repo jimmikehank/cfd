@@ -1,1 +1,0 @@
-LIB = $(PWD)/../platforms/$(WM_OPTIONS)/lib/libswirl_3e04f7a92a5b89d44c98f1ecde4cc203dfbfcc1b
