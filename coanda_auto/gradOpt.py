@@ -104,7 +104,7 @@ def singlerun(x,mdot):
     os.system(commandBC)
     os.system('blockMesh')
     os.system('decomposePar')
-    os.system('mpirun -np 4 rhoSimpleFoam -parallel')
+    os.system('mpirun -np 8 rhoSimpleFoam -parallel')
     os.system('reconstructPar -latestTime')
     lift = retrieveLift()
     return lift
@@ -130,7 +130,7 @@ def find_gradient(x,mdot,iteration,selection):
     for i in range(np.size(x_init)):
         if selection[i] == 1:
             xnew[:] = x_init[:]
-            xnew[i] = x_init[i] * 1.01 * sgn[i]
+            xnew[i] = x_init[i] * (1 + 0.01 * sgn[i])
             dX = xnew[i] - x_init[i]
             lift_i = singlerun(xnew,mdot)
             cleanhouse(iteration,False)
@@ -147,8 +147,9 @@ def update_design(x,dLdX,iteration):
     # Step forward to x(i+1) using gradient "ascent"
     import numpy as np
     if iteration == 0:
-        gamma = .001/np.max(dLdX)
-        x = np.vstack([x,x + gamma * dLdX])
+        gamma = np.sign(dLdX)
+        dx = 1.01*x - x
+        x = np.vstack([x,x + gamma * dx])
     else:
         res_x = x[j,:] - x[j-1,:]
         res_gradL = dLdX[j,:] - dLdX[j-1,:]
@@ -171,7 +172,7 @@ while eps > convergence:
         x = update_design(x,dLdX,iteration)
         eps = np.max(np.abs(dLdX))
     else:
-        dLdX = np.vstack(dLdX,find_gradient(x,mdot,iteration,selection))
+        dLdX = np.vstack([dLdX,find_gradient(x,mdot,iteration,selection)])
         x = update_design(x,dLdX,iteration)
         eps = np.max(dLdX[iteration,:])
         for i in range(np.size(dLdX[iteration,:])):
