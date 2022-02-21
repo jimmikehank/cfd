@@ -130,50 +130,58 @@ def find_gradient(x,mdot,iteration,selection):
     for i in range(np.size(x_init)):
         if selection[i] == 1:
             xnew[:] = x_init[:]
-            xnew[i] = x_init[i] * (1 + 0.01 * sgn[i])
+            xnew[i] = x_init[i] * (1 + 0.004 * sgn[i])
             dX = xnew[i] - x_init[i]
             lift_i = singlerun(xnew,mdot)
             cleanhouse(iteration,False)
             dL = lift_i - lift_init
             with open('./output/debug.txt','a') as f:
-                f.writelines('dL\t{}\t\tdX:\t{}\n'.format(dL,dX))
+                f.writelines('dL\t{}\t\tdX{}:\t{}\n'.format(dL,i,dX))
             dLdX[i] = dL/dX
         else:
             dLdX[i] = 0
     return(dLdX)
 
 
-def update_design(x,dLdX,iteration):
+def update_design(x,dLdX,iteration,gamma):
     # Step forward to x(i+1) using gradient "ascent"
     import numpy as np
+    j = iteration
     if iteration == 0:
         gamma = np.sign(dLdX)
-        dx = 1.01*x - x
+        dx = 1.004*x - x
         x = np.vstack([x,x + gamma * dx])
     else:
         res_x = x[j,:] - x[j-1,:]
         res_gradL = dLdX[j,:] - dLdX[j-1,:]
         # For non zero cases apply Barzilai-Borwein method for gamma - guarantees convergence to a local minimum
-        gamma = np.append(gamma,np.dot(res_x,res_gradL)/np.dot(res_gradL,res_gradL))
-        x = np.vstack([x, x[iteration-1,:] + (gamma[iteration] * dLdX[iteration,:])])
+        # gamma = np.append(gamma,np.abs(np.dot(res_x,res_gradL)/np.dot(res_gradL,res_gradL)))
 
-    return x
+        # Changed my mind, attempting a fixed learning rate
+        gamma = 1 / np.dot(res_gradL,res_gradL)
+        x = np.vstack([x, x[iteration,:]*(1 + (gamma * dLdX[iteration,:]))])
+
+    return x, gamma
 
 
 
 eps = 1
 convergence = 0.1
 iteration = 0
+max_epochs = 20
 selection = np.ones(5)
+gamma = 1
 # Actual optimization loop, convergence criteria subject to change to increase or decrease sensitivity as necessary
-while eps > convergence:
+
+while eps > convergence and iteration < max_epochs:
     if iteration == 0:
         dLdX = find_gradient(x,mdot,iteration,selection)
-        x = update_design(x,dLdX,iteration)
+        x, gamma = update_design(x,dLdX,iteration, gamma)
         eps = np.max(np.abs(dLdX))
+        gamma = np.array([0])
     else:
         dLdX = np.vstack([dLdX,find_gradient(x,mdot,iteration,selection)])
-        x = update_design(x,dLdX,iteration)
+        x, gamma = update_design(x,dLdX,iteration, gamma)
         eps = np.max(dLdX[iteration,:])
         for i in range(np.size(dLdX[iteration,:])):
             if np.abs(dLdX[iteration,i]) < convergence:

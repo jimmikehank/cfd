@@ -2,11 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
+
+
+#---------- Control Variables handled by this block ----------#
+
 # Command line argument handler:
 
 args = sys.argv
 
-#---------- Control Variables handled by this block ----------#
+# This function parses input arguments to generate mesh allowing external programs to iterate through different mesh configurations
 
 def arg_handle(args):
     # Default Values
@@ -135,15 +139,15 @@ pback[25,:] = np.array([pn,pm])
 # Finally: Define the blocking and grading parameters!
 blocks_x_in  = 20
 blocks_y_in  = 20
-blocks_x_exf = 5
-blocks_x_out = 50
-blocks_y_out = 50
+blocks_x_exf = 8
+blocks_x_out = 60
+blocks_y_out = 60
 
 grade_x_flat = 1
-grade_y_flat = 1000
+grade_y_flat = 3000
 
 grade_x_curve = 1
-grade_y_curve = 500
+grade_y_curve = 3000
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
@@ -197,7 +201,7 @@ blocks = [
     '\t\thex ( 0  2  4  6  1  3  5  7) ({} {} 1) simpleGrading ( 1   1  1) // 0\n'.format(blocks_x_in, blocks_y_in),
     '\t\thex ( 2  8 10  4  3  9 11  5) ({} {} 1) simpleGrading (.25  1  1) // 1\n'.format(blocks_x_in, blocks_y_in),
     '\t\thex ( 8 12 14 10  9 13 15 11) ({} {} 1) simpleGrading ( 1   1  1) // 2\n'.format(blocks_x_in, blocks_y_in),
-    '\t\thex (20 22 16 18 21 23 17 19) ({} {} 1) simpleGrading ( 1  {}  1) // 3\n'.format(blocks_x_out+20, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (20 22 16 18 21 23 17 19) ({} {} 1) simpleGrading ( 1  {}  1) // 3\n'.format(blocks_x_out+60, blocks_y_out, 1/grade_y_flat),
     '\t\thex (24 26 16 22 25 27 17 23) ({} {} 1) simpleGrading ({}  {}  1) // 4\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat, 1/grade_y_curve),
     '\t\thex (26 28 12 16 27 29 13 17) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_curve),
     '\t\thex (28 30 14 12 29 31 15 13) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_y_in, blocks_y_out, 1/grade_y_curve),

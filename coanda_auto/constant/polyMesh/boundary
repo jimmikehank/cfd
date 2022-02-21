@@ -19,53 +19,53 @@ FoamFile
     down
     {
         type            patch;
-        nFaces          120;
-        startFace       46395;
+        nFaces          180;
+        startFace       69932;
     }
     right
     {
         type            patch;
-        nFaces          175;
-        startFace       46515;
+        nFaces          208;
+        startFace       70112;
     }
     up
     {
         type            patch;
-        nFaces          150;
-        startFace       46690;
+        nFaces          180;
+        startFace       70320;
     }
     meanFlow
     {
         type            patch;
-        nFaces          100;
-        startFace       46840;
+        nFaces          120;
+        startFace       70500;
     }
     surface
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          325;
-        startFace       46940;
+        nFaces          428;
+        startFace       70620;
     }
     surfaceInner
     {
         type            wall;
         inGroups        List<word> 1(wall);
         nFaces          120;
-        startFace       47265;
+        startFace       71048;
     }
     coandaInlet
     {
         type            patch;
         nFaces          20;
-        startFace       47385;
+        startFace       71168;
     }
     defaultFaces
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          46900;
-        startFace       47405;
+        nFaces          70560;
+        startFace       71188;
     }
 )
 

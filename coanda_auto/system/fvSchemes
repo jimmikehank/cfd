@@ -30,7 +30,7 @@ gradSchemes
 
 divSchemes
 {
-    default         none;
+    default           none;
 
     turbulence        bounded Gauss upwind;
     energy            bounded Gauss linearUpwind limited;
