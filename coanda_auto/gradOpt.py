@@ -12,6 +12,17 @@ xinit = np.array([
 x = xinit
 mdot = 0.05
 
+def inprogress(dirs):
+    import numpy as np
+    import os
+    iternumbers = np.array([])
+    for item in dirs:
+        for j in range(len(item)):
+            if item[j] == '_':
+                iternumbers = np.append(iternumbers,int(item[j+1:]))
+    current = int(np.max(iternumbers))
+    return current
+
 def meshCommand(x):
     command = 'python3 autoMesh.py -Rc {} -te {} -tu {} -ru {} -ai {}'.format(x[0],x[1],x[2],x[3],x[4])
     return command
@@ -51,12 +62,13 @@ def cleanhouse(iter,keep):
     new_converged = str(max(boop))
 
     if keep == True:
+        export_fold = '/home/james/Documents/research/converged_cases'
         foldname = 'iteration_{}'.format(iter)
-        os.system('mkdir converged/{}'.format(foldname))
-        os.system('mv {} converged/{}'.format(new_converged,foldname))
+        os.system('mkdir {}/{}'.format(export_fold,foldname))
+        os.system('mv {} {}/{}'.format(new_converged,export_fold,foldname))
 
         for item in copy:
-            os.system('cp {} converged/{} -r'.format(item,foldname))
+            os.system('cp {} {}/{} -r'.format(item,export_fold,foldname))
 
         dirs = os.listdir()
 
@@ -130,17 +142,25 @@ def find_gradient(x,mdot,iteration,selection):
     for i in range(np.size(x_init)):
         if selection[i] == 1:
             xnew[:] = x_init[:]
-            xnew[i] = x_init[i] * (1 + 0.004 * sgn[i])
+            xnew[i] = x_init[i] * (1 + 0.0004 * sgn[i])
             dX = xnew[i] - x_init[i]
             lift_i = singlerun(xnew,mdot)
             cleanhouse(iteration,False)
             dL = lift_i - lift_init
             with open('./output/debug.txt','a') as f:
-                f.writelines('dL\t{}\t\tdX{}:\t{}\n'.format(dL,i,dX))
+                f.writelines('Iteration {}:\t\tdL\t{}\t\tdX{}:\t{}\n'.format(iteration,dL,i,dX))
             dLdX[i] = dL/dX
         else:
             dLdX[i] = 0
     return(dLdX)
+
+def delta_x_calc(x,dLdX,iteration,flip_scaler,lim):
+    xnew = x[iteration,:]*(1 + (flip_scaler * gamma[iteration] * dLdX[iteration,:] / x[0,:]))
+    if if np.abs(xnew-x[iteration]) > 1 + lim:
+        xout = (1 + np.sign(xnew-x[iteration]) * lim) * x[iteration]
+    else:
+        xout = xnew
+    return(xout)
 
 
 def update_design(x,dLdX,iteration,gamma):
@@ -149,47 +169,82 @@ def update_design(x,dLdX,iteration,gamma):
     j = iteration
     if iteration == 0:
         gamma = np.sign(dLdX)
-        dx = 1.004*x - x
+        dx = 1.0004*x - x
         x = np.vstack([x,x + gamma * dx])
+        flip_scaler = np.ones(5)
     else:
-        res_x = x[j,:] - x[j-1,:]
+        res_x = (x[j,:] - x[j-1,:])/np.min(x[j,:] - x[j-1,:])
         res_gradL = dLdX[j,:] - dLdX[j-1,:]
+        flip_scaler = np.zeros(5)
+        for i in range(5):
+            if np.sign(dLdX[j,i]) != np.sign(dLdX[j-1,i]):
+                flip_scaler[i] = 0.2
+            else:
+                flip_scaler[i] = 1
+
         # For non zero cases apply Barzilai-Borwein method for gamma - guarantees convergence to a local minimum
-        # gamma = np.append(gamma,np.abs(np.dot(res_x,res_gradL)/np.dot(res_gradL,res_gradL)))
+        gamma = np.append(gamma,2e-11)
 
         # Changed my mind, attempting a fixed learning rate
-        gamma = 1 / np.dot(res_gradL,res_gradL)
-        x = np.vstack([x, x[iteration,:]*(1 + (gamma * dLdX[iteration,:]))])
+        # Possible iterative logic here to reduce sign flipping
 
-    return x, gamma
+        x = np.vstack([x, delta_x_calc(x,dLdX,iteration,flip_scaler,0.05)])
 
+    return x, gamma, flip_scaler
 
+# Initialization loop - Checks for content in converged folder, then continues from that iteration
 
-eps = 1
+checkdir = os.listdir('/home/james/Documents/research/converged_cases/')
+print(checkdir)
+if checkdir == []:
+    selection = np.ones(5)
+    iteration = 0
+    eps = 1
+else:
+    selection = np.ones(5)
+    iteration = inprogress(checkdir)+1
+    x = np.loadtxt('./output/X.txt')
+    dLdX = np.loadtxt('./output/dLdX.txt')
+    eps = np.max(np.abs(dLdX[iteration-1]))
+    flip = np.loadtxt('./output/Flip.txt')
+    gamma = np.loadtxt('./output/gamma.txt')
+    for j in range(5):
+        k = dLdX[int(iteration-1),j]
+        if k == 0:
+            selection[j] = 0
+
+print('Starting at iteration {} with variables {}.\n'.format(iteration,selection))
+yes = input('If this is incorrect, enter X:  ')
+if yes.lower() == 'x':
+    exit()
 convergence = 0.1
-iteration = 0
-max_epochs = 20
-selection = np.ones(5)
+max_epochs = 300
 gamma = 1
+
 # Actual optimization loop, convergence criteria subject to change to increase or decrease sensitivity as necessary
 
 while eps > convergence and iteration < max_epochs:
     if iteration == 0:
         dLdX = find_gradient(x,mdot,iteration,selection)
-        x, gamma = update_design(x,dLdX,iteration, gamma)
+        x, gamma, flip = update_design(x,dLdX,iteration, gamma)
         eps = np.max(np.abs(dLdX))
         gamma = np.array([0])
     else:
         dLdX = np.vstack([dLdX,find_gradient(x,mdot,iteration,selection)])
-        x, gamma = update_design(x,dLdX,iteration, gamma)
-        eps = np.max(dLdX[iteration,:])
+        x, gamma, flipi = update_design(x,dLdX,iteration, gamma)
+        flip = np.vstack([flip,flipi])
+        eps = np.max(np.abs(dLdX[iteration,:]))
         for i in range(np.size(dLdX[iteration,:])):
             if np.abs(dLdX[iteration,i]) < convergence:
                 selection[i] = 0
+                with open('./output/selection_checker.txt','a') as f:
+                    f.writelines('Iteration {}\nVariable {} converged with partial derivative: {}\n\n'.format(iteration,i,dLdX[iteration,i]))
             else:
                 selection[i] = 1
     iteration = iteration + 1
+    np.savetxt('./output/Flip.txt',flip)
     np.savetxt('./output/X.txt',x)
     np.savetxt('./output/dLdX.txt',dLdX)
+    np.savetxt('./output/gamma.txt',gamma)
 
 print('Solution Converged!')
