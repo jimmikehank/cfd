@@ -16,7 +16,7 @@ FoamFile
 
 dimensions      [0 2 -1 0 0 0 0];
 
-constNut        0.05;
+constNut        0.14;
 
 internalField   uniform $constNut;
 

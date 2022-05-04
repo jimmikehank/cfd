@@ -147,19 +147,25 @@ def find_gradient(x,mdot,iteration,selection):
             lift_i = singlerun(xnew,mdot)
             cleanhouse(iteration,False)
             dL = lift_i - lift_init
-            with open('./output/debug.txt','a') as f:
-                f.writelines('Iteration {}:\t\tdL\t{}\t\tdX{}:\t{}\n'.format(iteration,dL,i,dX))
             dLdX[i] = dL/dX
         else:
             dLdX[i] = 0
     return(dLdX)
 
-def delta_x_calc(x,dLdX,iteration,flip_scaler,lim):
-    xnew = x[iteration,:]*(1 + (flip_scaler * gamma[iteration] * dLdX[iteration,:] / x[0,:]))
-    if if np.abs(xnew-x[iteration]) > 1 + lim:
-        xout = (1 + np.sign(xnew-x[iteration]) * lim) * x[iteration]
-    else:
-        xout = xnew
+def delta_x_calc(x,dLdX,iteration,flip_scaler,lim,gamma):
+    xnew = x[iteration,:]*(1 + (gamma * dLdX[iteration,:] / x[0,:]))
+    xout = np.zeros(np.size(xnew))
+    for i in range(np.size(xnew)):
+        if np.abs(xnew[i]-x[iteration,i])/x[iteration,i] > lim:
+            xout[i] = (1 + np.sign(xnew[i]-x[iteration,i]) * lim) * x[iteration,i]
+            with open('./output/debug.txt','a') as f:
+                f.writelines("{}".format(xout[i]))
+        else:
+            xout[i] = xnew[i]
+            with open('./output/debug.txt','a') as f:
+                f.writelines("{}\t".format(xout[i]))
+    with open('./output/debug.txt','a') as f:
+        f.writelines("\n")
     return(xout)
 
 
@@ -188,7 +194,7 @@ def update_design(x,dLdX,iteration,gamma):
         # Changed my mind, attempting a fixed learning rate
         # Possible iterative logic here to reduce sign flipping
 
-        x = np.vstack([x, delta_x_calc(x,dLdX,iteration,flip_scaler,0.05)])
+        x = np.vstack([x, delta_x_calc(x,dLdX,iteration,flip_scaler,0.02,4e-12)])
 
     return x, gamma, flip_scaler
 

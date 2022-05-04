@@ -2,14 +2,15 @@ import os
 import shutil
 import numpy as np
 
-retain = ['0', 'constant', 'system','autoCFD.py','con','sensorOptimization.ipynb','.ipynb_checkpoints','autoWing.py','autoVTK.py','VTK']
+retain = ['0', 'constant', 'system','autoCFD.py','con','sensorOptimization.ipynb','.ipynb_checkpoints','autoWing.py','autoVTK.py','VTK', 'vtkTransfer.py']
 
 boop = []
 
 timestep = .00010;
 
-N = 18
-angles = np.linspace(6.5,15,N)
+max_angle = 16
+N = 17
+angles = np.linspace(0,max_angle,N)
 
 def check_float(textin):
     try:
@@ -27,20 +28,20 @@ def rotrans(angle):
 
 def setup():
     os.system('blockMesh')
+    os.system('decomposePar')
     os.system('snappyHexMesh -overwrite')
     os.system('extrudeMesh')
+    os.system('deconstructPar')
 
-for i in range(N):
-    boop = []
-    angle = angles[i]
-    copy = ['0','system','constant']
-    rotrans(angle)
-    setup()
-
-    os.system('simpleFoam')
-
+def simpleclean(retain):
     dirs = os.listdir()
+    for item in dirs:
+        if item not in retain:
+            shutil.rmtree(item)
 
+
+def cleanhouse(copy,retain,target,angle):
+    dirs = os.listdir()
     for item in dirs:
         if item not in retain:
             if check_float(item):
@@ -51,17 +52,28 @@ for i in range(N):
                 boop = boop + [it]
             else:
                 shutil.rmtree(item)
-
     new_converged = str(max(boop))
     new_name = '{}_deg'.format(angle)
-    os.system('mkdir con/{}'.format(new_name))
-    os.system('mv {} con/{}'.format(new_converged,new_name))
+    os.system('mkdir {}/{}'.format(target,new_name))
+    os.system('mv {} {}/{}'.format(new_converged,target,new_name))
 
     for item in copy:
-        os.system('cp {} con/{} -r'.format(item,new_name))
-
-    dirs = os.listdir()
+        os.system('cp {} {}/{} -r'.format(item,target,new_name))
 
     for item in dirs:
         if item not in retain:
             shutil.rmtree(item)
+
+
+
+for i in range(N):
+    boop = []
+    angle = angles[i]
+    copy = ['0','system','constant']
+    target = '/home/james/Documents/research/converged_cases/sensorOptOutput'
+    rotrans(angle)
+    setup()
+
+    os.system('mpirun -np 6 simpleFoam -parallel')
+
+    cleanhouse(copy,retain,target,angle)
