@@ -152,21 +152,35 @@ def find_gradient(x,mdot,iteration,selection):
             dLdX[i] = 0
     return(dLdX)
 
-def delta_x_calc(x,dLdX,iteration,flip_scaler,lim,gamma):
-    xnew = x[iteration,:]*(1 + (gamma * dLdX[iteration,:] / x[0,:]))
-    xout = np.zeros(np.size(xnew))
-    for i in range(np.size(xnew)):
-        if np.abs(xnew[i]-x[iteration,i])/x[iteration,i] > lim:
-            xout[i] = (1 + np.sign(xnew[i]-x[iteration,i]) * lim) * x[iteration,i]
-            with open('./output/debug.txt','a') as f:
-                f.writelines("{}".format(xout[i]))
-        else:
-            xout[i] = xnew[i]
-            with open('./output/debug.txt','a') as f:
-                f.writelines("{}\t".format(xout[i]))
-    with open('./output/debug.txt','a') as f:
-        f.writelines("\n")
-    return(xout)
+# def delta_x_calc(x,dLdX,iteration,flip_scaler,lim,gamma):
+#     xnew = x[iteration,:]*(1 + (gamma * dLdX[iteration,:] / x[0,:]))
+#     xout = np.zeros(np.size(xnew))
+#     for i in range(np.size(xnew)):
+#         if np.abs(xnew[i]-x[iteration,i])/x[iteration,i] > lim:
+#             xout[i] = (1 + np.sign(xnew[i]-x[iteration,i]) * lim) * x[iteration,i]
+#             with open('./output/debug.txt','a') as f:
+#                 f.writelines("{}".format(xout[i]))
+#         else:
+#             xout[i] = xnew[i]
+#             with open('./output/debug.txt','a') as f:
+#                 f.writelines("{}\t".format(xout[i]))
+#     with open('./output/debug.txt','a') as f:
+#         f.writelines("\n")
+#     return(xout)
+
+def adam(x,dLdX,m,v,iteration):
+    # Step forward in x using Adam algorithm
+    import numpy as np
+    alpha = 0.001
+    beta1 = 0.9
+    beta2 = 0.999
+    eps = 1e-8
+    m = np.vstack([m,beta1 * m[iteration-1] + (1 - beta1)*dLdX[iteration-1,:]])
+    v = np.vstack([v,beta2*v[iteration-1,:] + (1-beta2)*dLdX[iteration,:]**2])
+    mhat = m[iteration,:]/(1-beta1)
+    vhat = v[iteration,:]/(1-beta2)
+    x = np.vstack([x,x[iteration,:]+alpha[iteration]*mhat[iteration]/(np.sqrt(vhat[iteration] + eps))])
+    return x, m, v
 
 
 def update_design(x,dLdX,iteration,gamma):
@@ -188,13 +202,9 @@ def update_design(x,dLdX,iteration,gamma):
             else:
                 flip_scaler[i] = 1
 
-        # For non zero cases apply Barzilai-Borwein method for gamma - guarantees convergence to a local minimum
-        gamma = np.append(gamma,2e-11)
 
-        # Changed my mind, attempting a fixed learning rate
-        # Possible iterative logic here to reduce sign flipping
-
-        x = np.vstack([x, delta_x_calc(x,dLdX,iteration,flip_scaler,0.02,4e-12)])
+        # Use Adam to step forward in x (gradient step switched from negative to positive)
+        x, m, v = np.vstack([x, adam(x,dLdX,m,v,iteration)])
 
     return x, gamma, flip_scaler
 
@@ -205,6 +215,8 @@ print(checkdir)
 if checkdir == []:
     selection = np.ones(5)
     iteration = 0
+    m = np.zeros([1,5])
+    v = np.zeros([1,5])
     eps = 1
 else:
     selection = np.ones(5)
@@ -214,6 +226,8 @@ else:
     eps = np.max(np.abs(dLdX[iteration-1]))
     flip = np.loadtxt('./output/Flip.txt')
     gamma = np.loadtxt('./output/gamma.txt')
+    m = np.loadtxt('./output/m.txt')
+    v = np.loadtxt('./output/v.txt')
     for j in range(5):
         k = dLdX[int(iteration-1),j]
         if k == 0:
@@ -252,5 +266,7 @@ while eps > convergence and iteration < max_epochs:
     np.savetxt('./output/X.txt',x)
     np.savetxt('./output/dLdX.txt',dLdX)
     np.savetxt('./output/gamma.txt',gamma)
+    np.savetxt('./output/m.txt',m)
+    np.savetxt('./output/v.txt',v)
 
 print('Solution Converged!')
