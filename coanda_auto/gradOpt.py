@@ -171,19 +171,20 @@ def find_gradient(x,mdot,iteration,selection):
 def adam(x,dLdX,m,v,iteration):
     # Step forward in x using Adam algorithm
     import numpy as np
+    order = np.array([1e-2, 1e-2, 1e-2, 1e-1, 1])
     alpha = 0.001
     beta1 = 0.9
     beta2 = 0.999
     eps = 1e-8
-    m = np.vstack([m,beta1 * m[iteration-1] + (1 - beta1)*dLdX[iteration-1,:]])
-    v = np.vstack([v,beta2*v[iteration-1,:] + (1-beta2)*dLdX[iteration,:]**2])
+    m = np.vstack([m, beta1 * m[iteration-1,:] + (1 - beta1)*dLdX[iteration,:]])
+    v = np.vstack([v, beta2 * v[iteration-1,:] + (1 - beta2)*dLdX[iteration,:]**2])
     mhat = m[iteration,:]/(1-beta1)
     vhat = v[iteration,:]/(1-beta2)
-    x = np.vstack([x,x[iteration,:]+alpha[iteration]*mhat[iteration]/(np.sqrt(vhat[iteration] + eps))])
+    x = np.vstack([x, x[iteration,:] + order * alpha * mhat / (np.sqrt(vhat + eps))])
     return x, m, v
 
 
-def update_design(x,dLdX,iteration,gamma):
+def update_design(x,dLdX,iteration,gamma, m, v):
     # Step forward to x(i+1) using gradient "ascent"
     import numpy as np
     j = iteration
@@ -204,19 +205,17 @@ def update_design(x,dLdX,iteration,gamma):
 
 
         # Use Adam to step forward in x (gradient step switched from negative to positive)
-        x, m, v = np.vstack([x, adam(x,dLdX,m,v,iteration)])
+        x, m, v = adam(x,dLdX,m,v,iteration)
 
-    return x, gamma, flip_scaler
+    return x, gamma, flip_scaler, m, v
 
 # Initialization loop - Checks for content in converged folder, then continues from that iteration
 
 checkdir = os.listdir('/home/james/Documents/research/converged_cases/')
 print(checkdir)
 if checkdir == []:
-    selection = np.ones(5)
+    selection = np.array([1,1,1,0,0])
     iteration = 0
-    m = np.zeros([1,5])
-    v = np.zeros([1,5])
     eps = 1
 else:
     selection = np.ones(5)
@@ -245,13 +244,16 @@ gamma = 1
 
 while eps > convergence and iteration < max_epochs:
     if iteration == 0:
+        m = np.zeros([1,5])
+        v = np.zeros([1,5])
+        print(m)
         dLdX = find_gradient(x,mdot,iteration,selection)
-        x, gamma, flip = update_design(x,dLdX,iteration, gamma)
+        x, gamma, flip, m, v = update_design(x,dLdX,iteration, gamma, m, v)
         eps = np.max(np.abs(dLdX))
         gamma = np.array([0])
     else:
         dLdX = np.vstack([dLdX,find_gradient(x,mdot,iteration,selection)])
-        x, gamma, flipi = update_design(x,dLdX,iteration, gamma)
+        x, gamma, flipi, m, v = update_design(x,dLdX,iteration, gamma, m, v)
         flip = np.vstack([flip,flipi])
         eps = np.max(np.abs(dLdX[iteration,:]))
         for i in range(np.size(dLdX[iteration,:])):
