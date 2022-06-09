@@ -171,7 +171,7 @@ def find_gradient(x,mdot,iteration,selection):
 def adam(x,dLdX,m,v,iteration):
     # Step forward in x using Adam algorithm
     import numpy as np
-    order = np.array([1e-2, 1e-2, 1e-2, 1e-1, 1])
+    order = np.array([1e-2, 2e-3, 5e-3, 1, 1])
     alpha = 0.001
     beta1 = 0.9
     beta2 = 0.999
@@ -224,7 +224,6 @@ else:
     dLdX = np.loadtxt('./output/dLdX.txt')
     eps = np.max(np.abs(dLdX[iteration-1]))
     flip = np.loadtxt('./output/Flip.txt')
-    gamma = np.loadtxt('./output/gamma.txt')
     m = np.loadtxt('./output/m.txt')
     v = np.loadtxt('./output/v.txt')
     for j in range(5):
@@ -267,7 +266,6 @@ while eps > convergence and iteration < max_epochs:
     np.savetxt('./output/Flip.txt',flip)
     np.savetxt('./output/X.txt',x)
     np.savetxt('./output/dLdX.txt',dLdX)
-    np.savetxt('./output/gamma.txt',gamma)
     np.savetxt('./output/m.txt',m)
     np.savetxt('./output/v.txt',v)
 
