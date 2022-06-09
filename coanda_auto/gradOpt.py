@@ -230,7 +230,7 @@ else:
         k = dLdX[int(iteration-1),j]
         if k == 0:
             selection[j] = 0
-
+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
 print('Starting at iteration {} with variables {}.\n'.format(iteration,selection))
 yes = input('If this is incorrect, enter X:  ')
 if yes.lower() == 'x':
