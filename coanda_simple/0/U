@@ -22,7 +22,7 @@ dimensions			[0 1 -1 0 0 0 0];
 
 internalField		uniform (30  0  0);
 
-f 							10;
+f 							100;
 
 boundaryField
 {
@@ -57,30 +57,26 @@ boundaryField
 		{
 				//type 						noSlip;
 				type						flowRateInletVelocity;
-				massFlowRate		{
-						type sine;
-						frequency $f;
-						amplitude 0.05;
-						scale 1;
-						level 0;
-						t0 0;
+				massFlowRate		sine;
+				massFlowRateCoeffs {
+						frequency 		$f;
+						amplitude	 0.025;
+						level 	   0.025;
 				}
-				value 	uniform (0.05 0 0);
+				value 					uniform (0.05 0 0);
 		}
 
 		coandaLower
 		{
 				//type 						noSlip;
 				type						flowRateInletVelocity;
-				massFlowRate		{
-						type 			sine;
-						frequency 	$f;
-						amplitude 0.05;
-						scale 			 1;
-						level 			 0;
-						t0 	-(0.25)/$f;
+				massFlowRate		sine;
+				massFlowRateCoeffs {
+						frequency 		$f;
+						amplitude	-0.025;
+						level 	   0.025;
 				}
-				value 	uniform (0.05 0 0);
+				value 					uniform (0.05 0 0);
 		}
 
 		defaultFaces
