@@ -47,9 +47,9 @@ r,h,t = arg_handle(args)
 
 #---------- Control Variables handled by this block ----------#
 
-control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.5,.1],[.75,.08],[1,0]])
+control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.5,.07],[.75,.03],[1,0]])
 file = '/home/james/Documents/research/cfd/airfoils/naca0015-il.csv'
-bezfoil, cpU, iters = foil_opt(control_points_init, file, chord_length, 2e-7)
+bezfoil, cpU, iters = foil_opt(control_points_init, file, chord_length, 5e-7,step = 2,debug=True)
 # Command line argument handler:
 cpL = cpU * [1,-1]
 m = 101

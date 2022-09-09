@@ -74,21 +74,25 @@ def find_grad(airfoil,control_points,m):
         err_grad[i,1] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
     return err_grad
 
-def foil_opt(control_points,af_filename,chord = 1., eps=1e-6,m=101, debug = False):
+def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-16, m=101, step=1, debug=False):
     import numpy as np
     control_points = control_points
     airfoil_raw = load_airfoil(af_filename)
     bezfoil = init_bezfoil(m, control_points)
     airfoil = interp_foil(bezfoil,airfoil_raw)
     err = 1
+    err_prev = .5
+    derr = 1
     err_store = []
     iters = 0
-    while err > eps:
+    while err > eps and derr > deps:
         err = bezier_error(bezfoil,airfoil)
         err_store = np.append(err_store,err)
         grad = find_grad(airfoil,control_points,m)
-        control_points -= grad*(1)
+        control_points -= grad*(step)
         bezfoil = init_bezfoil(m, control_points)
+        derr = np.abs(err_prev - err)
+        err_prev = err
         iters+=1
         if iters % 100 == 0 and debug:
             print(err)
