@@ -1,0 +1,6456 @@
+Iteration 1
+Variable 4 converged with partial derivative: 0.06247500999570956
+
+Iteration 2
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 5
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 6
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 7
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 8
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 9
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 10
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 11
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 12
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 13
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 14
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 15
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 16
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 17
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 18
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 19
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 20
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 21
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 22
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 23
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 24
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 24
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 25
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 25
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 26
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 26
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 28
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 28
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 29
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 29
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 30
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 30
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 31
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 31
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 32
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 32
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 33
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 33
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 34
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 34
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 35
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 35
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 36
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 36
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 37
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 37
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 38
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 38
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 39
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 39
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 40
+Variable 2 converged with partial derivative: -0.0
+
+Iteration 40
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 40
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 41
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 41
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 41
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 42
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 42
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 42
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 43
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 43
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 43
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 44
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 44
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 44
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 45
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 45
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 45
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 46
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 46
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 46
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 47
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 47
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 47
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 48
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 48
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 48
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 92
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 92
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 92
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 93
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 93
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 93
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 94
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 94
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 94
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 95
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 95
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 95
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 96
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 96
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 96
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 97
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 97
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 97
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 98
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 98
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 98
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 99
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 99
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 99
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 100
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 100
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 100
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 4 converged with partial derivative: 0.06247500999570956
+
+Iteration 2
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 5
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 6
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 7
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 8
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 9
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 10
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 11
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 12
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 13
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 14
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 15
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 16
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 17
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 18
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 19
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 20
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 21
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 22
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 23
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 24
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 25
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 26
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 28
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 29
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 30
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 31
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 32
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 33
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 34
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 35
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 36
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 37
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 38
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 39
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 40
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 41
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 42
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 43
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 44
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 45
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 46
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 47
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 48
+Variable 2 converged with partial derivative: -0.0
+
+Iteration 48
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 92
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 92
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 93
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 93
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 94
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 94
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 95
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 95
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 96
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 96
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 97
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 97
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 98
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 98
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 99
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 99
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 100
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 100
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 101
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 101
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 102
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 102
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 103
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 103
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 104
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 104
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 105
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 105
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 106
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 106
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 107
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 107
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 108
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 108
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 109
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 109
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 110
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 110
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 111
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 111
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 112
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 112
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 113
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 113
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 114
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 114
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 115
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 115
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 116
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 116
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 117
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 117
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 117
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 118
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 118
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 118
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 119
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 119
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 119
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 120
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 120
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 120
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 121
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 121
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 121
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 122
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 122
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 122
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 123
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 123
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 123
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 124
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 124
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 124
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 125
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 125
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 125
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 126
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 126
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 126
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 127
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 127
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 127
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 128
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 128
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 128
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 129
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 129
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 129
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 130
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 130
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 130
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 131
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 131
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 131
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 132
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 132
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 132
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 133
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 133
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 133
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 134
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 134
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 134
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 135
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 135
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 135
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 136
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 136
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 136
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 137
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 137
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 137
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 138
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 138
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 138
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 139
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 139
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 139
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 140
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 140
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 140
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 141
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 141
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 141
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 142
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 142
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 142
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 143
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 143
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 143
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 144
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 144
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 144
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 145
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 145
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 145
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 146
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 146
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 146
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 147
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 147
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 147
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 148
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 148
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 148
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 149
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 149
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 149
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 150
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 150
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 150
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 151
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 151
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 151
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 152
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 152
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 152
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 153
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 153
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 153
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 154
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 154
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 154
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 155
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 155
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 155
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 156
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 156
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 156
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 157
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 157
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 157
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 158
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 158
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 158
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 159
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 159
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 159
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 160
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 160
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 160
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 161
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 161
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 161
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 162
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 162
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 162
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 163
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 163
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 163
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 164
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 164
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 164
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 165
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 165
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 165
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 166
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 166
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 166
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 167
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 167
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 167
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 168
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 168
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 168
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 169
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 169
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 169
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 170
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 170
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 170
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 171
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 171
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 171
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 172
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 172
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 172
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 173
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 173
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 173
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 174
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 174
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 174
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 175
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 175
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 175
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 176
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 176
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 176
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 177
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 177
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 177
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 178
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 178
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 178
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 179
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 179
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 179
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 180
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 180
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 180
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 181
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 181
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 181
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 182
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 182
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 182
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 183
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 183
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 183
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 184
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 184
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 184
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 185
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 185
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 185
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 186
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 186
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 186
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 187
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 187
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 187
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 188
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 188
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 188
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 189
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 189
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 189
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 190
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 190
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 190
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 191
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 191
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 191
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 192
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 192
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 192
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 193
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 193
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 193
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 194
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 194
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 194
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 195
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 195
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 195
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 196
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 196
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 196
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 197
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 197
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 197
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 198
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 198
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 198
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 199
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 199
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 199
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 200
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 200
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 200
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 200
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 201
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 201
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 201
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 201
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 202
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 202
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 202
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 202
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 203
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 203
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 203
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 203
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 204
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 204
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 204
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 204
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 205
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 205
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 205
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 205
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 206
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 206
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 206
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 206
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 207
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 207
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 207
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 207
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 208
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 208
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 208
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 208
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 209
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 209
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 209
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 209
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 210
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 210
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 210
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 210
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 211
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 211
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 211
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 211
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 212
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 212
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 212
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 212
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 213
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 213
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 213
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 213
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 214
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 214
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 214
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 214
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 215
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 215
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 215
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 215
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 216
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 216
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 216
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 216
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 217
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 217
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 217
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 217
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 218
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 218
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 218
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 218
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 219
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 219
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 219
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 219
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 220
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 220
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 220
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 220
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 221
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 221
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 221
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 221
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 222
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 222
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 222
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 222
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 223
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 223
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 223
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 223
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 224
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 224
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 224
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 224
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 225
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 225
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 225
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 225
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 226
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 226
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 226
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 226
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 227
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 227
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 227
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 227
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 228
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 228
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 228
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 228
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 229
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 229
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 229
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 229
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 230
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 230
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 230
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 230
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 231
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 231
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 231
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 231
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 232
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 232
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 232
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 232
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 233
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 233
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 233
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 233
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 234
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 234
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 234
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 234
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 235
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 235
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 235
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 235
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 236
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 236
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 236
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 236
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 237
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 237
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 237
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 237
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 238
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 238
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 238
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 238
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 239
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 239
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 239
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 239
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 240
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 240
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 240
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 240
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 241
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 241
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 241
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 241
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 242
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 242
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 242
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 242
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 243
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 243
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 243
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 243
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 244
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 244
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 244
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 244
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 245
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 245
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 245
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 245
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 246
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 246
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 246
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 246
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 247
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 247
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 247
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 247
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 248
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 248
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 248
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 248
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 249
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 249
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 249
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 249
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 250
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 250
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 250
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 250
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 251
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 251
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 251
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 251
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 252
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 252
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 252
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 252
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 253
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 253
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 253
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 253
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 254
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 254
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 254
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 254
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 255
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 255
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 255
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 255
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 256
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 256
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 256
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 256
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 257
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 257
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 257
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 257
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 258
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 258
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 258
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 258
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 259
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 259
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 259
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 259
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 260
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 260
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 260
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 260
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 261
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 261
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 261
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 261
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 2
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 2
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 2
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 2
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 5
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 5
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 6
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 6
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 7
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 7
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 8
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 8
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 9
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 9
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 9
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 10
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 10
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 10
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 11
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 11
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 11
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 12
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 12
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 12
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 13
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 13
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 13
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 14
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 14
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 14
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 15
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 15
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 15
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 16
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 16
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 16
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 17
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 17
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 17
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 18
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 18
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 18
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 19
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 19
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 19
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 20
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 20
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 20
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 21
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 21
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 21
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 22
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 22
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 22
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 23
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 23
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 23
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 24
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 24
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 24
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 25
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 25
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 25
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 26
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 26
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 26
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 28
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 28
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 28
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 29
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 29
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 29
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 30
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 30
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 30
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 31
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 31
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 31
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 32
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 32
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 32
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 33
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 33
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 33
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 34
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 34
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 34
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 35
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 35
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 35
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 36
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 36
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 36
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 37
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 37
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 37
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 38
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 38
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 38
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 39
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 39
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 39
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 40
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 40
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 40
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 41
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 41
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 41
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 42
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 42
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 42
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 43
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 43
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 43
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 44
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 44
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 44
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 45
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 45
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 45
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 46
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 46
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 46
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 47
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 47
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 47
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 48
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 48
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 48
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 92
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 92
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 92
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 92
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 93
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 93
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 93
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 93
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 94
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 94
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 94
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 94
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 95
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 95
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 95
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 95
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 96
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 96
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 96
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 96
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 97
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 97
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 97
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 97
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 98
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 98
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 98
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 98
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 99
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 99
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 99
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 99
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 100
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 100
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 100
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 100
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 101
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 101
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 101
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 101
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 102
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 102
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 102
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 102
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 103
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 103
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 103
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 103
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 104
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 104
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 104
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 104
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 105
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 105
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 105
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 105
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 106
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 106
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 106
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 106
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 107
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 107
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 107
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 107
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 108
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 108
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 108
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 108
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 109
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 109
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 109
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 109
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 110
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 110
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 110
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 110
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 111
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 111
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 111
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 111
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 112
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 112
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 112
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 112
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 113
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 113
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 113
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 113
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 114
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 114
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 114
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 114
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 115
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 115
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 115
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 115
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 116
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 116
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 116
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 116
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 117
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 117
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 117
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 117
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 118
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 118
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 118
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 118
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 119
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 119
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 119
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 119
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 120
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 120
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 120
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 120
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 121
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 121
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 121
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 121
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 122
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 122
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 122
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 122
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 123
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 123
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 123
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 123
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 124
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 124
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 124
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 124
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 125
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 125
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 125
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 125
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 126
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 126
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 126
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 126
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 127
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 127
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 127
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 127
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 128
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 128
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 128
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 128
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 129
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 129
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 129
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 129
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 130
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 130
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 130
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 130
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 131
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 131
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 131
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 131
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 132
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 132
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 132
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 132
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 133
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 133
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 133
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 133
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 134
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 134
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 134
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 134
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 135
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 135
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 135
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 135
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 136
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 136
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 136
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 136
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 137
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 137
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 137
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 137
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 138
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 138
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 138
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 138
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 139
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 139
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 139
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 139
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 140
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 140
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 140
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 140
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 141
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 141
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 141
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 141
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 142
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 142
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 142
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 142
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 143
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 143
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 143
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 143
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 144
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 144
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 144
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 144
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 145
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 145
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 145
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 145
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 146
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 146
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 146
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 146
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 147
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 147
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 147
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 147
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 148
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 148
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 148
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 148
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 149
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 149
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 149
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 149
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 150
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 150
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 150
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 150
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 151
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 151
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 151
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 151
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 152
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 152
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 152
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 152
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 153
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 153
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 153
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 153
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 154
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 154
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 154
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 154
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 155
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 155
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 155
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 155
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 156
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 156
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 156
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 156
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 157
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 157
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 157
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 157
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 158
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 158
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 158
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 158
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 159
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 159
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 159
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 159
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 160
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 160
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 160
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 160
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 161
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 161
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 161
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 161
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 162
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 162
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 162
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 162
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 163
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 163
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 163
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 163
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 164
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 164
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 164
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 164
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 165
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 165
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 165
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 165
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 166
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 166
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 166
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 166
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 167
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 167
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 167
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 167
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 168
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 168
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 168
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 168
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 169
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 169
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 169
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 169
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 170
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 170
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 170
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 170
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 171
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 171
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 171
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 171
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 172
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 172
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 172
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 172
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 173
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 173
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 173
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 173
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 174
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 174
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 174
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 174
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 175
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 175
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 175
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 175
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 176
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 176
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 176
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 176
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 177
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 177
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 177
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 177
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 178
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 178
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 178
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 178
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 179
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 179
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 179
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 179
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 180
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 180
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 180
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 180
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 181
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 181
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 181
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 181
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 182
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 182
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 182
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 182
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 183
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 183
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 183
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 183
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 184
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 184
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 184
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 184
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 185
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 185
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 185
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 185
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 186
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 186
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 186
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 186
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 187
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 187
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 187
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 187
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 188
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 188
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 188
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 188
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 189
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 189
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 189
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 189
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 190
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 190
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 190
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 190
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 191
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 191
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 191
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 191
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 192
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 192
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 192
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 192
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 193
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 193
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 193
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 193
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 194
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 194
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 194
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 194
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 195
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 195
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 195
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 195
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 196
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 196
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 196
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 196
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 197
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 197
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 197
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 197
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 198
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 198
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 198
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 198
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 199
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 199
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 199
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 199
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 200
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 200
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 200
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 200
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 201
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 201
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 201
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 201
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 202
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 202
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 202
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 202
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 203
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 203
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 203
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 203
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 204
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 204
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 204
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 204
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 205
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 205
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 205
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 205
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 206
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 206
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 206
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 206
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 207
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 207
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 207
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 207
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 208
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 208
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 208
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 208
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 209
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 209
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 209
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 209
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 210
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 210
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 210
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 210
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 211
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 211
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 211
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 211
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 212
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 212
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 212
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 212
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 213
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 213
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 213
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 213
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 214
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 214
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 214
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 214
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 215
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 215
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 215
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 215
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 216
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 216
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 216
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 216
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 217
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 217
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 217
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 217
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 218
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 218
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 218
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 218
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 219
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 219
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 219
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 219
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 220
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 220
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 220
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 220
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 221
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 221
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 221
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 221
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 222
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 222
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 222
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 222
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 223
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 223
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 223
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 223
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 224
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 224
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 224
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 224
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 225
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 225
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 225
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 225
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 226
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 226
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 226
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 226
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 227
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 227
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 227
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 227
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 228
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 228
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 228
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 228
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 229
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 229
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 229
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 229
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 230
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 230
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 230
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 230
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 231
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 231
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 231
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 231
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 232
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 232
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 232
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 232
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 233
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 233
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 233
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 233
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 234
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 234
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 234
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 234
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 235
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 235
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 235
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 235
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 236
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 236
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 236
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 236
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 237
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 237
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 237
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 237
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 238
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 238
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 238
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 238
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 239
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 239
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 239
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 239
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 240
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 240
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 240
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 240
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 241
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 241
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 241
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 241
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 242
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 242
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 242
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 242
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 243
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 243
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 243
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 243
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 244
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 244
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 244
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 244
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 245
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 245
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 245
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 245
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 246
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 246
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 246
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 246
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 247
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 247
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 247
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 247
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 248
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 248
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 248
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 248
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 249
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 249
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 249
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 249
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 250
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 250
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 250
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 250
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 251
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 251
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 251
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 251
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 252
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 252
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 252
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 252
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 253
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 253
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 253
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 253
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 254
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 254
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 254
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 254
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 255
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 255
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 255
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 255
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 256
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 256
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 256
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 256
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 257
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 257
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 257
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 257
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 258
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 258
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 258
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 258
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 259
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 259
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 259
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 259
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 260
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 260
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 260
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 260
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 261
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 261
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 261
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 261
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 262
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 262
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 262
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 262
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 263
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 263
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 263
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 263
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 264
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 264
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 264
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 264
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 265
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 265
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 265
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 265
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 266
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 266
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 266
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 266
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 267
+Variable 1 converged with partial derivative: 0.0
+
+Iteration 267
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 267
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 267
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 2
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 2
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 5
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 5
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 6
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 6
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 7
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 7
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 8
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 8
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 9
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 9
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 1
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 2
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 2
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 3
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 4
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 5
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 5
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 6
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 6
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 7
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 7
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 8
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 8
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 9
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 9
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 10
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 10
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 11
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 11
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 12
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 12
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 13
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 13
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 14
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 14
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 15
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 15
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 16
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 16
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 17
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 17
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 18
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 18
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 19
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 19
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 20
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 20
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 21
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 21
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 22
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 22
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 23
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 23
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 24
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 24
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 25
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 25
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 26
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 26
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 27
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 28
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 28
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 29
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 29
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 30
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 30
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 31
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 31
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 32
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 32
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 33
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 33
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 34
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 34
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 35
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 35
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 36
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 36
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 37
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 37
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 38
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 38
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 39
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 39
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 40
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 40
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 41
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 41
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 42
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 42
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 43
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 43
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 44
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 44
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 45
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 45
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 46
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 46
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 47
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 47
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 48
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 48
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 49
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 50
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 51
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 52
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 53
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 54
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 55
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 56
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 57
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 58
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 59
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 60
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 61
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 62
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 63
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 64
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 65
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 66
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 67
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 68
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 69
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 70
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 71
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 72
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 73
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 74
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 75
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 76
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 77
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 78
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 79
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 80
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 81
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 82
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 83
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 84
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 85
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 86
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 87
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 88
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 89
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 90
+Variable 4 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 2 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 3 converged with partial derivative: 0.0
+
+Iteration 91
+Variable 4 converged with partial derivative: 0.0
+

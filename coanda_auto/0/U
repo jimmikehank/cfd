@@ -1,0 +1,72 @@
+/*---------------------------------*- C++ -*-----------------------------------*/
+//    //////////////      ///////////////
+//    //////////////      //////////////
+//         ////           ////             /////       ////  //  /// //// ////
+//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
+//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
+//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
+//     /////              ////            /////       ///// ///  ///   ///  ///
+/*---------------------------------*- C++ -*-----------------------------------*/
+
+FoamFile
+{
+		version			2.0;
+		format			ascii;
+		class				volVectorField;
+		location		"0";
+		object			U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions			[0 1 -1 0 0 0 0];
+
+internalField		uniform (30  0  0);
+
+boundaryField
+{
+		down
+		{
+				type						zeroGradient;
+		}
+
+		right
+		{
+				type						zeroGradient;
+		}
+
+		up
+		{
+				type						zeroGradient;
+		}
+
+		meanFlow
+		{
+				type						uniformFixedValue;
+				uniformValue		constant (30  0  0);
+				value						uniform (30  0  0);
+		}
+
+		surface
+		{
+				type						noSlip;
+		}
+
+		surfaceInner
+		{
+				type						noSlip;
+		}
+
+		coandaInlet
+		{
+				type						flowRateInletVelocity;
+				massFlowRate		0.05;
+				value						uniform (0.05 0 0);
+		}
+
+		defaultFaces
+		{
+				type						empty;
+		}
+}
+
+// ************************************************************************* //

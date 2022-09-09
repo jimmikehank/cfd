@@ -1,0 +1,105 @@
+/*---------------------------------*- C++ -*-----------------------------------*/
+//    //////////////      ///////////////
+//    //////////////      //////////////
+//         ////           ////             /////       ////  //  /// //// ////
+//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
+//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
+//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
+//     /////              ////            /////       ///// ///  ///   ///  ///
+/*---------------------------------*- C++ -*-----------------------------------*/
+
+FoamFile
+{
+		version			2.0;
+		format			ascii;
+		class				volVectorField;
+		location		"0";
+		object			U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+f 							20;					// Frequency of oscillation
+alpha						40;						// AoA in Degrees
+U 							30; 					// Flow magnitude
+massflow 				0.05;
+
+dimensions			[0 1 -1 0 0 0 0];
+
+internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+
+
+boundaryField
+{
+		down
+		{
+				type						zeroGradient;
+		}
+
+		right
+		{
+				type						zeroGradient;
+		}
+
+		up
+		{
+				type						zeroGradient;
+		}
+
+		meanFlow
+		{
+				type						uniformFixedValue;
+				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+				value						uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+		}
+
+		surface
+		{
+				type						noSlip;
+		}
+
+		coandaUpper
+		// {
+				// type 						noSlip;
+				// type						flowRateInletVelocity;
+				// massFlowRate		sine;
+				// massFlowRateCoeffs {
+				// 		frequency 		$f;
+				// 		amplitude	 0.025;
+				// 		level 	   0.025;
+				// }
+				// value 					uniform (0.05 0 0);
+		// }
+		// COANDA STEADY:
+		{
+				type						flowRateInletVelocity;
+				massFlowRate		0.05;
+				value						uniform (0.05 0 0);
+		}
+
+		coandaLower
+		{
+				type 						noSlip;
+				// type						flowRateInletVelocity;
+				// massFlowRate		sine;
+				// massFlowRateCoeffs {
+				// 		frequency 		$f;
+				// 		amplitude	-0.025;
+				// 		level 	   0.025;
+				// }
+				// value 					uniform (0.05 0 0);
+		}
+		// COANDA STEADY:
+		// {
+		// 		type						flowRateInletVelocity;
+		// 		massFlowRate		0.05;
+		// 		value						uniform (0.05 0 0);
+		// }
+
+
+		defaultFaces
+		{
+				type						empty;
+		}
+}
+
+// ************************************************************************* //

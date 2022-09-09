@@ -1,0 +1,68 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      nut;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -1 0 0 0 0];
+
+def_pl          uniform 1.4e-2;
+
+internalField   $def_pl;
+
+boundaryField
+{
+    meanFlow
+    {
+        type            freestream;
+        freestreamValue $def_pl;
+    }
+
+    right
+    {
+        type            freestream;
+        freestreamValue $def_pl;
+    }
+
+    down
+    {
+        type            freestream;
+        freestreamValue $def_pl;
+    }
+
+    up
+    {
+        type            freestream;
+        freestreamValue $def_pl;
+    }
+
+    surface
+    {
+        type            nutUSpaldingWallFunction;
+        value           uniform 0;
+    }
+
+    surfaceInner
+    {
+        type            nutUSpaldingWallFunction;
+        value           uniform 0;
+    }
+
+    coandaInlet
+    {
+        type            freestream;
+        freestreamValue $def_pl;
+    }
+}
+
+// ************************************************************************* //
