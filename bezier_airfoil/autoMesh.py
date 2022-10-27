@@ -9,6 +9,30 @@ retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'outpu
 
 # Define Chord Length for all Other Scaling:
 chord_length = 0.3
+def store(retain):
+    import os
+    import shutil
+    ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints']
+    copy = ['0','system','constant','dynamicCode']
+    dirs = os.listdir()
+    delete = []
+    for item in dirs:
+        if item[0:3] == 'pro':
+            delete.append(item)
+    target = input("input case name: ")
+    casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
+    if os.path.exists(casefile):
+        existing = os.listdir(casefile)
+    else:
+        os.mkdir(casefile)
+        existing = []
+    for item in dirs:
+        if item in delete:
+            shutil.rmtree(item)
+        elif item not in retain and item not in ignore and item not in existing:
+            shutil.move(item,casefile)
+        elif item in copy:
+            shutil.copytree(item,casefile+item)
 
 def cleanup(retain):
     print(retain)
@@ -39,6 +63,8 @@ def arg_handle(args):
             Rc = Rc * scale
             te = te * scale
             tu = tu * scale
+        elif current == '-save':
+            store(retain)
         elif current == '-clean':
             cleanup(retain)
     return Rc, te, tu

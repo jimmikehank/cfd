@@ -16,7 +16,7 @@ forces
 
     log           no;
 
-    patches       ("surface");
+    patches       ("surface" "coandaUpper" "coandaLower");
     rho           rho;     // Indicates incompressible
     log           true;
 
