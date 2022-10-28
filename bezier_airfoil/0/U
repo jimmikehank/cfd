@@ -22,7 +22,7 @@ f 							0.8;					// Frequency of oscillation
 alpha						0;						// AoA in Degrees
 U 							20; 					// Flow magnitude
 massflow 				0.006;
-pulseStart			0;
+pulseStart			0.1;
 pulseDuration 	0.005;
 
 pulseDef 		{
@@ -67,16 +67,14 @@ boundaryField
 
 		coandaUpper
 		{
-				type						flowRateInletVelocity;
-				massFlowRate
-				{ 	type 				scale;
-						scale						$massflow;
+				type flowRateInletVelocity;
+				massFlowRate {
+						type scale;
+						scale $massflow;
 						value {
-								massFlowRateCoeffs  {
-											type 			squarePulse;
-											start 		$pulseStart;
-											duration 	$pulseDuration;
-								}
+									type				squarePulse;
+									start 			$pulseStart;
+									duration 		$pulseDuration;
 						}
 				}
 		}
