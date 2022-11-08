@@ -22,8 +22,8 @@ f 							0.8;					// Frequency of oscillation
 alpha						0;						// AoA in Degrees
 U 							20; 					// Flow magnitude
 massflow 				0.006;
-pulseStart			0.1;
-pulseDuration 	0.005;
+pulseStart			0.2;
+pulseDuration 	0.0015;
 
 pulseDef 		{
 			type			squarePulse;
@@ -77,6 +77,7 @@ boundaryField
 									duration 		$pulseDuration;
 						}
 				}
+				value						uniform (0 0 0);
 		}
 
 
