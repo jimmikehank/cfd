@@ -52,20 +52,6 @@ boundaryField
 				type						zeroGradient;
 		}
 
-		coandaUpper
-		{
-				type 						zeroGradient;
-				// type						totalPressure;
-				// value					uniform 155000.0;
-				// p0							uniform 155000.0;
-		}
-		coandaLower
-		{
-				type 						zeroGradient;
-				// type						totalPressure;
-				// value					uniform 155000.0;
-				// p0							uniform 155000.0;
-		}
 
 		defaultFaces
 		{

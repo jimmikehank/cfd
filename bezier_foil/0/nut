@@ -51,17 +51,6 @@ boundaryField
         type            nutUSpaldingWallFunction;
         value           uniform 0;
     }
-    coandaUpper
-    {
-        type            freestream;
-        freestreamValue $def_pl;
-    }
-
-    coandaLower
-    {
-        type            freestream;
-        freestreamValue $def_pl;
-    }
 }
 
 // ************************************************************************* //

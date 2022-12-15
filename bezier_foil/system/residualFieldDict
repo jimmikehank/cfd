@@ -1,0 +1,27 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+
+residualsField
+{
+    type            residuals;
+    libs            ("libutilityFunctionObjects.so");
+    writeFields     true;
+    writeControl    outputTime;
+    fields          (p U);
+}
+
+residuals
+{
+    type            residuals;
+    libs            ("libutilityFunctionObjects.so");
+    writeFields     true;
+    writeControl    outputTime;
+    fields          (p U);
+}
+// ************************************************************************* //

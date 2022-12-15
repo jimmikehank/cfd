@@ -1,0 +1,100 @@
+/*---------------------------------*- C++ -*-----------------------------------*/
+//    //////////////      ///////////////
+//    //////////////      //////////////
+//         ////           ////             /////       ////  //  /// //// ////
+//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
+//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
+//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
+//     /////              ////            /////       ///// ///  ///   ///  ///
+/*---------------------------------*- C++ -*-----------------------------------*/
+
+FoamFile
+{
+		version			2.0;
+		format			ascii;
+		class				volVectorField;
+		location		"0";
+		object			U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+f 							0.8;					// Frequency of oscillation
+alpha						0;						// AoA in Degrees
+U 							20; 					// Flow magnitude
+massflow 				0.006;
+pulseStart			0.2;
+pulseDuration 	0.4;
+
+pulseDef 		{
+			type			squarePulse;
+			start 		pulseStart;
+			duration 	pulseDuration;
+}
+
+dimensions			[0 1 -1 0 0 0 0];
+
+internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+
+
+boundaryField
+{
+		down
+		{
+				type						zeroGradient;
+		}
+
+		right
+		{
+				type						zeroGradient;
+		}
+
+		up
+		{
+				type						zeroGradient;
+		}
+
+		meanFlow
+		{
+				type						uniformFixedValue;
+				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+				value						uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+		}
+
+		surface
+		{
+				type						noSlip;
+		}
+
+		coandaUpper
+		{
+				type flowRateInletVelocity;
+				massFlowRate {
+						type scale;
+						scale $massflow;
+						value {
+									type				squarePulse;
+									start 			$pulseStart;
+									duration 		$pulseDuration;
+						}
+				}
+				value						uniform (0 0 0);
+		}
+
+
+		coandaLower
+		// COANDA STEADY:
+		{
+				type 						noSlip;
+		// 		type						flowRateInletVelocity;
+		// 		massFlowRate		0.05;
+		// 		value						uniform (0.05 0 0);
+		}
+
+
+		defaultFaces
+		{
+				type						empty;
+		}
+}
+
+// ************************************************************************* //

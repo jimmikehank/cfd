@@ -5,11 +5,12 @@ import sys
 
 # This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
 
-retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints']
+retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py']
+U_filename = './0/U'
 
 # Define Chord Length for all Other Scaling:
 chord_length = 0.3
-def store(retain):
+def store(retain, target):
     import os
     import shutil
     ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints']
@@ -19,8 +20,7 @@ def store(retain):
     for item in dirs:
         if item[0:3] == 'pro':
             delete.append(item)
-    target = input("input case name: ")
-    casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
+    casefile = "/home/james/Documents/research/completed_cases/bezier_airfoils/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
@@ -45,31 +45,47 @@ def cleanup(retain):
         else:
             continue
 
+def change_line(U_filename,aoa):
+    with open(U_filename,'r') as f:
+        test_lines = f.readlines()
+        f.close()
+    new_line = 'alpha\t\t\t\t\t\t{};\t\t\t\t\t\t // AoA in Degrees\n'.format(aoa)
+    test_lines[20] = new_line
+    with open(U_filename,'w') as g:
+        g.writelines(test_lines)
+        g.close()
+
 #---------- Initialization of Coanda Definition --------------#
 
 args = sys.argv
 
-def arg_handle(args):
+def arg_handle(arg):
     # Default Values
-    scale = 1
-    Rc = 0.14 * .0254       # Coanda cylinder radius
-    te = 0.007 * .0254      # R/te = 20
-    tu = 0.009 * .0254      # Upper surface thickness at exit
-
-    for i in range(np.size(args)):
-        current = args[i].lower()
-        if current == '-scale':
-            scale = float(args[i+1])
-            Rc = Rc * scale
-            te = te * scale
-            tu = tu * scale
-        elif current == '-save':
-            store(retain)
-        elif current == '-clean':
+    for i in range(len(arg)):
+        if arg[i] == "-debug":
+            print("Debug mode not implemented")
+        elif arg[i] == '-clean':
             cleanup(retain)
-    return Rc, te, tu
+        elif arg[i] =='-aoa':
+            change_line(U_filename, arg[i+1])
+        elif arg[i] == '-save':
+            try:
+                store(retain,arg[i+1])
+            except:
+                "No target filename provided"
 
-r,h,t = arg_handle(args)
+    return 0
+def check_args(arg):
+    for i in range(len(arg)):
+        if arg[i] == '-aoa':
+            aoa = float(arg[i+1])
+            return aoa
+        else:
+            pass
+    return 0
+
+argout = arg_handle(args)
+aoa = check_args(args)
 
 #---------- Control Variables handled by this block ----------#
 
@@ -79,15 +95,16 @@ bezfoil, cpU, iters = foil_opt(control_points_init, file, chord_length, 5e-6,ste
 # Command line argument handler:
 cpL = cpU * [1,-1]
 m = 101
-
-
+upper = bezfoil[0:m,:]
+upper = upper[::-1,:]
+lower = bezfoil[m:,:]
 #-------------------------------------------------------------#
 
 # blockMeshDefaults:
 scale = 1
 
 # Other important values:
-slot_width = .156
+span = 1
 
 # Bounding Box:
 
@@ -95,27 +112,30 @@ bU =  10 * chord_length # Upper bound
 bD = -10 * chord_length # Lower bound
 bL = -10 * chord_length # Left bound
 bR =  10 * chord_length # Right bound
-fr =  slot_width/2                 # Front bound
-bk = -slot_width/2                 # Back bound
+fr =  span/2            # Front bound
+bk = -span/2            # Back bound
+
 
 # print(fil,p0)
-pback = np.zeros([10,2])
+pback = np.zeros([9,2])
 eps = 1e-6
+back_deflection = bR*np.sin(np.pi*aoa/180)
 
 # Define Point Matrix:
-pback[0,:] = np.array([bL, 0])
-pback[1,:] = np.array([lower[-1,0], bD])
-pback[2,:] = upper[0,:]
-pback[3,:] = upper[-1,:]
-pback[4,:] = np.array([upper[-1,0],bU])
-pback[5,:] = np.array([-r+3*eps,bU])
-pback[6,:] = np.array([bR-r,0])
-pback[7,:] = np.array([-r+3*eps,bD])
+pback[0,:] = np.array([-chord_length,0])
+pback[1,:] = np.array([0,0])
+pback[2,:] = np.array([0,bU])
+pback[3,:] = np.array([bL,0])
+pback[4,:] = np.array([0,bD])
+pback[5,:] = np.array([bR,bL])
+pback[6,:] = np.array([bR,back_deflection])
+pback[7,:] = np.array([bR,bU])
 pback[8,:] = np.array([0,0])
-pback[9,:] = lower[-1,:]
 
-
-
+cpu_string_b = ''
+cpu_string_f = ''
+cpl_string_b = ''
+cpl_string_f = ''
 
 for i in range(1,np.shape(upper)[0]-1):
     # pback = np.vstack([pback,cpU[i,:]])
@@ -132,14 +152,10 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x_L = 100
-blocks_y_L = 80
-blocks_x_R = 80
-blocks_y_R = 80
-blocks_y_co = 5
-blocks_x_flat = 25
-grade_x_L = 10
-grade_y = 1500
+blocks_x = 50
+blocks_y = 30
+grade_x = 200
+grade_y = 1000
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
@@ -172,7 +188,7 @@ opener = [
 
 scale = 'scale\t\t\t\t1;\n\n'
 
-pointsdef = []
+
 
 def makepoints(points_back,back,front):
     pointsdef = ['vertices\n','(\n']
@@ -186,27 +202,29 @@ def makepoints(points_back,back,front):
     pointsdef.append(');\n\n')
     return pointsdef
 
+pointsdef = makepoints(pback,bk,fr)
+
 # Block order is inside coanda plenum 0, 1, 2 then 3 is the block directly below the surface, the rest follow counter-clockwise
 
 blocks = [
     'blocks\n(\n',
-    '\t\thex ( 6  4  0  8  7  5  1  9 ) ({} {} 1) edgeGrading (50 1 1 50 {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x_L, blocks_y_L, grade_y, grade_y, grade_y, grade_y),
-    '\t\thex ( 6 12 10  8  7 13 11  9 ) ({} {} 1) simpleGrading (1 {} 1) // 1\n'.format(blocks_x_R, blocks_y_R,grade_y),
-    '\t\thex (16 12 14  2 17 13 15  3 ) ({} {} 1) simpleGrading (1 {} 1) // 1\n'.format(blocks_x_R, blocks_y_R,grade_y),
-    '\t\thex (16  4  0  2 17  5  1  3) ({} {} 1) edgeGrading (.02 1 1 .02 {} {} {} {} 1 1 1 1) // 4\n'.format(blocks_x_L, blocks_y_L, grade_y, grade_y, grade_y, grade_y),
+    '\t\thex ( 0  2  4  6  1  3  5  7 ) ({} {} 1) edgeGrading ( 50  1  1 50 {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x*2, blocks_y, grade_y, grade_y, grade_y, grade_y),
+    '\t\thex ( 6  8 16  0  7  9 17  1 ) ({} {} 1) edgeGrading (  1 50 50  1 {} {} {} {} 1 1 1 1) // 1\n'.format(blocks_x*2, blocks_y, 1/grade_y, 1/grade_y, 1/grade_y, 1/grade_y),
+    '\t\thex ( 8 10 12 16  9 11 13 17 ) ({} {} 1) simpleGrading ( {} {} 1) // 1\n'.format(blocks_x, blocks_y, grade_x, 1/grade_y),
+    '\t\thex ( 2 12 14  4  3 13 15  5 ) ({} {} 1) simpleGrading ( {} {} 1) // 1\n'.format(blocks_x, blocks_y, grade_x, grade_y),
     ');\n\n'
 ]
 
 edges = [
     'edges\n(\n',
-    '\t\tarc  8  0  90.0  (0 0 1)\n',
-    '\t\tarc  9  1  90.0  (0 0 1)\n',
-    '\t\tarc  0  2  90.0  (0 0 1)\n',
-    '\t\tarc  1  3  90.0  (0 0 1)\n',
-    '\t\tspline 4  6 (\n{}\n\t\t\t\t\t\t)\n'.format(cpu_string_b),
-    '\t\tspline 4 16 (\n{}\n\t\t\t\t\t\t)\n'.format(cpl_string_b),
-    '\t\tspline 5  7 (\n{}\n\t\t\t\t\t\t)\n'.format(cpu_string_f),
-    '\t\tspline 5 17 (\n{}\n\t\t\t\t\t\t)\n'.format(cpl_string_f),
+    '\t\tarc  4  6  90.0  (0 0 1)\n',
+    '\t\tarc  5  7  90.0  (0 0 1)\n',
+    '\t\tarc  6  8  90.0  (0 0 1)\n',
+    '\t\tarc  7  9  90.0  (0 0 1)\n',
+    '\t\tspline 0  2 (\n{}\n\t\t\t\t\t\t)\n'.format(cpu_string_b),
+    '\t\tspline 1  3 (\n{}\n\t\t\t\t\t\t)\n'.format(cpu_string_f),
+    '\t\tspline 0 16 (\n{}\n\t\t\t\t\t\t)\n'.format(cpl_string_b),
+    '\t\tspline 1 17 (\n{}\n\t\t\t\t\t\t)\n'.format(cpl_string_f),
     ');\n\n'
 ]
 

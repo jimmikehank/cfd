@@ -17,7 +17,7 @@ FoamFile
 
 ddtSchemes
 {
-    default         Euler;
+    default         steadyState;
 }
 
 gradSchemes
@@ -40,7 +40,6 @@ divSchemes
     div(phi,Ekp)      $energy;
     div(phi,e)        $energy;
     div(phi,K)        $energy;
-    div(phi,(p|rho))  $energy;
 
 
     div(phid,p)     Gauss upwind;

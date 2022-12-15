@@ -29,20 +29,6 @@ boundaryField
         value           $inletValue;
     }
 
-    coandaUpper
-    {
-        type            inletOutlet;
-        inletValue      uniform $Tinlet;
-        value           $inletValue;
-    }
-
-    coandaLower
-    {
-        type            inletOutlet;
-        inletValue      uniform $Tinlet;
-        value           $inletValue;
-    }
-
     down
     {
         type            zeroGradient;

@@ -14,57 +14,45 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-8
+6
 (
     down
     {
         type            patch;
-        nFaces          25;
-        startFace       54060;
-    }
-    right
-    {
-        type            patch;
-        nFaces          80;
-        startFace       54085;
+        nFaces          50;
+        startFace       17720;
     }
     up
     {
         type            patch;
-        nFaces          25;
-        startFace       54165;
+        nFaces          50;
+        startFace       17770;
+    }
+    right
+    {
+        type            patch;
+        nFaces          60;
+        startFace       17820;
     }
     meanFlow
     {
         type            patch;
         nFaces          200;
-        startFace       54190;
-    }
-    coandaUpper
-    {
-        type            patch;
-        nFaces          5;
-        startFace       54390;
-    }
-    coandaLower
-    {
-        type            patch;
-        nFaces          5;
-        startFace       54395;
+        startFace       17880;
     }
     surface
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          340;
-        startFace       54400;
+        nFaces          200;
+        startFace       18080;
     }
     defaultFaces
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          54400;
-        startFace       54740;
+        nFaces          18000;
+        startFace       18280;
     }
 )
 

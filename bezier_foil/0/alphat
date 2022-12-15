@@ -33,18 +33,6 @@ boundaryField
         value           uniform 0;
     }
 
-    coandaUpper
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-
-    coandaLower
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-
     right
     {
         type            calculated;
