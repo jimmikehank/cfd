@@ -94,7 +94,7 @@ def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-16, m=101,
         derr = np.abs(err_prev - err)
         err_prev = err
         iters+=1
-        if iters % 100 == 0 and debug:
+        if iters % 1000 == 0 and debug:
             print(err)
     bezfoil = (bezfoil - control_points[-1,:]) * chord
     control_points = (control_points - control_points[-1,:]) * chord

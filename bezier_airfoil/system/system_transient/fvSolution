@@ -25,12 +25,24 @@ solvers
         smoother        GaussSeidel;
     }
 
-    "(U|e|nuTilda)"
+    pFinal
+    {
+        $p;
+        relTol          0;
+    }
+
+    "(U|e|nuTilda|rho)"
     {
         solver          PBiCGStab;
         preconditioner  DILU;
         tolerance       1e-10;
         relTol          0.1;
+    }
+
+    "(rho|U|nuTilda|e)Final"
+    {
+        $U;
+        relTol          0;
     }
 
 }
@@ -41,10 +53,17 @@ SIMPLE
 
     residualControl
     {
-        p               1e-5;
-        U               1e-5;
-        nuTilda         1e-5;
+        p               5e-5;
+        U               5e-5;
+        nuTilda         5e-5;
     }
+}
+
+PIMPLE
+{
+    nCorrectors              2;
+    nNonOrthogonalCorrectors 1;
+    nOuterCorrectors         1;
 }
 
 relaxationFactors

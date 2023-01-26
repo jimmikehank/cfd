@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     rhoSimpleFoam;
+application     rhoPimpleFoam;
 
 startFrom        latestTime;
 
@@ -23,7 +23,7 @@ startTime       0;
 
 stopAt           endTime;
 
-endTime         0.003;
+endTime         1.0;
 
 deltaT          5e-7;
 

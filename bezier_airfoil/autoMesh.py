@@ -5,11 +5,11 @@ import sys
 
 # This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
 
-retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints']
-
+retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py']
+U_filename = './0/U'
 # Define Chord Length for all Other Scaling:
 chord_length = 0.3
-def store(retain):
+def store(retain,name):
     import os
     import shutil
     ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints']
@@ -19,8 +19,8 @@ def store(retain):
     for item in dirs:
         if item[0:3] == 'pro':
             delete.append(item)
-    target = input("input case name: ")
-    casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
+    target = name
+    casefile = "/media/james/Data/james/completed_cases/coanda_airfoils/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
@@ -45,6 +45,25 @@ def cleanup(retain):
         else:
             continue
 
+def change_line_massflow(U_filename,mdot):
+    with open(U_filename,'r') as f:
+        test_lines = f.readlines()
+        f.close()
+    new_line = 'massflow\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
+    test_lines[23] = new_line
+    with open(U_filename,'w') as g:
+        g.writelines(test_lines)
+        g.close()
+
+def change_line(U_filename,freq):
+    with open(U_filename,'r') as f:
+        test_lines = f.readlines()
+        f.close()
+    new_line = 'f\t\t\t\t\t\t\t\t{};\t\t\t\t\t\t // Frequency in Hz\n'.format(freq)
+    test_lines[20] = new_line
+    with open(U_filename,'w') as g:
+        g.writelines(test_lines)
+        g.close()
 #---------- Initialization of Coanda Definition --------------#
 
 args = sys.argv
@@ -64,9 +83,13 @@ def arg_handle(args):
             te = te * scale
             tu = tu * scale
         elif current == '-save':
-            store(retain)
+            store(retain, args[i+1])
         elif current == '-clean':
             cleanup(retain)
+        elif current == '-freq':
+            change_line(U_filename, args[i+1])
+        elif current == '-mdot':
+            change_line_massflow(U_filename,args[i+1])
     return Rc, te, tu
 
 r,h,t = arg_handle(args)
@@ -145,7 +168,7 @@ blocks_y_R = 80
 blocks_y_co = 5
 blocks_x_flat = 25
 grade_x_L = 10
-grade_y = 1500
+grade_y = 2500
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
