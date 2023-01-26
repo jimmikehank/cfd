@@ -20,7 +20,8 @@ def store(retain,name):
         if item[0:3] == 'pro':
             delete.append(item)
     target = name
-    casefile = "/media/james/Data/james/completed_cases/coanda_airfoils/{}/".format(target)
+    casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
+    # casefile = "/media/james/Data/james/completed_cases/coanda_airfoils/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
@@ -72,7 +73,7 @@ def arg_handle(args):
     # Default Values
     scale = 1
     Rc = 0.14 * .0254       # Coanda cylinder radius
-    te = 0.007 * .0254      # R/te = 20
+    te = 0.009 * .0254      # R/te = 20
     tu = 0.009 * .0254      # Upper surface thickness at exit
 
     for i in range(np.size(args)):

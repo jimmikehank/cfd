@@ -20,8 +20,8 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 alpha						0;						// AoA in Degrees
-U 							25; 					// Flow magnitude
-massflow				0.006;				 // mass flow rate
+U 							35; 					// Flow magnitude
+massflow				0.004;				 // mass flow rate
 
 
 dimensions			[0 1 -1 0 0 0 0];
