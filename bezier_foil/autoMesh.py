@@ -90,10 +90,10 @@ aoa = check_args(args)
 #---------- Control Variables handled by this block ----------#
 
 control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.5,.07],[.75,.03],[1,0]])
-file = '/home/james/Documents/research/cfd/airfoils/naca0015-il.csv'
-bezfoil, cpU, iters = foil_opt(control_points_init, file, chord_length, 5e-6,step = 2,debug=True)
+cpl_init = control_points_init * np.array([1,-1])
+file = '/home/james/Documents/research/cfd/airfoils/rae2822-il.csv'
+bezfoil, cpU, cpL, iters = foil_opt(control_points_init, file, chord_length, 5e-6,step = 2,debug=True,control_points_lower=cpl_init,sym=False)
 # Command line argument handler:
-cpL = cpU * [1,-1]
 m = 101
 upper = bezfoil[0:m,:]
 upper = upper[::-1,:]

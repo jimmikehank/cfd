@@ -21,11 +21,14 @@ def bezier_curve(control_points,Nt):
     return bezfoil
 
 
-def init_bezfoil(m, control_points_upper, control_points_lower = [],symmetric = False):
+def init_bezfoil(m, control_points_upper, control_points_lower = [],symmetric = True):
     import numpy as np
     inverse = np.array([1,-1])
     upper = bezier_curve(control_points_upper,m)
-    lower = (upper * inverse)
+    if symmetric == True:
+        lower = (upper * inverse)
+    else:
+        lower = bezier_curve(control_points_lower,m)
     foil = np.vstack([upper[::-1],lower])
     return foil
 
@@ -55,27 +58,59 @@ def bezier_error(bezfoil, airfoil):
     error = 1 / len(bezfoil) * np.sum(((bezfoil[:,1] - airfoil)**2))
     return error
 
-def find_grad(airfoil,control_points,m):
+def find_grad(airfoil,control_points,m,control_points_lower=[],symmetric=True):
     import numpy as np
     err_grad = np.zeros([np.shape(control_points)[0],2])
+    err_grad_lower = np.zeros([np.shape(control_points)[0],2])
     cp = control_points
-    err_init = bezier_error(init_bezfoil(m,cp),airfoil)
-    for i in range(1,np.shape(control_points)[0]-1):
-        if i == 1:
-            pass
-        else:
+    cpl = control_points_lower
+    err_init = bezier_error(init_bezfoil(m,cp,cpl,symmetric),airfoil)
+    if symmetric:
+        for i in range(1,np.shape(control_points)[0]-1):
+            if i == 1:
+                pass
+            else:
+                cp = control_points
+                cp[i,0] += 1e-6
+                newfoil = init_bezfoil(m,cp,cpl,symmetric)
+                err_grad[i,0] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
             cp = control_points
-            cp[i,0] += 1e-6
-            newfoil = init_bezfoil(m,cp)
-            err_grad[i,0] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
-        cp = control_points
-        cp[i,1] += 1e-6
-        newfoil = init_bezfoil(m,cp)
-        err_grad[i,1] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
-    return err_grad
+            cp[i,1] += 1e-6
 
-def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-16, m=101, step=1, debug=False):
+            newfoil = init_bezfoil(m,cp,cpl,symmetric)
+            err_grad[i,1] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+        err_grad_lower = err_grad*np.array([1,-1])
+    else:
+        for i in range(1,np.shape(control_points)[0]-1):
+            if i == 1:
+                pass
+            else:
+                cp = control_points
+                cp[i,0] += 1e-6
+                newfoil = init_bezfoil(m,cp,cpl,symmetric)
+                err_grad[i,0] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+            cp = control_points
+            cp[i,1] += 1e-6
+            newfoil = init_bezfoil(m,cp,cpl,symmetric)
+            err_grad[i,1] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+        for i in range(1,np.shape(control_points_lower)[0]-1):
+            if i == 1:
+                pass
+            else:
+                cpl = control_points_lower
+                cpl[i,0] += 1e-6
+                newfoil = init_bezfoil(m,control_points,cpl,symmetric)
+                err_grad_lower[i,0] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+            cp = control_points_lower
+            cp[i,1] += 1e-6
+            newfoil = init_bezfoil(m,control_points,cpl,symmetric)
+            err_grad_lower[i,1] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+    return err_grad, err_grad_lower
+
+
+def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-16, m=101, step=1, debug=False,control_points_lower=[],sym=True):
     import numpy as np
+    from matplotlib import pyplot as plt
     control_points = control_points
     airfoil_raw = load_airfoil(af_filename)
     bezfoil = init_bezfoil(m, control_points)
@@ -88,15 +123,28 @@ def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-16, m=101,
     while err > eps and derr > deps:
         err = bezier_error(bezfoil,airfoil)
         err_store = np.append(err_store,err)
-        grad = find_grad(airfoil,control_points,m)
+        grad, grad_lower = find_grad(airfoil,control_points,m,control_points_lower=control_points_lower,symmetric=sym)
         control_points -= grad*(step)
-        bezfoil = init_bezfoil(m, control_points)
+        if sym:
+            pass
+        else:
+            control_points_lower -= grad_lower*step
+        bezfoil = init_bezfoil(m, control_points,control_points_lower=control_points_lower,symmetric=sym)
         derr = np.abs(err_prev - err)
         err_prev = err
         iters+=1
         if iters % 100 == 0 and debug:
             print(err)
+    if debug:
+        plt.figure()
+        plt.plot(bezfoil[:,0],bezfoil[:,1])
+        plt.plot(airfoil_raw[:,0],airfoil_raw[:,1])
+        plt.axis('equal')
+        plt.savefig('airfoil_comparison.png')
     bezfoil = (bezfoil - control_points[-1,:]) * chord
     control_points = (control_points - control_points[-1,:]) * chord
-
-    return bezfoil, control_points, iters
+    control_points_lower = (control_points_lower - control_points_lower[-1,:]) * chord
+    if sym:
+        return bezfoil, control_points, iters
+    else:
+        return bezfoil, control_points, control_points_lower, iters

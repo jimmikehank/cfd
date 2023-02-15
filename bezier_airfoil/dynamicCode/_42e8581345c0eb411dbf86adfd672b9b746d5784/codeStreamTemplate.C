@@ -58,7 +58,7 @@ extern "C"
     )
     {
 //{{{ begin code
-        #line 1 "/home/james/Documents/research/cfd/bezier_airfoil/0/U"
+        #line 1 "/home/james/Documents/research/cfd/bezier_airfoil/0/U.step"
 os << (35*sin(degToRad(0)));
 //}}} end code
     }

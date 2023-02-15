@@ -20,8 +20,8 @@ def store(retain,name):
         if item[0:3] == 'pro':
             delete.append(item)
     target = name
-    casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
-    # casefile = "/media/james/Data/james/completed_cases/coanda_airfoils/{}/".format(target)
+    # casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
+    casefile = "/media/james/Data/james/completed_cases/coanda_airfoils/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:

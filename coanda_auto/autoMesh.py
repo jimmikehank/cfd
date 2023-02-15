@@ -14,9 +14,9 @@ args = sys.argv
 
 def arg_handle(args):
     # Default Values
-    Rc = 0.003   # Coanda cylinder radius
-    te = 0.00015  # R/te = 20
-    tu = 0.00018  # Upper surface thickness at exit
+    Rc = 0.0036   # Coanda cylinder radius
+    te = 0.000178  # R/te = 20
+    tu = 0.000229  # Upper surface thickness at exit
     ru = 0.5    # Contour radius of upper surface to exit
     ai = 60.0   # Contraction angle inside plenum
 
@@ -46,7 +46,7 @@ scale = 1
 # Physical Non control Shape Parameters
 
 pw =  0.0015    # Plenum wall thickness
-pl =  0.1       # Plenum external length
+pl =  0.3       # Plenum external length
 p0 =  0.05      # Plenum internal length
 
 # Bounding Box:
@@ -55,8 +55,8 @@ bU =  1.0 # Upper bound
 bD = -1.0 # Lower bound
 bL = -1.0 # Left bound
 bR =  1.0 # Right bound
-fr =  0.5 # Front bound
-bk = -0.5 # Back bound
+fr =  0.078 # Front bound
+bk = -0.078 # Back bound
 
 # Mesh expansion for coanda cylinder
 

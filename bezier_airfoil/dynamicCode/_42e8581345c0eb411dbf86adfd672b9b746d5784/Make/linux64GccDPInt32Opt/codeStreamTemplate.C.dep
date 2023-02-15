@@ -111,7 +111,6 @@ $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/int32.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/int64.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/uint32.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/uint64.H \
-$(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/OStringStream.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/messageStream.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/errorManip.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/refCount.H \
@@ -130,6 +129,7 @@ $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/BiIndirectList.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/ListIO.C \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/FixedListIO.C \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/IStringStream.H \
+$(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/OStringStream.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/doubleFloat.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/Scalar.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/SLListBase.H \
@@ -273,7 +273,6 @@ $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/int32.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/int64.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/uint32.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/uint64.H :
-$(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/OStringStream.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/messageStream.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/errorManip.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/refCount.H :
@@ -292,6 +291,7 @@ $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/BiIndirectList.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/ListIO.C :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/FixedListIO.C :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/IStringStream.H :
+$(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/OStringStream.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/doubleFloat.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/Scalar.H :
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/SLListBase.H :

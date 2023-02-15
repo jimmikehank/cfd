@@ -14,54 +14,47 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-7
+6
 (
     down
     {
         type            symmetryPlane;
         inGroups        List<word> 1(symmetryPlane);
         nFaces          100;
-        startFace       66801;
+        startFace       11840;
     }
     right
     {
         type            patch;
         nFaces          60;
-        startFace       66901;
+        startFace       11940;
     }
     up
     {
         type            symmetryPlane;
         inGroups        List<word> 1(symmetryPlane);
         nFaces          100;
-        startFace       66961;
+        startFace       12000;
     }
     left
     {
         type            patch;
         nFaces          60;
-        startFace       67061;
+        startFace       12100;
     }
     front
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          33346;
-        startFace       67121;
+        nFaces          6000;
+        startFace       12160;
     }
     back
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          33346;
-        startFace       100467;
-    }
-    wing
-    {
-        type            wall;
-        inGroups        List<word> 1(wall);
-        nFaces          301;
-        startFace       133813;
+        nFaces          6000;
+        startFace       18160;
     }
 )
 

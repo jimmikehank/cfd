@@ -18,9 +18,11 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+mfs 						25;
+
 dimensions			[0 1 -1 0 0 0 0];
 
-internalField		uniform (30  0  0);
+internalField		uniform ($mfs  0  0);
 
 boundaryField
 {
@@ -42,8 +44,8 @@ boundaryField
 		meanFlow
 		{
 				type						uniformFixedValue;
-				uniformValue		constant (30  0  0);
-				value						uniform (30  0  0);
+				uniformValue		constant ($mfs  0  0);
+				value						uniform ($mfs  0  0);
 		}
 
 		surface
@@ -59,8 +61,8 @@ boundaryField
 		coandaInlet
 		{
 				type						flowRateInletVelocity;
-				massFlowRate		0.05;
-				value						uniform (0.05 0 0);
+				massFlowRate		0.006;
+				value						uniform (0.006 0 0);
 		}
 
 		defaultFaces
