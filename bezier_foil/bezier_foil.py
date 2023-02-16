@@ -60,6 +60,7 @@ def bezier_error(bezfoil, airfoil):
 
 def find_grad(airfoil,control_points,m,control_points_lower=[],symmetric=True):
     import numpy as np
+    dx = 1e-6
     err_grad = np.zeros([np.shape(control_points)[0],2])
     err_grad_lower = np.zeros([np.shape(control_points)[0],2])
     cp = control_points
@@ -71,14 +72,14 @@ def find_grad(airfoil,control_points,m,control_points_lower=[],symmetric=True):
                 pass
             else:
                 cp = control_points
-                cp[i,0] += 1e-6
+                cp[i,0] += dx
                 newfoil = init_bezfoil(m,cp,cpl,symmetric)
-                err_grad[i,0] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+                err_grad[i,0] = (bezier_error(newfoil,airfoil)-err_init)/dx
             cp = control_points
-            cp[i,1] += 1e-6
+            cp[i,1] += dx
 
             newfoil = init_bezfoil(m,cp,cpl,symmetric)
-            err_grad[i,1] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+            err_grad[i,1] = (bezier_error(newfoil,airfoil)-err_init)/dx
         err_grad_lower = err_grad*np.array([1,-1])
     else:
         for i in range(1,np.shape(control_points)[0]-1):
@@ -86,29 +87,29 @@ def find_grad(airfoil,control_points,m,control_points_lower=[],symmetric=True):
                 pass
             else:
                 cp = control_points
-                cp[i,0] += 1e-6
+                cp[i,0] += dx
                 newfoil = init_bezfoil(m,cp,cpl,symmetric)
-                err_grad[i,0] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+                err_grad[i,0] = (bezier_error(newfoil,airfoil)-err_init)/dx
             cp = control_points
-            cp[i,1] += 1e-6
+            cp[i,1] += dx
             newfoil = init_bezfoil(m,cp,cpl,symmetric)
-            err_grad[i,1] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+            err_grad[i,1] = (bezier_error(newfoil,airfoil)-err_init)/dx
         for i in range(1,np.shape(control_points_lower)[0]-1):
             if i == 1:
                 pass
             else:
                 cpl = control_points_lower
-                cpl[i,0] += 1e-6
+                cpl[i,0] += dx
                 newfoil = init_bezfoil(m,control_points,cpl,symmetric)
-                err_grad_lower[i,0] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+                err_grad_lower[i,0] = (bezier_error(newfoil,airfoil)-err_init)/dx
             cp = control_points_lower
-            cp[i,1] += 1e-6
+            cp[i,1] += dx
             newfoil = init_bezfoil(m,control_points,cpl,symmetric)
-            err_grad_lower[i,1] = (bezier_error(newfoil,airfoil)-err_init)/1e-6
+            err_grad_lower[i,1] = (bezier_error(newfoil,airfoil)-err_init)/dx
     return err_grad, err_grad_lower
 
 
-def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-16, m=101, step=1, debug=False,control_points_lower=[],sym=True):
+def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-12, m=101, step=1, debug=False,control_points_lower=[],sym=True):
     import numpy as np
     from matplotlib import pyplot as plt
     control_points = control_points
@@ -136,15 +137,18 @@ def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-16, m=101,
         if iters % 100 == 0 and debug:
             print(err)
     if debug:
-        plt.figure()
-        plt.plot(bezfoil[:,0],bezfoil[:,1])
-        plt.plot(airfoil_raw[:,0],airfoil_raw[:,1])
+        plt.figure(figsize=[20,8])
+        plt.plot(airfoil_raw[:,0],airfoil_raw[:,1],'b-')
+        plt.plot(bezfoil[:,0],bezfoil[:,1],'r--')
         plt.axis('equal')
+        plt.ylim([-.08,.08])
+        plt.legend(['Original Airfoil','Optimized Airfoil'])
         plt.savefig('airfoil_comparison.png')
     bezfoil = (bezfoil - control_points[-1,:]) * chord
     control_points = (control_points - control_points[-1,:]) * chord
     control_points_lower = (control_points_lower - control_points_lower[-1,:]) * chord
     if sym:
-        return bezfoil, control_points, iters
+        control_points_lower = control_points * np.array([1,-1])
+        return bezfoil, control_points, control_points_lower,iters
     else:
         return bezfoil, control_points, control_points_lower, iters

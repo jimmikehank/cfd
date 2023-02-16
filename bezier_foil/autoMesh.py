@@ -2,10 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from bezier_foil import *
 import sys
+from os import path
 
 # This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
 
-retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py']
+retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png']
 U_filename = './0/U'
 
 # Define Chord Length for all Other Scaling:
@@ -88,13 +89,26 @@ argout = arg_handle(args)
 aoa = check_args(args)
 
 #---------- Control Variables handled by this block ----------#
-
-control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.5,.07],[.75,.03],[1,0]])
-cpl_init = control_points_init * np.array([1,-1])
-file = '/home/james/Documents/research/cfd/airfoils/rae2822-il.csv'
-bezfoil, cpU, cpL, iters = foil_opt(control_points_init, file, chord_length, 5e-6,step = 2,debug=True,control_points_lower=cpl_init,sym=False)
-# Command line argument handler:
 m = 101
+control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.35,.06],[.5,.07],[.75,.03],[1,0]])
+# control_points_init = np.array([[0,0],[0,.05],[.75,.03],[1,0]])
+cpl_init = control_points_init * np.array([1,-1])
+airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
+airfoil_sel = 'rae2822'
+symmetry = False
+file_exists = path.isfile('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
+if file_exists:
+    cpu = np.loadtxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
+    cpl = np.loadtxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel))
+    bezfoil = init_bezfoil(m,cpu,control_points_lower=cpl,symmetric=False)
+else:
+    file = '/home/james/Documents/research/cfd/airfoils/{}-il.csv'.format(airfoil_sel)
+    bezfoil, cpU, cpL, iters = foil_opt(control_points_init, file, chord_length, 1e-6,m=m,step = 2,debug=True,control_points_lower=cpl_init,sym=symmetry)
+    np.savetxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel),cpU)
+    np.savetxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel),cpL)
+
+# Command line argument handler:
+
 upper = bezfoil[0:m,:]
 upper = upper[::-1,:]
 lower = bezfoil[m:,:]
@@ -152,9 +166,10 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x = 50
-blocks_y = 30
+blocks_x = 60
+blocks_y = 40
 grade_x = 200
+egrade_x = 5
 grade_y = 1000
 
 header = [
@@ -208,8 +223,8 @@ pointsdef = makepoints(pback,bk,fr)
 
 blocks = [
     'blocks\n(\n',
-    '\t\thex ( 0  2  4  6  1  3  5  7 ) ({} {} 1) edgeGrading ( 50  1  1 50 {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x*2, blocks_y, grade_y, grade_y, grade_y, grade_y),
-    '\t\thex ( 6  8 16  0  7  9 17  1 ) ({} {} 1) edgeGrading (  1 50 50  1 {} {} {} {} 1 1 1 1) // 1\n'.format(blocks_x*2, blocks_y, 1/grade_y, 1/grade_y, 1/grade_y, 1/grade_y),
+    '\t\thex ( 0  2  4  6  1  3  5  7 ) ({} {} 1) edgeGrading ({}   1   1  {} {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x*2, blocks_y, egrade_x, egrade_x, grade_y, grade_y, grade_y, grade_y),
+    '\t\thex ( 6  8 16  0  7  9 17  1 ) ({} {} 1) edgeGrading ( 1  {}  {}   1 {} {} {} {} 1 1 1 1) // 1\n'.format(blocks_x*2, blocks_y, egrade_x, egrade_x, 1/grade_y, 1/grade_y, 1/grade_y, 1/grade_y),
     '\t\thex ( 8 10 12 16  9 11 13 17 ) ({} {} 1) simpleGrading ( {} {} 1) // 1\n'.format(blocks_x, blocks_y, grade_x, 1/grade_y),
     '\t\thex ( 2 12 14  4  3 13 15  5 ) ({} {} 1) simpleGrading ( {} {} 1) // 1\n'.format(blocks_x, blocks_y, grade_x, grade_y),
     ');\n\n'

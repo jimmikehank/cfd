@@ -21,7 +21,7 @@ sourcePatches (back);
 exposedPatchName front;  //Note that here no brackets are needed
 
 extrudeModel  plane;
-thickness     0.8;
+thickness     0.8; // Width of 3rd dimension in case, only affects output from post processing like forces
 
 flipNormals false;
 mergeFaces false;
