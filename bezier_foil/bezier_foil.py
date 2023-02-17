@@ -1,3 +1,6 @@
+# Code developed by James Henry for Bezier curve matching to airfoil coordinates.
+
+# This function generates Bernstein polynomials of order 'n'
 def bernstein(n,i,npoints):
     import numpy as np
     import math
@@ -7,6 +10,7 @@ def bernstein(n,i,npoints):
     bspoly = np.vstack([poly]).T
     return bspoly
 
+# This function generates Bezier curves from the Bernstein polynomials
 def bezier_curve(control_points,Nt):
     import numpy as np
     n = np.shape(control_points)[0]
@@ -20,7 +24,8 @@ def bezier_curve(control_points,Nt):
     bezfoil = np.vstack([upper[::-1],lower])
     return bezfoil
 
-
+# This function creates an airfoil from the Bezier curve, the coordinates
+# follow a path from TE over top surface, to lower surface back to TE
 def init_bezfoil(m, control_points_upper, control_points_lower = [],symmetric = True):
     import numpy as np
     inverse = np.array([1,-1])
@@ -32,12 +37,15 @@ def init_bezfoil(m, control_points_upper, control_points_lower = [],symmetric = 
     foil = np.vstack([upper[::-1],lower])
     return foil
 
+# This functions loads in the coordinates of the airfoil from the csv file
 def load_airfoil(filename):
     import numpy as np
     coords = np.loadtxt(filename,delimiter=',')
     coords = (coords / np.max(coords[:,0]))
     return coords
 
+# This function interpolates the loaded coordinates to match the x coordinates
+# of the Bezier curves for error calculations
 def interp_foil(bezfoil, airfoil):
     from scipy import interpolate
     import numpy as np
@@ -52,12 +60,14 @@ def interp_foil(bezfoil, airfoil):
     afint = np.hstack([afint_upper,afint_lower])
     return afint
 
+# This function calculates the squared error of the airfoil
 def bezier_error(bezfoil, airfoil):
     import numpy as np
 #     error = 1 / len(bezfoil) * np.sum(np.abs((bezfoil[:,1] - airfoil)))
     error = 1 / len(bezfoil) * np.sum(((bezfoil[:,1] - airfoil)**2))
     return error
 
+# This function calculates the gradient (de/dx) where e is the error and x is the control points
 def find_grad(airfoil,control_points,m,control_points_lower=[],symmetric=True):
     import numpy as np
     dx = 1e-6
@@ -108,7 +118,7 @@ def find_grad(airfoil,control_points,m,control_points_lower=[],symmetric=True):
             err_grad_lower[i,1] = (bezier_error(newfoil,airfoil)-err_init)/dx
     return err_grad, err_grad_lower
 
-
+# This function uses all of the above code to optimize the bezier shape to that of the airfoil
 def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-12, m=101, step=1, debug=False,control_points_lower=[],sym=True):
     import numpy as np
     from matplotlib import pyplot as plt
@@ -137,12 +147,13 @@ def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-12, m=101,
         if iters % 100 == 0 and debug:
             print(err)
     if debug:
-        plt.figure(figsize=[20,8])
+        plt.figure(figsize=[20,3])
         plt.plot(airfoil_raw[:,0],airfoil_raw[:,1],'b-')
         plt.plot(bezfoil[:,0],bezfoil[:,1],'r--')
         plt.axis('equal')
         plt.ylim([-.08,.08])
-        plt.legend(['Original Airfoil','Optimized Airfoil'])
+        plt.tick_params(axis='both',labelsize=16)
+        plt.legend(['Original Airfoil','Optimized Airfoil'],fontsize=16)
         plt.savefig('airfoil_comparison.png')
     bezfoil = (bezfoil - control_points[-1,:]) * chord
     control_points = (control_points - control_points[-1,:]) * chord

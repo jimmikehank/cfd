@@ -96,7 +96,7 @@ cpl_init = control_points_init * np.array([1,-1])
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
 airfoil_sel = 'rae2822'
 symmetry = False
-file_exists = path.isfile('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
+file_exists = path.isfile('{}/control_points/{}_cput.txt'.format(airfoil_dir,airfoil_sel))
 if file_exists:
     cpu = np.loadtxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
     cpl = np.loadtxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel))
