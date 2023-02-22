@@ -2,8 +2,46 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
+# List of files / folders to protect from deletion
+retain = ['0','constant','system','test_bench','gradOpt.py','autoCFD.py','autoBCu.py','autoBC.py','autoMesh.py']
 
 
+# Argument handling functions:
+
+def cleanup(retain):
+    print(retain)
+    import shutil
+    import os
+    dirs = os.listdir()
+    for item in dirs:
+        if item not in retain:
+            shutil.rmtree(item)
+        else:
+            continue
+
+def store(retain, target):
+    import os
+    import shutil
+    ignore = ['data_process.ipynb','autoMesh.py','test_bench','gradOpt.py','autoCFD.py','autoBCu.py','autoBC.py']
+    copy = ['0','system','constant','dynamicCode']
+    dirs = os.listdir()
+    delete = []
+    for item in dirs:
+        if item[0:3] == 'pro':
+            delete.append(item)
+    casefile = "/home/james/Documents/research/completed_cases/coanda_plenum/{}/".format(target)
+    if os.path.exists(casefile):
+        existing = os.listdir(casefile)
+    else:
+        os.mkdir(casefile)
+        existing = []
+    for item in dirs:
+        if item in delete:
+            shutil.rmtree(item)
+        elif item not in retain and item not in ignore and item not in existing:
+            shutil.move(item,casefile)
+        elif item in copy:
+            shutil.copytree(item,casefile+item)
 #---------- Control Variables handled by this block ----------#
 
 # Command line argument handler:
@@ -32,6 +70,15 @@ def arg_handle(args):
             ru = float(args[i+1])
         elif current == '-ai':
             ai = float(args[i+1])
+        elif current == '-clean':
+            cleanup(retain)
+        elif current == '-save':
+            target = args[i+1]
+            try:
+                store(retain,target)
+            except:
+                "Invalid target!"
+
     return Rc, te, tu, ru, ai
 
 Rc, te, tu, ru, ai = arg_handle(args)
@@ -139,15 +186,15 @@ pback[25,:] = np.array([pn,pm])
 # Finally: Define the blocking and grading parameters!
 blocks_x_in  = 15
 blocks_y_in  = 15
-blocks_x_exf = 8
-blocks_x_out = 46
-blocks_y_out = 46
+blocks_x_exf = 5
+blocks_x_out = 40
+blocks_y_out = 40
 
 grade_x_flat = 1
-grade_y_flat = 3000
+grade_y_flat = 50
 
 grade_x_curve = 1
-grade_y_curve = 3000
+grade_y_curve = 400
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
