@@ -20,51 +20,51 @@ FoamFile
     {
         type            patch;
         nFaces          25;
-        startFace       28126;
+        startFace       74566;
     }
     right
     {
         type            patch;
         nFaces          60;
-        startFace       28151;
+        startFace       74591;
     }
     up
     {
         type            patch;
         nFaces          25;
-        startFace       28211;
+        startFace       74651;
     }
     meanFlow
     {
         type            patch;
-        nFaces          240;
-        startFace       28236;
+        nFaces          200;
+        startFace       74676;
     }
     coandaUpper
     {
         type            patch;
         nFaces          2;
-        startFace       28476;
+        startFace       74876;
     }
     coandaLower
     {
         type            patch;
         nFaces          2;
-        startFace       28478;
+        startFace       74878;
     }
     surface
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          354;
-        startFace       28480;
+        nFaces          314;
+        startFace       74880;
     }
     defaultFaces
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          28480;
-        startFace       28834;
+        nFaces          74880;
+        startFace       75194;
     }
 )
 

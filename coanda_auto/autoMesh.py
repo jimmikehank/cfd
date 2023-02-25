@@ -187,11 +187,11 @@ pback[25,:] = np.array([pn,pm])
 blocks_x_in  = 15
 blocks_y_in  = 15
 blocks_x_exf = 5
-blocks_x_out = 60
-blocks_y_out = 60
+blocks_x_out = 80
+blocks_y_out = 80
 
 grade_x_flat = 1
-grade_y_flat = 50
+grade_y_flat = 400
 
 grade_x_curve = 1
 grade_y_curve = 400

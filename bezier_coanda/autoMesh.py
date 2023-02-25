@@ -103,7 +103,7 @@ control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.35,.06],[.5,.07],[.75,
 # control_points_init = np.array([[0,0],[0,.05],[.75,.03],[1,0]])
 cpl_init = control_points_init * np.array([1,-1])
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
-airfoil_sel = 'rae2822'
+airfoil_sel = 'naca0015'
 symmetry = False
 file_exists = path.isfile('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
 if file_exists:
@@ -176,14 +176,14 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x_L = 120
-blocks_y_L = 40
+blocks_x_L = 100
+blocks_y_L = 120
 blocks_x_R = 60
-blocks_y_R = 40
+blocks_y_R = 120
 blocks_y_co = 2
 blocks_x_flat = 25
 grade_x_L = 10
-grade_y = 1000
+grade_y = 2000
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',

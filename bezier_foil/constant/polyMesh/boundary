@@ -20,39 +20,39 @@ FoamFile
     {
         type            patch;
         nFaces          80;
-        startFace       37960;
+        startFace       76320;
     }
     up
     {
         type            patch;
         nFaces          80;
-        startFace       38040;
+        startFace       76400;
     }
     right
     {
         type            patch;
-        nFaces          80;
-        startFace       38120;
+        nFaces          160;
+        startFace       76480;
     }
     meanFlow
     {
         type            patch;
         nFaces          320;
-        startFace       38200;
+        startFace       76640;
     }
     surface
     {
         type            wall;
         inGroups        List<word> 1(wall);
         nFaces          320;
-        startFace       38520;
+        startFace       76960;
     }
     defaultFaces
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          38400;
-        startFace       38840;
+        nFaces          76800;
+        startFace       77280;
     }
 )
 

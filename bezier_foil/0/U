@@ -18,7 +18,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-alpha						0.2;						 // AoA in Degrees
+alpha						0;						 // AoA in Degrees
 U 							30; 					// Flow magnitude
 
 
