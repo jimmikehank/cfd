@@ -167,10 +167,10 @@ for j in range(1,np.shape(lower)[0]-1):
 # Finally: Define the blocking and grading parameters!
 
 blocks_x = 80
-blocks_y = 40
+blocks_y = 80
 grade_x = 50
-egrade_x = 0.4
-grade_y = 150
+egrade_x = .4
+grade_y = 2500
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
