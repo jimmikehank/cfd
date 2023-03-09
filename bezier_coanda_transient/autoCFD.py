@@ -1,8 +1,8 @@
 import numpy as np
 import os
 
-freq_sweep = np.array([10,20,40,60,80,100])
-flow_speed = 20
+freq_sweep = np.array([100])
+flow_speed = 25
 print(freq_sweep)
 
 for i in freq_sweep:

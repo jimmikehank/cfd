@@ -20,7 +20,7 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 alpha						0;						// AoA in Degrees
-U 							35; 					// Flow magnitude
+U 							20; 					// Flow magnitude
 massflow				0.000;				 // mass flow rate
 
 

@@ -176,14 +176,15 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x_L = 100
-blocks_y_L = 120
+blocks_x_L = 200
+blocks_y_L = 100
 blocks_x_R = 60
-blocks_y_R = 120
+blocks_y_R = blocks_y_L
 blocks_y_co = 2
 blocks_x_flat = 25
 grade_x_L = 10
-grade_y = 2000
+egrade_x = 5
+grade_y = 2500
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
@@ -232,13 +233,14 @@ def makepoints(points_back,back,front):
 
 # Block order is inside coanda plenum 0, 1, 2 then 3 is the block directly below the surface, the rest follow counter-clockwise
 
+
 blocks = [
     'blocks\n(\n',
-    '\t\thex ( 4 28  8  0  5 29  9  1) ({} {} 1) edgeGrading (5 1 1 5 {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x_L, blocks_y_L, grade_y, grade_y, grade_y, grade_y),
+    '\t\thex ( 4 28  8  0  5 29  9  1) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) 1   1 ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x_L, blocks_y_L, egrade_x, 1/egrade_x, egrade_x, 1/egrade_x, grade_y, grade_y, grade_y, grade_y),
     '\t\thex (28 26 10  8 29 27 11  9) ({} {} 1) simpleGrading ({}  {}  1) // 1\n'.format(blocks_x_flat, blocks_y_R, 1/grade_x_L, grade_y),
     '\t\thex (26 34 14 10 27 35 15 11) ({} {} 1) simpleGrading ( 1  {}  1) // 2\n'.format(blocks_x_R, blocks_y_R, grade_y),
     '\t\thex (34 36  2 14 35 37  3 15) ({} {} 1) simpleGrading ({}  {}  1) // 3\n'.format(blocks_x_flat, blocks_y_L, grade_x_L, grade_y),
-    '\t\thex (36  4  0  2 37  5  1  3) ({} {} 1) edgeGrading (.2 1 1 .2 {} {} {} {} 1 1 1 1) // 4\n'.format(blocks_x_L, blocks_y_L, grade_y, grade_y, grade_y, grade_y),
+    '\t\thex (36  4  0  2 37  5  1  3) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) 1   1 ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 4\n'.format(blocks_x_L, blocks_y_L, egrade_x, 1/egrade_x, egrade_x, 1/egrade_x, grade_y, grade_y, grade_y, grade_y),
     '\t\thex (24 32 34 26 25 33 35 27) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_R, blocks_y_co, 1),
     '\t\thex (22 30 32 24 23 31 33 25) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_x_R, blocks_y_co, 1),
     ');\n\n'

@@ -18,9 +18,9 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-f								100;						 // Frequency in Hz
+f								4;						 // Frequency in Hz
 alpha						0;						// AoA in Degrees
-U 							20; 					// Flow magnitude
+U 							25; 					// Flow magnitude
 massflow 				0.006;
 
 dimensions			[0 1 -1 0 0 0 0];
