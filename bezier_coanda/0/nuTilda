@@ -16,49 +16,56 @@ FoamFile
 
 dimensions      [0 2 -1 0 0 0 0];
 
-def_pl          uniform 1.4e-2;
+def_pl          uniform 4.5e-5;
+coanda_exit     uniform 1.4e-1;
 
 internalField   $def_pl;
+
 
 boundaryField
 {
     meanFlow
     {
-        type            freestream;
-        freestreamValue $def_pl;
+        type            inletOutlet;
+        inletValue      $def_pl;
+        value           $def_pl;
     }
 
     right
     {
-        type            freestream;
-        freestreamValue $def_pl;
+        type            inletOutlet;
+        inletValue      $def_pl;
+        value           $def_pl;
     }
 
     down
     {
-        type            freestream;
-        freestreamValue $def_pl;
+        type            inletOutlet;
+        inletValue      $def_pl;
+        value           $def_pl;
     }
 
     up
     {
-        type            freestream;
-        freestreamValue $def_pl;
+        type            inletOutlet;
+        inletValue      $def_pl;
+        value           $def_pl;
     }
     surface
     {
         type            fixedValue;
-        value           uniform 0;
+        value           uniform 0.0;
     }
     coandaUpper
     {
-        type            freestream;
-        freestreamValue $def_pl;
+        type            fixedValue;
+        value           uniform 0.0;
     }
     coandaLower
     {
-        type            freestream;
-        freestreamValue $def_pl;
+        type            inletOutlet;
+        inletValue      $def_pl;
+        value           $def_pl;
     }
 }
 

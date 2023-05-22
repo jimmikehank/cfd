@@ -25,13 +25,41 @@ def cleanup(retain):
         else:
             continue
 
+
+
+def store(retain,name):
+    import os
+    import shutil
+    ignore = ['data_process.ipynb','autoMesh.py','.ipynb_checkpoints']
+    copy = ['0','system','constant','dynamicCode']
+    dirs = os.listdir()
+    delete = []
+    for item in dirs:
+        if item[0:3] == 'pro':
+            delete.append(item)
+    target = name
+    # casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
+    casefile = "/media/james/Data/james/completed_cases/coanda_plenum_comparison/{}/".format(target)
+    if os.path.exists(casefile):
+        existing = os.listdir(casefile)
+    else:
+        os.mkdir(casefile)
+        existing = []
+    for item in dirs:
+        if item in delete:
+            shutil.rmtree(item)
+        elif item not in retain and item not in ignore and item not in existing:
+            shutil.move(item,casefile)
+        elif item in copy:
+            shutil.copytree(item,casefile+item)
+
 # This function parses input arguments to generate mesh allowing external programs to iterate through different mesh configurations
 
 def arg_handle(args):
     # Default Values
-    Rc = 0.003   # Coanda cylinder radius
-    te = 0.00015  # R/te = 20
-    tu = 0.00018  # Upper surface thickness at exit
+    Rc = 0.14 * .0254  # Coanda cylinder radius
+    te = 0.009 * .0254  # R/te = 20
+    tu = te       # Upper surface thickness at exit
 
     for i in range(np.size(args)):
         current = args[i].lower()
@@ -43,6 +71,8 @@ def arg_handle(args):
             tu = float(args[i+1])
         elif current == '-clean':
             cleanup(retain)
+        elif current == '-save':
+            store(retain,args[i+1])
     return Rc, te, tu
 
 Rc, te, tu = arg_handle(args)
@@ -58,13 +88,13 @@ scale = 1
 
 
 # Bounding Box:
-
-bU =  1.0 # Upper bound
-bD = -1.0 # Lower bound
-bL = -1.0 # Left bound
-bR =  1.0 # Right bound
-fr =  0.5 # Front bound
-bk = -0.5 # Back bound
+farfield = 5
+bU =  farfield # Upper bound
+bD = -farfield # Lower bound
+bL = -farfield # Left bound
+bR =  farfield # Right bound
+fr =  0.078 # Front bound
+bk = -0.078 # Back bound
 
 # Mesh expansion for coanda cylinder
 
@@ -78,7 +108,7 @@ delta_x = 1e-8
 
 wt = tu * 10             # Plenum wall thickness
 hi = 2*Rc + te + wt     # Plenum height
-le = .20 - Rc - hi/2    # Plenum exit x coordinate
+le = .30 - Rc - hi/2    # Plenum exit x coordinate
 
 
  # Additional Coanda Dimensions:
@@ -113,20 +143,25 @@ pback[13,:] = np.array([le+3*delta_x,bU])               # 26
 pback[14,:] = np.array([ucx, bU])                       # 28
 pback[15,:] = np.array([hi/2, bU])                      # 30
 pback[16,:] = np.array([0, 0])                          # 32
-pback[17,:] = np.array([-1, 0])                         # 34
+pback[17,:] = np.array([bL, 0])                         # 34
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x_slot = 15
-blocks_x_cont = 25
+blocks_x_slot = 25
+blocks_x_cont = 80
 blocks_y_slot = 15
-blocks_x_out = 46
-blocks_y_out = 46
-blocks_x_cyl = 75
-blocks_y_cyl = 10
+blocks_x_out = 300
+blocks_y_out = 400
+blocks_x_cyl = 150
+blocks_y_cyl = 150
+
+blocks_x_in = 20
+blocks_y_in = blocks_y_cyl
+edge_grade_cyl = 1
 
 grade_x_flat = 1
-grade_y_flat = 3000
+grade_y_flat = 400
+
 
 grade_x_cont = 4
 
@@ -179,15 +214,15 @@ def makepoints(points_back,back,front):
 
 blocks = [
     'blocks\n(\n',
-    '\t\thex (16  2  0 18 17  3  1 19) ({} {} 1) simpleGrading ( 1   1  1) // 6\n'.format(blocks_x_cyl, blocks_y_cyl),
-    '\t\thex (14  4  2 16 15  5  3 17) ({} {} 1) simpleGrading ( 1   1  1) // 6\n'.format(blocks_x_cyl, blocks_y_cyl),
-    '\t\thex (24 26  4 14 25 27  5 15) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_x_cyl, blocks_y_out, 1/grade_y_flat),
-    '\t\thex (26 28  6  4 27 29  7  5) ({} {} 1) simpleGrading ({}  {}  1) // 6\n'.format(blocks_x_cont, blocks_y_out, grade_x_cont, 1/grade_y_flat),
-    '\t\thex (28 30  8  6 29 31  9  7) ({} {} 1) simpleGrading ( 1  {}  1) // 7\n'.format(blocks_x_out+14, blocks_y_out, 1/grade_y_flat),
-    '\t\thex (30 34 32  8 31 35 33  9) ({} {} 1) simpleGrading ( 1  {}  1) // 8\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
-    '\t\thex (34 20 10 32 35 21 11 33) ({} {} 1) simpleGrading ( 1  {}  1) // 8\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
-    '\t\thex (20 22 12 10 21 23 13 11) ({} {} 1) simpleGrading ( 1  {}  1) // 9\n'.format(blocks_x_out+14, blocks_y_out, 1/grade_y_flat),
-    '\t\thex (22 24 14 12 23 25 15 13) ({} {} 1) simpleGrading ({}  {}  1) //10\n'.format(blocks_x_cont, blocks_y_out, 1/grade_x_cont, 1/grade_y_flat),
+    '\t\thex (16  2  0 18 17  3  1 19) ({} {} 1) simpleGrading ( 1   1  1) // 0\n'.format(blocks_x_cyl, blocks_y_cyl),
+    '\t\thex (14  4  2 16 15  5  3 17) ({} {} 1) simpleGrading ( 1   1  1) // 1\n'.format(blocks_x_cyl, blocks_y_cyl),
+    '\t\thex (24 26  4 14 25 27  5 15) ({} {} 1) edgeGrading (((0.5 0.5 {}) (0.5 0.5 {}))  1 1 ((0.5 0.5 {}) (0.5 0.5 {})) {} {} {} {}  1 1 1 1) // 2\n'.format(blocks_x_cyl, blocks_y_out, edge_grade_cyl, 1/edge_grade_cyl, edge_grade_cyl, 1/edge_grade_cyl, 1/grade_y_flat, 1/grade_y_flat, 1/grade_y_flat, 1/grade_y_flat),
+    '\t\thex (26 28  6  4 27 29  7  5) ({} {} 1) simpleGrading ({}  {}  1) // 3\n'.format(blocks_x_cont, blocks_y_out, grade_x_cont, 1/grade_y_flat),
+    '\t\thex (28 30  8  6 29 31  9  7) ({} {} 1) simpleGrading (((0.5 0.5  1) (0.5 0.5 1))  {}  1) // 4\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (30 34 32  8 31 35 33  9) ({} {} 1) edgeGrading ( {} 1 1 {} {} {} {} {}  1 1 1 1) // 6\n'.format(blocks_x_cyl, blocks_y_out, 1/edge_grade_cyl, edge_grade_cyl, 1/grade_y_flat, 1/grade_y_flat, 1/grade_y_flat, 1/grade_y_flat),
+    '\t\thex (34 20 10 32 35 21 11 33) ({} {} 1) edgeGrading ( {} 1 1 {} {} {} {} {}  1 1 1 1) // 6\n'.format(blocks_x_cyl, blocks_y_out, edge_grade_cyl, 1/edge_grade_cyl, 1/grade_y_flat, 1/grade_y_flat, 1/grade_y_flat, 1/grade_y_flat),
+    '\t\thex (20 22 12 10 21 23 13 11) ({} {} 1) simpleGrading (((0.5 0.5 1) (0.5 0.5 1))  {}  1) // 7\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (22 24 14 12 23 25 15 13) ({} {} 1) simpleGrading ({}  {}  1) //8\n'.format(blocks_x_cont, blocks_y_out, 1/grade_x_cont, 1/grade_y_flat),
     ');\n\n'
 ]
 

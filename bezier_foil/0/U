@@ -19,7 +19,7 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 alpha						0;						 // AoA in Degrees
-U 							30; 					// Flow magnitude
+U 							35; 					// Flow magnitude
 
 
 dimensions			[0 1 -1 0 0 0 0];
@@ -46,9 +46,8 @@ boundaryField
 
 		meanFlow
 		{
-				type						uniformFixedValue;
-				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
-				value						uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+				type						inletOutlet;
+				inletValue		  uniform (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
 		}
 
 		surface

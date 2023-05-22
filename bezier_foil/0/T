@@ -5,6 +5,7 @@
     \\  /    A nd           | Version:  8
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
+
 FoamFile
 {
     version     2.0;
@@ -31,17 +32,23 @@ boundaryField
 
     down
     {
-        type            zeroGradient;
+        type            inletOutlet;
+        inletValue      uniform $Tinlet;
+        value           $inletValue;
     }
 
     up
     {
-        type            zeroGradient;
+        type            inletOutlet;
+        inletValue      uniform $Tinlet;
+        value           $inletValue;
     }
 
     right
     {
-        type            zeroGradient;
+        type            inletOutlet;
+        inletValue      uniform $Tinlet;
+        value           $inletValue;
     }
 
 

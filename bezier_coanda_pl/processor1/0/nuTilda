@@ -1,0 +1,81 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      nuTilda;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -1 0 0 0 0];
+
+internalField   uniform 0.14;
+
+boundaryField
+{
+    down
+    {
+        type            freestream;
+        freestreamValue nonuniform List<scalar> 0();
+        value           nonuniform List<scalar> 0();
+    }
+    right
+    {
+        type            freestream;
+        freestreamValue nonuniform List<scalar> 0();
+        value           nonuniform List<scalar> 0();
+    }
+    up
+    {
+        type            freestream;
+        freestreamValue nonuniform List<scalar> 0();
+        value           nonuniform List<scalar> 0();
+    }
+    meanFlow
+    {
+        type            freestream;
+        freestreamValue uniform 0.14;
+        value           uniform 0.14;
+    }
+    coandaUpper
+    {
+        type            freestream;
+        freestreamValue nonuniform List<scalar> 0();
+        value           nonuniform List<scalar> 0();
+    }
+    coandaLower
+    {
+        type            freestream;
+        freestreamValue nonuniform List<scalar> 0();
+        value           nonuniform List<scalar> 0();
+    }
+    surface
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+    defaultFaces
+    {
+        type            empty;
+    }
+    procBoundary1to0
+    {
+        type            processor;
+        value           uniform 0.14;
+    }
+    procBoundary1to2
+    {
+        type            processor;
+        value           uniform 0.14;
+    }
+}
+
+
+// ************************************************************************* //

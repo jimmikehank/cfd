@@ -109,8 +109,8 @@ bk = -0.078 # Back bound
 
 rL = -0.25          # Lower point for cylinder expansion
 rU =  0.25          # Upper point for cylinder expansion
-sU =  rU + 8 * te   # Upper point for slot expansion
-gU =  sU + 4 * tu   # Upper point for top plate expansion
+sU =  rU + 80 * te   # Upper point for slot expansion
+gU =  sU + 1 * tu   # Upper point for top plate expansion
 
 # Dependent Dimensions
 
@@ -178,23 +178,27 @@ pback[23,:] = np.array([le,eu])
 pback[24,:] = np.array([bL,pm])
 pback[25,:] = np.array([pn,pm])
 
+# New points for doubled effector
+
 # print(pback[0:10,:])
 # plt.plot(pback[0:10,0],pback[0:10,1])
 # plt.show()
 #pback = np.around(pback,5)
 
 # Finally: Define the blocking and grading parameters!
-blocks_x_in  = 15
-blocks_y_in  = 15
+blocks_x_in  = 5
+blocks_y_in  = 5
 blocks_x_exf = 5
 blocks_x_out = 80
 blocks_y_out = 80
 
-grade_x_flat = 1
+grade_x_flat = 5
 grade_y_flat = 400
 
 grade_x_curve = 1
 grade_y_curve = 400
+
+addin = 50
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
@@ -248,16 +252,16 @@ blocks = [
     '\t\thex ( 0  2  4  6  1  3  5  7) ({} {} 1) simpleGrading ( 1   1  1) // 0\n'.format(blocks_x_in, blocks_y_in),
     '\t\thex ( 2  8 10  4  3  9 11  5) ({} {} 1) simpleGrading (.25  1  1) // 1\n'.format(blocks_x_in, blocks_y_in),
     '\t\thex ( 8 12 14 10  9 13 15 11) ({} {} 1) simpleGrading ( 1   1  1) // 2\n'.format(blocks_x_in, blocks_y_in),
-    '\t\thex (20 22 16 18 21 23 17 19) ({} {} 1) simpleGrading ( 1  {}  1) // 3\n'.format(blocks_x_out+70, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (20 22 16 18 21 23 17 19) ({} {} 1) simpleGrading (((0.5 0.5 {}) (0.5 0.5 {}))   {}  1) // 3\n'.format(blocks_x_out+70, blocks_y_out, grade_x_flat, 1/grade_x_flat, 1/grade_y_flat),
     '\t\thex (24 26 16 22 25 27 17 23) ({} {} 1) simpleGrading ({}  {}  1) // 4\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat, 1/grade_y_curve),
-    '\t\thex (26 28 12 16 27 29 13 17) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_curve),
+    '\t\thex (26 28 12 16 27 29 13 17) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_out+addin, blocks_y_out, 1/grade_y_curve),
     '\t\thex (28 30 14 12 29 31 15 13) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_y_in, blocks_y_out, 1/grade_y_curve),
     '\t\thex (30 32 46 14 31 33 47 15) ({} {} 1) simpleGrading ( 1  {}  1) // 7\n'.format(blocks_x_exf, blocks_y_out, 1/grade_y_curve),
     '\t\thex (32 34 36 46 33 35 37 47) ({} {} 1) simpleGrading ({}  {}  1) // 8\n'.format(blocks_x_out, blocks_y_out, grade_y_flat, 1/grade_y_curve),
-    '\t\thex (36 38 44 46 37 39 45 47) ({} {} 1) simpleGrading ( 1  {}  1) // 9\n'.format(blocks_x_out+30, blocks_y_out, 1/grade_y_flat),
-    '\t\thex (38 40 42 44 39 41 43 45) ({} {} 1) simpleGrading ( 1  {}  1) // 10\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
-    '\t\thex (40 48 50 42 41 49 51 43) ({} {} 1) simpleGrading ( 1  {}  1) // 11\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
-    '\t\thex (48 20 18 50 49 21 19 51) ({} {} 1) simpleGrading ( 1  {}  1) // 12\n'.format(blocks_x_out, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (36 38 44 46 37 39 45 47) ({} {} 1) simpleGrading ( 1  {}  1) // 9\n'.format(blocks_x_out-20, blocks_y_out, 1/grade_y_flat),
+    '\t\thex (38 40 42 44 39 41 43 45) ({} {} 1) simpleGrading (((0.5 0.5 {}) (0.5 0.5 {}))  {}  1) // 10\n'.format(blocks_x_out+70, blocks_y_out, grade_x_flat, 1/grade_x_flat, 1/grade_y_flat),
+    '\t\thex (40 48 50 42 41 49 51 43) ({} {} 1) simpleGrading ( 1  {}  1) // 11\n'.format(blocks_x_out+int(addin/2), blocks_y_out, 1/grade_y_flat),
+    '\t\thex (48 20 18 50 49 21 19 51) ({} {} 1) simpleGrading ( 1  {}  1) // 12\n'.format(blocks_x_out+int(addin/2), blocks_y_out, 1/grade_y_flat),
     ');\n\n'
 ]
 

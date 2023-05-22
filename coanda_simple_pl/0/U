@@ -1,0 +1,81 @@
+/*---------------------------------*- C++ -*-----------------------------------*/
+//    //////////////      ///////////////
+//    //////////////      //////////////
+//         ////           ////             /////       ////  //  /// //// ////
+//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
+//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
+//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
+//     /////              ////            /////       ///// ///  ///   ///  ///
+/*---------------------------------*- C++ -*-----------------------------------*/
+
+FoamFile
+{
+		version			2.0;
+		format			ascii;
+		class				volVectorField;
+		location		"0";
+		object			U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+alpha						0;						// AoA in Degrees
+U 							20; 					// Flow magnitude
+massflowU 			0.006;
+massflowL				0;
+
+dimensions			[0 1 -1 0 0 0 0];
+
+internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+
+
+boundaryField
+{
+		down
+		{
+				type						zeroGradient;
+		}
+
+		right
+		{
+				type						zeroGradient;
+		}
+
+		up
+		{
+				type						zeroGradient;
+		}
+
+		meanFlow
+		{
+				type						uniformFixedValue;
+				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+				value						uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+		}
+
+		surface
+		{
+				type						noSlip;
+		}
+
+		coandaUpper
+
+		{
+				type						flowRateInletVelocity;
+				massFlowRate		$massflowU;
+				value						uniform ($massflowU 0 0);
+		}
+
+		coandaLower
+		{
+				type						flowRateInletVelocity;
+				massFlowRate		$massflowL;
+				value						uniform ($massflowL 0 0);
+		}
+
+		defaultFaces
+		{
+				type						empty;
+		}
+}
+
+// ************************************************************************* //

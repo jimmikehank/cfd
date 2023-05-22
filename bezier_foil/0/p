@@ -25,26 +25,26 @@ boundaryField
 {
 		down
 		{
-				type						fixedValue;
-				value						uniform 100000;
+				type							freestreamPressure;
+				freestreamValue		uniform 100000;
 		}
 
 		right
 		{
-				type						fixedValue;
-				value						uniform 100000;
+				type							freestreamPressure;
+				freestreamValue		uniform 100000;
 		}
 
 		up
 		{
-				type						fixedValue;
-				value						uniform 100000;
+				type							freestreamPressure;
+				freestreamValue		uniform 100000;
 		}
 
 		meanFlow
 		{
-				type						fixedValue;
-				value						uniform 100000;
+				type							freestreamPressure;
+				freestreamValue		uniform 100000;
 		}
 
 		surface

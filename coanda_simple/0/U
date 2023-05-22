@@ -8,6 +8,7 @@
 //     /////              ////            /////       ///// ///  ///   ///  ///
 /*---------------------------------*- C++ -*-----------------------------------*/
 
+// STEADY STATE BLOWING
 FoamFile
 {
 		version			2.0;
@@ -18,10 +19,10 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-f 							20;					// Frequency of oscillation
-alpha						40;						// AoA in Degrees
-U 							30; 					// Flow magnitude
-massflow 				0.05;
+alpha						0;						// AoA in Degrees
+U 							20; 					// Flow magnitude
+massflow				0.005;				 // mass flow rate
+
 
 dimensions			[0 1 -1 0 0 0 0];
 
@@ -57,43 +58,18 @@ boundaryField
 				type						noSlip;
 		}
 
-		coandaUpper
-		// {
-				// type 						noSlip;
-				// type						flowRateInletVelocity;
-				// massFlowRate		sine;
-				// massFlowRateCoeffs {
-				// 		frequency 		$f;
-				// 		amplitude	 0.025;
-				// 		level 	   0.025;
-				// }
-				// value 					uniform (0.05 0 0);
-		// }
+		coandaLower
 		// COANDA STEADY:
 		{
 				type						flowRateInletVelocity;
-				massFlowRate		0.05;
-				value						uniform (0.05 0 0);
+				massFlowRate		$massflow;
+				value						uniform ($massflow 0 0);
 		}
 
-		coandaLower
+		coandaUpper
 		{
-				type 						noSlip;
-				// type						flowRateInletVelocity;
-				// massFlowRate		sine;
-				// massFlowRateCoeffs {
-				// 		frequency 		$f;
-				// 		amplitude	-0.025;
-				// 		level 	   0.025;
-				// }
-				// value 					uniform (0.05 0 0);
+				type						noSlip;
 		}
-		// COANDA STEADY:
-		// {
-		// 		type						flowRateInletVelocity;
-		// 		massFlowRate		0.05;
-		// 		value						uniform (0.05 0 0);
-		// }
 
 
 		defaultFaces
