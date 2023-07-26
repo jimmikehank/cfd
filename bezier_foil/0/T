@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-Tinlet          298;
+Tinlet          300;
 
 dimensions      [0 0 0 1 0 0 0];
 
@@ -23,35 +23,12 @@ internalField   uniform $Tinlet;
 
 boundaryField
 {
-    meanFlow
+    inOut
     {
         type            inletOutlet;
         inletValue      uniform $Tinlet;
         value           $inletValue;
     }
-
-    down
-    {
-        type            inletOutlet;
-        inletValue      uniform $Tinlet;
-        value           $inletValue;
-    }
-
-    up
-    {
-        type            inletOutlet;
-        inletValue      uniform $Tinlet;
-        value           $inletValue;
-    }
-
-    right
-    {
-        type            inletOutlet;
-        inletValue      uniform $Tinlet;
-        value           $inletValue;
-    }
-
-
 
     surface
     {

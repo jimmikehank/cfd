@@ -1,37 +1,16 @@
 boundary
 (
-    down
-    {
-        type patch;
-        faces
-        (
-            ( 8 10 11  9 )
-        );
-    }
-    up
-    {
-        type patch;
-        faces
-        (
-            ( 4 14 15  5 )
-        );
-    }
-    right
-    {
-        type patch;
-        faces
-        (
-            ( 10 12 13 11 )
-            ( 12 14 15 13 )
-        );
-    }
-    meanFlow
+    inOut
     {
         type patch;
         faces
         (
             ( 6  4  5  7)
             ( 6  8  9  7)
+            ( 10 12 13 11 )
+            ( 12 14 15 13 )
+            ( 4 14 15  5 )
+            ( 8 10 11  9 )
         );
     }
 

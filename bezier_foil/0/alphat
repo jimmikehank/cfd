@@ -1,9 +1,9 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-  =========                 |
-  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  8
-     \\/     M anipulation  |
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
@@ -17,39 +17,26 @@ FoamFile
 
 dimensions      [1 -1 -1 0 0 0 0];
 
+
 internalField   uniform 0;
 
 boundaryField
 {
+    inOut
+    {
+        type            calculated;
+        value           uniform 0;
+    }
     surface
     {
         type            compressible::alphatWallFunction;
         value           uniform 0;
     }
-
-    meanFlow
+    defaultFaces
     {
-        type            calculated;
-        value           uniform 0;
+        type            empty;
     }
 
-    right
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-
-    up
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-
-    down
-    {
-        type            calculated;
-        value           uniform 0;
-    }
 }
 
 

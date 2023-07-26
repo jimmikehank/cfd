@@ -1,56 +1,43 @@
 /*--------------------------------*- C++ -*----------------------------------*\
-  =========                 |
-  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
-   \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  8
-     \\/     M anipulation  |
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
     format      ascii;
     class       volScalarField;
+    location    "0";
     object      nut;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 dimensions      [0 2 -1 0 0 0 0];
 
-def_pl          uniform 4.5e-5;
 
-internalField   $def_pl;
+internalField   uniform 4.5e-05;
 
 boundaryField
 {
-    meanFlow
+    inOut
     {
         type            calculated;
-        value           $def_pl;
+        value           $internalField;
     }
-
-    right
-    {
-        type            calculated;
-        value           $def_pl;
-    }
-
-    down
-    {
-        type            calculated;
-        value           $def_pl;
-    }
-
-    up
-    {
-        type            calculated;
-        value           $def_pl;
-    }
-
     surface
     {
         type            nutUSpaldingWallFunction;
-        value           $def_pl;
+        value           $internalField;
+    }
+
+    defaultFaces
+    {
+        type            empty;
     }
 }
+
 
 // ************************************************************************* //

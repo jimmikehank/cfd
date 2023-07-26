@@ -21,7 +21,7 @@ FoamFile
 
 alpha						0;						// AoA in Degrees
 U 							25; 					// Flow magnitude
-massflow				0.003;				 // mass flow rate
+massflow				0.006;				 // mass flow rate
 
 
 dimensions			[0 1 -1 0 0 0 0];
@@ -31,34 +31,19 @@ internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToR
 
 boundaryField
 {
-		down
+		inOut
 		{
-				type						zeroGradient;
+				type            inletOutlet;
+				inletValue      $internalField;
+				value           $internalField;
 		}
-
-		right
-		{
-				type						zeroGradient;
-		}
-
-		up
-		{
-				type						zeroGradient;
-		}
-
-		meanFlow
-		{
-				type						uniformFixedValue;
-				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
-				value						uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
-		}
-
 		surface
 		{
-				type						noSlip;
+				type            fixedValue;
+				value           uniform (0 0 0);
 		}
 
-		coandaLower
+		coandaUpper
 		// COANDA STEADY:
 		{
 				type						flowRateInletVelocity;
@@ -66,9 +51,10 @@ boundaryField
 				value						uniform ($massflow 0 0);
 		}
 
-		coandaUpper
+		coandaLower
 		{
-				type						noSlip;
+				type            fixedValue;
+				value           uniform (0 0 0);
 		}
 
 

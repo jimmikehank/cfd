@@ -23,28 +23,10 @@ internalField		uniform 100000;
 
 boundaryField
 {
-		down
+		inOut
 		{
-				type						fixedValue;
-				value						uniform 100000;
-		}
-
-		right
-		{
-				type						fixedValue;
-				value						uniform 100000;
-		}
-
-		up
-		{
-				type						fixedValue;
-				value						uniform 100000;
-		}
-
-		meanFlow
-		{
-				type						fixedValue;
-				value						uniform 100000;
+				type            fixedValue;
+				value           $internalField;
 		}
 
 		surface

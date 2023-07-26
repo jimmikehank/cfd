@@ -1,0 +1,62 @@
+/*---------------------------------*- C++ -*-----------------------------------*/
+//    //////////////      ///////////////
+//    //////////////      //////////////
+//         ////           ////             /////       ////  //  /// //// ////
+//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
+//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
+//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
+//     /////              ////            /////       ///// ///  ///   ///  ///
+/*---------------------------------*- C++ -*-----------------------------------*/
+
+FoamFile
+{
+		version			2.0;
+		format			ascii;
+		class				volScalarField;
+		object			p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions			[1 -1 -2 0 0 0 0];
+
+internalField		uniform 100000;
+
+boundaryField
+{
+		down
+		{
+				type							freestreamPressure;
+				freestreamValue		uniform 100000;
+		}
+
+		right
+		{
+				type							freestreamPressure;
+				freestreamValue		uniform 100000;
+		}
+
+		up
+		{
+				type							freestreamPressure;
+				freestreamValue		uniform 100000;
+		}
+
+		meanFlow
+		{
+				type							freestreamPressure;
+				freestreamValue		uniform 100000;
+		}
+
+		surface
+		{
+				type						zeroGradient;
+		}
+
+
+		defaultFaces
+		{
+				type						empty;
+		}
+}
+
+// ************************************************************************* //

@@ -37,7 +37,7 @@ solvers
 
 SIMPLE
 {
-    nNonOrthogonalCorrectors 0;
+    nNonOrthogonalCorrectors 3;
 
     residualControl
     {
@@ -60,6 +60,11 @@ relaxationFactors
         e               0.7;
         nuTilda         0.7;
     }
+}
+
+potentialFlow
+{
+    nNonOrthogonalCorrectors           20;
 }
 
 

@@ -93,7 +93,8 @@ def find_grad(airfoil,control_points,m,control_points_lower=[],symmetric=True):
         err_grad_lower = err_grad*np.array([1,-1])
     else:
         for i in range(1,np.shape(control_points)[0]-1):
-            if i == 1:
+            # if i == 1: ## Use this if need flat leading edge
+            if i == 0:
                 pass
             else:
                 cp = control_points
@@ -106,7 +107,8 @@ def find_grad(airfoil,control_points,m,control_points_lower=[],symmetric=True):
             err_grad[i,1] = (bezier_error(newfoil,airfoil)-err_init)/dx
         for i in range(1,np.shape(control_points_lower)[0]-1):
             if i == 1:
-                pass
+                cpl[i,0] = cpl[i,1] * (cp[i,0] / cp[i,1])
+                #pass  # Flat leading edge
             else:
                 cpl = control_points_lower
                 cpl[i,0] += dx
@@ -132,6 +134,7 @@ def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-12, m=101,
     err_store = []
     iters = 0
     while err > eps and derr > deps:
+        airfoil = interp_foil(bezfoil,airfoil_raw)
         err = bezier_error(bezfoil,airfoil)
         err_store = np.append(err_store,err)
         grad, grad_lower = find_grad(airfoil,control_points,m,control_points_lower=control_points_lower,symmetric=sym)
@@ -151,7 +154,7 @@ def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-12, m=101,
         plt.plot(airfoil_raw[:,0],airfoil_raw[:,1],'b-')
         plt.plot(bezfoil[:,0],bezfoil[:,1],'r--')
         plt.axis('equal')
-        plt.ylim([-.08,.08])
+        plt.ylim([np.min(bezfoil[:,1]*1.5),np.max(bezfoil[:,1]*1.5)])
         plt.tick_params(axis='both',labelsize=16)
         plt.legend(['Original Airfoil','Optimized Airfoil'],fontsize=16)
         plt.savefig('airfoil_comparison.png')

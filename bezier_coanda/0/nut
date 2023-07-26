@@ -17,51 +17,31 @@ FoamFile
 dimensions      [0 2 -1 0 0 0 0];
 
 def_pl          uniform 4.5e-5;
-coanda_exit     uniform 1.4e-1;
 
 internalField   $def_pl;
 
 boundaryField
 {
-    meanFlow
+    inOut
     {
         type            calculated;
-        value           $def_pl;
+        value           $internalField;
     }
-
-    right
-    {
-        type            calculated;
-        value           $def_pl;
-    }
-
-    down
-    {
-        type            calculated;
-        value           $def_pl;
-    }
-
-    up
-    {
-        type            calculated;
-        value           $def_pl;
-    }
-
     surface
     {
-        type            nutUSpaldingWallFunction;
-        value           $def_pl;
-    }
-    coandaUpper
-    {
         type            calculated;
-        value           uniform 0.0;
+        value           uniform 0;
     }
-
     coandaLower
     {
         type            calculated;
-        value           $def_pl;
+        value           $internalField;
+    }
+
+    coandaUpper
+    {
+        type            calculated;
+        value           $internalField;
     }
 }
 

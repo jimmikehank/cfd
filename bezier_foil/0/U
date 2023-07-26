@@ -1,65 +1,46 @@
-/*---------------------------------*- C++ -*-----------------------------------*/
-//    //////////////      ///////////////
-//    //////////////      //////////////
-//         ////           ////             /////       ////  //  /// //// ////
-//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
-//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
-//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
-//     /////              ////            /////       ///// ///  ///   ///  ///
-/*---------------------------------*- C++ -*-----------------------------------*/
-
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
 FoamFile
 {
-		version			2.0;
-		format			ascii;
-		class				volVectorField;
-		location		"0";
-		object			U;
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-alpha						0;						 // AoA in Degrees
-U 							35; 					// Flow magnitude
+dimensions      [0 1 -1 0 0 0 0];
 
 
-dimensions			[0 1 -1 0 0 0 0];
-
+alpha						0.0;						 // AoA in Degrees
+U               65.0;
 internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
 
 
 boundaryField
 {
-		down
-		{
-				type						zeroGradient;
-		}
-
-		right
-		{
-				type						zeroGradient;
-		}
-
-		up
-		{
-				type						zeroGradient;
-		}
-
-		meanFlow
-		{
-				type						inletOutlet;
-				inletValue		  uniform (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
-		}
-
-		surface
-		{
-				type						noSlip;
-		}
-
-
-		defaultFaces
-		{
-				type						empty;
-		}
+    inOut
+    {
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
+    }
+    surface
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    defaultFaces
+    {
+        type            empty;
+    }
 }
+
 
 // ************************************************************************* //

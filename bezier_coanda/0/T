@@ -22,7 +22,7 @@ internalField   uniform $Tinlet;
 
 boundaryField
 {
-    meanFlow
+    inOut
     {
         type            inletOutlet;
         inletValue      uniform $Tinlet;
@@ -31,30 +31,15 @@ boundaryField
 
     coandaUpper
     {
-        type            zeroGradient;
+        type            inletOutlet;
+        inletValue      uniform $Tinlet;
+        value           $inletValue;
     }
 
     coandaLower
     {
         type            zeroGradient;
     }
-
-    down
-    {
-        type            zeroGradient;
-    }
-
-    up
-    {
-        type            zeroGradient;
-    }
-
-    right
-    {
-        type            zeroGradient;
-    }
-
-
 
     surface
     {

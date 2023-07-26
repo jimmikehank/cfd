@@ -3,15 +3,34 @@ import matplotlib.pyplot as plt
 from bezier_foil import *
 import sys
 from os import path
+import argparse
 
 # This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
 
-retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png']
+retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','james_test.py','FFD']
+file_delete = []
 U_filename = './0/U'
 T_filename = './0/T'
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--iter', default = 0, type = int, help = 'Iteration for selection of optimization control points')
+parser.add_argument('--airfoil', default = 'NACA0012', type = str, help = 'Selection of initial airfoil')
+parser.add_argument('--runName', default = 'fail_check', type = str, help = 'Name of target directory for control points')
+parser.add_argument('--aoa', default = 0., type = float, help = 'Specified angle of attack in degrees, \nDefault: 0.0')
+parser.add_argument('--clean', default = False, type = bool, help = 'Run clean function. \nDefault: False')
+parser.add_argument('--store', default = False, type = bool, help = 'Run store function. \nDefault: False')
+
+args = parser.parse_args()
+iteration = args.iter
+airfoil_sel = args.airfoil.lower()
+runName = args.runName
+aoa = args.aoa
+clean_bool = args.clean
+store_bool = args.store
+
 # Define Chord Length for all Other Scaling:
 chord_length = 1
+
 def store(retain, target):
     import os
     import shutil
@@ -22,7 +41,7 @@ def store(retain, target):
     for item in dirs:
         if item[0:3] == 'pro':
             delete.append(item)
-    casefile = "/media/james/Data/james/completed_cases/bezier_airfoils/temps/{}/".format(target)
+    casefile = "/home/james/dafoam/myRuns/data/runs/{}/".format(target)
     print(casefile)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
@@ -40,13 +59,14 @@ def store(retain, target):
             shutil.copytree(item,casefile+item)
 
 def cleanup(retain):
-    print(retain)
     import shutil
     import os
     dirs = os.listdir()
     for item in dirs:
-        if item not in retain:
+        if item not in retain and os.path.isdir(item):
             shutil.rmtree(item)
+        elif item not in retain and os.path.isfile(item):
+            os.remove(item)
         else:
             continue
 
@@ -60,77 +80,52 @@ def change_line(U_filename,aoa):
         g.writelines(test_lines)
         g.close()
 
-def change_line_temp(T_filename,temp):
-    with open(T_filename,'r') as f:
-        test_lines = f.readlines()
-        f.close()
-    new_line = '\t\t\t\tvalue\t\t\t\t\t\tuniform {};\t\t\t\t\t\t // temperature of wing\n'.format(temp)
-    test_lines[59] = new_line
-    with open(T_filename,'w') as g:
-        g.writelines(test_lines)
-        g.close()
+#---------- Initialization of Argument Variables -------------#
 
-#---------- Initialization of Coanda Definition --------------#
-
-args = sys.argv
-
-def arg_handle(arg):
-    # Default Values
-    for i in range(len(arg)):
-        if arg[i] == "-debug":
-            print("Debug mode not implemented")
-        elif arg[i] == '-clean':
-            cleanup(retain)
-        elif arg[i] =='-aoa':
-            change_line(U_filename, arg[i+1])
-        elif arg[i] == '-temp':
-            change_line_temp(T_filename,arg[i+1])
-        elif arg[i] == '-save':
-            try:
-                store(retain,arg[i+1])
-            except:
-                "No target filename provided"
-
-    return 0
-def check_args(arg):
-    for i in range(len(arg)):
-        if arg[i] == '-aoa':
-            aoa = float(arg[i+1])
-            return aoa
-        else:
-            pass
-    return 0
-
-argout = arg_handle(args)
-aoa = check_args(args)
-
-#---------- Control Variables handled by this block ----------#
 m = 101
-control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.35,.06],[.5,.07],[.75,.03],[1,0]])
-# control_points_init = np.array([[0,0],[0,.05],[.75,.03],[1,0]])
-cpl_init = control_points_init * np.array([1,-1])
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
-airfoil_sel = 'rae2822'
-symmetry = True
-file_exists = path.isfile('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
-if file_exists:
-    cpU = np.loadtxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
-    cpL = np.loadtxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel))
+change_line(U_filename,aoa)
+
+if clean_bool:
+    cleanup(retain)
+if store_bool:
+    target = '/{}/{}/'.format(runName,iteration)
+    store(retain,target)
+
+# First iteration of optimization loop, run initial shape match to airfoil for bezier curves.
+if iteration == 0:
+    control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.35,.06],[.5,.06],[.75,.03],[1,0]])
+    cpl_init = control_points_init * np.array([1,-1])
+    symmetry = False
+    file_exists = path.isfile('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
+    if file_exists:
+        cpU = np.loadtxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
+        cpL = np.loadtxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel))
+        cpU = cpU * chord_length/(cpU[-1,0]-cpU[0,0])
+        cpL = cpL * chord_length/(cpL[-1,0]-cpL[0,0])
+        bezfoil = init_bezfoil(m,cpU,control_points_lower=cpL,symmetric=symmetry)
+    else:
+        file = '/home/james/Documents/research/cfd/airfoils/{}-il.csv'.format(airfoil_sel)
+        bezfoil, cpU, cpL, iters = foil_opt(control_points_init, file, chord_length, 1e-6, m = m, step = 2, debug = True, control_points_lower = cpl_init, sym = symmetry)
+        np.savetxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel),cpU)
+        np.savetxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel),cpL)
+        print(cpU[-1,0]-cpU[0,0])
+
+    upper = bezfoil[0:m,:]
+    upper = upper[::-1,:]
+    lower = bezfoil[m:,:]
+
+else:
+    cpU = np.loadtxt('{}/optimization/{}/{}_cpu.txt'.format(airfoil_dir, runName, iteration-1))
+    cpL = np.loadtxt('{}/optimization/{}/{}_cpl.txt'.format(airfoil_dir, runName, iteration-1))
+
     cpU = cpU * chord_length/(cpU[-1,0]-cpU[0,0])
     cpL = cpL * chord_length/(cpL[-1,0]-cpL[0,0])
-    bezfoil = init_bezfoil(m,cpU,control_points_lower=cpL,symmetric=False)
-else:
-    file = '/home/james/Documents/research/cfd/airfoils/{}-il.csv'.format(airfoil_sel)
-    bezfoil, cpU, cpL, iters = foil_opt(control_points_init, file, chord_length, 1e-6,m=m,step = 2,debug=True,control_points_lower=cpl_init,sym=symmetry)
-    np.savetxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel),cpU)
-    np.savetxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel),cpL)
-    print(cpU[-1,0]-cpU[0,0])
 
-# Command line argument handler:
-
-upper = bezfoil[0:m,:]
-upper = upper[::-1,:]
-lower = bezfoil[m:,:]
+    bezfoil = init_bezfoil(m, cpU, control_points_lower = cpL, symmetric = False)
+    upper = bezfoil[0:m,:]
+    upper = upper[::-1,:]
+    lower = bezfoil[m:,:]
 #-------------------------------------------------------------#
 
 # blockMeshDefaults:
@@ -139,7 +134,7 @@ scale = 1
 # Other important values:
 span = 1
 farfield = 25 * chord_length
-trailing = 6 * chord_length
+trailing = 8 * chord_length
 theta = 90 + np.arctan(trailing/farfield)*(180/np.pi)
 # Bounding Box:
 
@@ -190,11 +185,14 @@ for j in range(1,np.shape(lower)[0]-1):
 # Finally: Define the blocking and grading parameters!
 
 blocks_x = 40
-blocks_y = 40
-grade_x = 1500
-egrade_x = 20
-egrade_o = 1
-grade_y = 200
+blocks_x_foil = 40
+blocks_y = 60
+grade_x = 1200
+egrade_x = 10
+egrade_o = 10
+grade_y = 1000
+grade_yo = 100
+grmul = 10
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
@@ -247,19 +245,22 @@ pointsdef = makepoints(pback,bk,fr)
 
 blocks = [
     'blocks\n(\n',
-    '\t\thex ( 0  2  4  6  1  3  5  7 ) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) ((.5 .5 {}) (.5 .5 {}))   ((.5 .5 {}) (.5 .5 {})) ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x*2, blocks_y, egrade_x, 1/egrade_x, egrade_o, 1/egrade_o, egrade_o, 1/egrade_o, egrade_x, 1/egrade_x, 2*grade_y, grade_y, grade_y, 2*grade_y),
-    '\t\thex ( 6  8 16  0  7  9 17  1 ) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) ((.5 .5 {}) (.5 .5 {}))   ((.5 .5 {}) (.5 .5 {})) ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 1\n'.format(blocks_x*2, blocks_y, egrade_o, 1/egrade_o, egrade_x, 1/egrade_x, egrade_x, 1/egrade_x, egrade_o, 1/egrade_o, 0.5/grade_y, 1/grade_y, 1/grade_y, 0.5/grade_y),
-    '\t\thex ( 8 10 12 16  9 11 13 17 ) ({} {} 1) edgeGrading ( 1 {} {} 1 {} {} {} {} 1 1 1 1 ) // 2\n'.format(blocks_x, blocks_y, grade_x, grade_x, 1/grade_y, 1/grade_y, 1/grade_y, 1/grade_y),
-    '\t\thex ( 2 12 14  4  3 13 15  5 ) ({} {} 1) edgeGrading ( {} 1 1 {} {} {} {} {} 1 1 1 1 ) // 3\n'.format(blocks_x, blocks_y, grade_x, grade_x, grade_y, grade_y, grade_y, grade_y),
+    '\t\thex ( 0  2  4  6  1  3  5  7 ) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {}))   {}   {}   ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x_foil, blocks_y, egrade_x, 1/egrade_x, 1/egrade_o, 1/egrade_o, egrade_x, 1/egrade_x, grmul*grade_y, grade_y, grade_y, grmul*grade_y),
+    '\t\thex ( 6  8 16  0  7  9 17  1 ) ({} {} 1) edgeGrading ({}   ((.5 .5 {}) (.5 .5 {}))   ((.5 .5 {}) (.5 .5 {}))   {} {} {} {} {} 1 1 1 1) // 1\n'.format(blocks_x_foil, blocks_y, 1/egrade_o, egrade_x, 1/egrade_x, egrade_x, 1/egrade_x, 1/egrade_o, 1/(grmul*grade_y), 1/grade_y, 1/grade_y, 1/(grmul*grade_y)),
+    '\t\thex ( 8 10 12 16  9 11 13 17 ) ({} {} 1) edgeGrading ( 1 {} {} 1 {} {} {} {} 1 1 1 1 ) // 2\n'.format(blocks_x, blocks_y, grade_x, grade_x, 1/grade_y, 1/grade_yo, 1/grade_yo, 1/grade_y),
+    '\t\thex ( 2 12 14  4  3 13 15  5 ) ({} {} 1) edgeGrading ( {} 1 1 {} {} {} {} {} 1 1 1 1 ) // 3\n'.format(blocks_x, blocks_y, grade_x, grade_x, grade_y, grade_yo, grade_yo, grade_y),
     ');\n\n'
 ]
 
+thetaRad = theta * np.pi/180
+mid_x = -radius * np.cos(thetaRad/2)
+mid_y = radius * np.sin(thetaRad/2)
 edges = [
     'edges\n(\n',
-    '\t\tarc  4  6  {}  (0 0 1)\n'.format(theta),
-    '\t\tarc  5  7  {}  (0 0 1)\n'.format(theta),
-    '\t\tarc  6  8  {}  (0 0 1)\n'.format(theta),
-    '\t\tarc  7  9  {}  (0 0 1)\n'.format(theta),
+    '\t\tarc  4  6  ({} {} {})\n'.format(mid_x,mid_y,bk),
+    '\t\tarc  5  7  ({} {} {})\n'.format(mid_x,mid_y,fr),
+    '\t\tarc  6  8  ({} {} {})\n'.format(mid_x,-mid_y,bk),
+    '\t\tarc  7  9  ({} {} {})\n'.format(mid_x,-mid_y,fr),
     '\t\tspline 0  2 (\n{}\n\t\t\t\t\t\t)\n'.format(cpu_string_b),
     '\t\tspline 1  3 (\n{}\n\t\t\t\t\t\t)\n'.format(cpu_string_f),
     '\t\tspline 0 16 (\n{}\n\t\t\t\t\t\t)\n'.format(cpl_string_b),

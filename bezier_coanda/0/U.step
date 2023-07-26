@@ -37,22 +37,8 @@ internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToR
 
 boundaryField
 {
-		down
-		{
-				type						zeroGradient;
-		}
 
-		right
-		{
-				type						zeroGradient;
-		}
-
-		up
-		{
-				type						zeroGradient;
-		}
-
-		meanFlow
+		inOut
 		{
 				type						uniformFixedValue;
 				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);

@@ -1,62 +1,41 @@
-/*---------------------------------*- C++ -*-----------------------------------*/
-//    //////////////      ///////////////
-//    //////////////      //////////////
-//         ////           ////             /////       ////  //  /// //// ////
-//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
-//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
-//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
-//     /////              ////            /////       ///// ///  ///   ///  ///
-/*---------------------------------*- C++ -*-----------------------------------*/
-
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1812                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
 FoamFile
 {
-		version			2.0;
-		format			ascii;
-		class				volScalarField;
-		object			p;
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      p;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions			[1 -1 -2 0 0 0 0];
+dimensions      [1 -1 -2 0 0 0 0];
 
-internalField		uniform 100000;
+
+internalField   uniform 100000;
 
 boundaryField
 {
-		down
-		{
-				type							freestreamPressure;
-				freestreamValue		uniform 100000;
-		}
-
-		right
-		{
-				type							freestreamPressure;
-				freestreamValue		uniform 100000;
-		}
-
-		up
-		{
-				type							freestreamPressure;
-				freestreamValue		uniform 100000;
-		}
-
-		meanFlow
-		{
-				type							freestreamPressure;
-				freestreamValue		uniform 100000;
-		}
-
-		surface
-		{
-				type						zeroGradient;
-		}
-
-
-		defaultFaces
-		{
-				type						empty;
-		}
+    inOut
+    {
+        type            fixedValue;
+        value           uniform 100000;
+    }
+    surface
+    {
+        type            zeroGradient;
+    }
+    defaultFaces
+    {
+        type            empty;
+    }
 }
+
 
 // ************************************************************************* //
