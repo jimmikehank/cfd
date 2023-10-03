@@ -19,9 +19,10 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-alpha						0;						// AoA in Degrees
-U 							25; 					// Flow magnitude
-massflow				0.006;				 // mass flow rate
+alpha								0.0;						 // Alpha in deg
+U 								25; 					// Flow magnitude
+massflow_u				0.0;				 // mass flow rate
+massflow_l				0.0;				 // mass flow rate
 
 
 dimensions			[0 1 -1 0 0 0 0];
@@ -47,14 +48,15 @@ boundaryField
 		// COANDA STEADY:
 		{
 				type						flowRateInletVelocity;
-				massFlowRate		$massflow;
-				value						uniform ($massflow 0 0);
+				massFlowRate		$massflow_u;
+				value						uniform ($massflow_u 0 0);
 		}
 
 		coandaLower
 		{
-				type            fixedValue;
-				value           uniform (0 0 0);
+				type            flowRateInletVelocity;
+				massFlowRate		$massflow_l;
+				value						uniform ($massflow_l 0 0);
 		}
 
 

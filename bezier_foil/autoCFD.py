@@ -2,39 +2,32 @@ import numpy as np
 import os
 import sys
 
-aoa_sweep = np.linspace(11,13,3)
-temp_sweep = np.linspace(300,450,16)
-args = sys.argv
+aoa_sweep = np.linspace(-12,12,25)
+parallel = False
+flow_speed = 50
 
 blockmesh = "blockMesh"
-decompose = "decomposePar"
-reconstruct = "reconstructPar -latestTime"
-run_command = "mpirun -np 6 rhoSimpleFoam -parallel"
+run_command = "rhoSimpleFoam"
+save_folder = "/home/james/Documents/research/completed_cases"
+testdir = '/home/james/Documents/research/completed_cases/pitch_airfoils/steady/NACA0015/{}mps'.format(flow_speed)
+
+if os.path.isdir(testdir):
+    print('Directory exists')
+    pass
+else:
+    print('Creating directory')
+    os.system('mkdir {} -p'.format(testdir))
 
 
-if len(args) > 1:
-    if args[1] == '-single':
-        mesh_command = 'python3 autoMesh.py -clean'
+print("AoA sweep values: {}".format(aoa_sweep))
+runval = input("Run full sweep (y/n): ")
+
+if runval == 'y':
+    for j in aoa_sweep:
+        file_ext = str(int(np.around(j,4))).replace('-','n')
+        mesh_command = "python3 autoMesh.py --clean true --aoa {}".format(j)
+        save_command = "python3 autoMesh.py --store True --runName {}/{}".format(testdir,file_ext)
         os.system(mesh_command)
         os.system(blockmesh)
-        os.system(decompose)
         os.system(run_command)
-        os.system(reconstruct)
-
-else:
-    print("Temp sweep values: {}\n AoA sweep values: {}".format(temp_sweep, aoa_sweep))
-    runval = input("Run full sweep (y/n): ")
-    print(runval)
-    if runval == 'y':
-        for j in aoa_sweep:
-            for i in temp_sweep:
-                mesh_command = "python3 autoMesh.py -clean -temp {} -aoa {}".format(i,j)
-                save_command = "python3 autoMesh.py -save {}/{}".format(j,i)
-                os.system(mesh_command)
-                os.system(blockmesh)
-                os.system(decompose)
-                os.system(run_command)
-                os.system(reconstruct)
-                os.system(save_command)
-    else:
-        pass
+        os.system(save_command)

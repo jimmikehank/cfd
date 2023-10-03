@@ -19,7 +19,7 @@ parser.add_argument('--runName', default = 'fail_check', type = str, help = 'Nam
 parser.add_argument('--aoa', default = 0., type = float, help = 'Specified angle of attack in degrees, \nDefault: 0.0')
 parser.add_argument('--clean', default = False, type = bool, help = 'Run clean function. \nDefault: False')
 parser.add_argument('--store', default = False, type = bool, help = 'Run store function. \nDefault: False')
-parser.add_argument('--mdot', default = 0.006, type = float, help = 'Mass flow for coanda')
+parser.add_argument('--mdot', default = 0.0, type = float, help = 'Mass flow for coanda')
 args = parser.parse_args()
 
 iteration = args.iter
@@ -28,10 +28,11 @@ runName = args.runName
 aoa = args.aoa
 clean_bool = args.clean
 store_bool = args.store
-mdot = args.mdot
+mdot = np.around(args.mdot,4)
 
 chord_length = 0.3
 
+airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
 
 def store(retain,name):
     import os
@@ -45,7 +46,7 @@ def store(retain,name):
             delete.append(item)
     target = name
     # casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
-    casefile = "/media/james/Data/james/completed_cases/coanda_airfoils/{}/".format(target)
+    casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
@@ -69,23 +70,63 @@ def cleanup(retain):
             shutil.rmtree(item)
         else:
             continue
+def change_line_Tbound(T_filename,mdot):
+    inout = '\t\tinOut\n\t\t{\n\t\t\t\ttype\t\tinletOutlet;\n\t\t\t\tinletValue\t\t\tuniform $Tinlet;\n\t\t\t\tvalue\t\t\t$inletValue;\n\t\t}\n'
+    surface = '\t\tsurface\n\t\t{\n\t\t\t\ttype\t\tzeroGradient;\n\t\t}\n'
+    default = '\t\tdefaultFaces\n\t\t{\n\t\t\t\ttype\t\t\tempty;\n\t\t}\n'
+    includeline = '\t\t#includeEtc "caseDicts/setConstraintTypes"\n'
+    with open(T_filename,'r') as f:
+        test_lines = f.readlines()
+        test_lines = test_lines[:24]
+        f.close()
+    if mdot < 0:
+        lower = '\t\tcoandaLower\n\t\t{\n\t\t\t\ttype\t\tinletOutlet;\n\t\t\t\tinletValue\t\t\tuniform $Tinlet;\n\t\t\t\tvalue\t\t\t$inletValue;\n\t\t}\n'
+        upper = '\t\tcoandaUpper\n\t\t{\n\t\t\t\ttype\t\tzeroGradient;\n\t\t}\n'
+    elif mdot > 0:
+        lower = '\t\tcoandaLower\n\t\t{\n\t\t\t\ttype\t\tzeroGradient;\n\t\t}\n'
+        upper = '\t\tcoandaUpper\n\t\t{\n\t\t\t\ttype\t\tinletOutlet;\n\t\t\t\tinletValue\t\t\tuniform $Tinlet;\n\t\t\t\tvalue\t\t\t$inletValue;\n\t\t}\n'
+    else:
+        lower = '\t\tcoandaLower\n\t\t{\n\t\t\t\ttype\t\tzeroGradient;\n\t\t}\n'
+        upper = '\t\tcoandaUpper\n\t\t{\n\t\t\t\ttype\t\tzeroGradient;\n\t\t}\n'
+    test_lines.append(inout)
+    test_lines.append(surface)
+    test_lines.append(lower)
+    test_lines.append(upper)
+    test_lines.append(default)
+    test_lines.append(includeline)
+    test_lines.append('}')
+    with open(T_filename,'w') as g:
+        g.writelines(test_lines)
+        g.close()
+
 
 def change_line_massflow(U_filename,mdot):
+    ui = 23
+    li = 24
     with open(U_filename,'r') as f:
         test_lines = f.readlines()
         f.close()
-    new_line = 'massflow\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
-    test_lines[23] = new_line
+    if mdot == 0:
+        new_line_u = 'massflow_u\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
+        new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
+    elif mdot > 0:
+        new_line_u = 'massflow_u\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
+        new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(0.)
+    else:
+        new_line_u = 'massflow_u\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(0.)
+        new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(-mdot)
+    test_lines[23] = new_line_u
+    test_lines[24] = new_line_l
     with open(U_filename,'w') as g:
         g.writelines(test_lines)
         g.close()
 
-def change_line(U_filename,freq):
+def change_line(U_filename,alpha):
     with open(U_filename,'r') as f:
         test_lines = f.readlines()
         f.close()
-    new_line = 'f\t\t\t\t\t\t\t\t{};\t\t\t\t\t\t // Frequency in Hz\n'.format(freq)
-    test_lines[20] = new_line
+    new_line = 'alpha\t\t\t\t\t\t\t\t{};\t\t\t\t\t\t // Alpha in deg\n'.format(alpha)
+    test_lines[21] = new_line
     with open(U_filename,'w') as g:
         g.writelines(test_lines)
         g.close()
@@ -97,6 +138,8 @@ if clean_bool:
     cleanup(retain)
 
 change_line_massflow(U_filename,mdot)
+change_line_Tbound(T_filename,mdot)
+change_line(U_filename,aoa)
 
 def arg_handle():
     # Default Values
@@ -111,27 +154,33 @@ r,h,t = arg_handle()
 #---------- Control Variables handled by this block ----------#
 #---------- Control Variables handled by this block ----------#
 m = 101
-control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.35,.06],[.5,.07],[.75,.03],[1,0]])
-# control_points_init = np.array([[0,0],[0,.05],[.75,.03],[1,0]])
-cpl_init = control_points_init * np.array([1,-1])
-airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
-symmetry = False
-file_exists = path.isfile('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
-if file_exists:
-    cpu = np.loadtxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
-    cpl = np.loadtxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel))
-    cpu = cpu * chord_length/(cpu[-1,0]-cpu[0,0])
-    cpl = cpl * chord_length/(cpl[-1,0]-cpl[0,0])
-    bezfoil = init_bezfoil(m,cpu,control_points_lower=cpl,symmetric=False)
+if iteration == 0:
+    control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.35,.06],[.5,.07],[.75,.03],[1,0]])
+    # control_points_init = np.array([[0,0],[0,.05],[.75,.03],[1,0]])
+    cpl_init = control_points_init * np.array([1,-1])
+    symmetry = True
+    file_exists = path.isfile('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
+    if file_exists:
+        cpu = np.loadtxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
+        cpl = np.loadtxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel))
+        cpu = cpu * chord_length/(cpu[-1,0]-cpu[0,0])
+        cpl = cpl * chord_length/(cpl[-1,0]-cpl[0,0])
+        bezfoil = init_bezfoil(m,cpu,control_points_lower=cpl,symmetric=False)
+    else:
+        file = '/home/james/Documents/research/cfd/airfoils/{}-il.csv'.format(airfoil_sel)
+        bezfoil, cpu, cpl, iters = foil_opt(control_points_init, file, chord_length, 1e-7,m=m,step = 2,debug=True,control_points_lower=cpl_init,sym=symmetry)
+        np.savetxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel),cpu)
+        np.savetxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel),cpl)
+    # Command line argument handler:
+
+    upper, lower, coanda = coanda_foil(r,t,h,cpu,cpl)
 else:
-    file = '/home/james/Documents/research/cfd/airfoils/{}-il.csv'.format(airfoil_sel)
-    bezfoil, cpu, cpl, iters = foil_opt(control_points_init, file, chord_length, 1e-6,m=m,step = 2,debug=True,control_points_lower=cpl_init,sym=symmetry)
-    np.savetxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel),cpu)
-    np.savetxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel),cpl)
+    cp_up = np.loadtxt('{}/optimization/{}/{}_cpu.txt'.format(airfoil_dir, runName, iteration-1))
+    cp_lo = np.loadtxt('{}/optimization/{}/{}_cpl.txt'.format(airfoil_dir, runName, iteration-1))
+    coanda = coanda_surfs(r,t,h, cp_up, cpl = cp_lo, m = m)
+    upper = bezier_curve(cp_up, m)
+    lower = bezier_curve(cp_lo, m)
 
-# Command line argument handler:
-
-upper, lower, coanda = coanda_foil(r,t,h,cpu,cpl)
 
 #-------------------------------------------------------------#
 
@@ -190,16 +239,16 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x_L = 70
-blocks_y_L = 100
-blocks_x_R = 50
+blocks_x_L = 50
+blocks_y_L = 50
+blocks_x_R = 60
 blocks_y_R = blocks_y_L
-blocks_y_co = 6
+blocks_y_co = 5
 blocks_x_flat = 15
 grade_x_L = 2
 egrade_x = 10
 egrade_o = 10
-grade_y = 2400
+grade_y = 800
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',

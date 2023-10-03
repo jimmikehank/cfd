@@ -17,10 +17,10 @@ forces
     log           no;
 
     patches       ("surface" "coandaUpper" "coandaLower");
-    rho           rho;     // Indicates incompressible
+    rho           rho;
     log           true;
 
-    CofR          (0 0 0);    // Rotation around centre line of propeller
+    CofR          (0 0 0);
 }
 
 

@@ -22,34 +22,27 @@ internalField   uniform $Tinlet;
 
 boundaryField
 {
-    inOut
-    {
-        type            inletOutlet;
-        inletValue      uniform $Tinlet;
-        value           $inletValue;
-    }
-
-    coandaUpper
-    {
-        type            inletOutlet;
-        inletValue      uniform $Tinlet;
-        value           $inletValue;
-    }
-
-    coandaLower
-    {
-        type            zeroGradient;
-    }
-
-    surface
-    {
-        type            zeroGradient;
-    }
-
-    defaultFaces
-    {
-        type            empty;
-    }
-
-    #includeEtc "caseDicts/setConstraintTypes"
+		inOut
+		{
+				type		inletOutlet;
+				inletValue			uniform $Tinlet;
+				value			$inletValue;
+		}
+		surface
+		{
+				type		zeroGradient;
+		}
+		coandaLower
+		{
+				type		zeroGradient;
+		}
+		coandaUpper
+		{
+				type		zeroGradient;
+		}
+		defaultFaces
+		{
+				type			empty;
+		}
+		#includeEtc "caseDicts/setConstraintTypes"
 }

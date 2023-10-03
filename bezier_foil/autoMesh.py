@@ -41,7 +41,7 @@ def store(retain, target):
     for item in dirs:
         if item[0:3] == 'pro':
             delete.append(item)
-    casefile = "/home/james/dafoam/myRuns/data/runs/{}/".format(target)
+    casefile = target
     print(casefile)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
@@ -89,7 +89,7 @@ change_line(U_filename,aoa)
 if clean_bool:
     cleanup(retain)
 if store_bool:
-    target = '/{}/{}/'.format(runName,iteration)
+    target = '/{}/'.format(runName)
     store(retain,target)
 
 # First iteration of optimization loop, run initial shape match to airfoil for bezier curves.
