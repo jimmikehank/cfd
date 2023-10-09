@@ -239,8 +239,8 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x_L = 50
-blocks_y_L = 50
+blocks_x_L = 60
+blocks_y_L = 60
 blocks_x_R = 60
 blocks_y_R = blocks_y_L
 blocks_y_co = 5

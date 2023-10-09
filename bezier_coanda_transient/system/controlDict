@@ -32,7 +32,7 @@ writeControl     timeStep;
     div(phi,U)      bounded Gauss linear;
     div(div(phi,U)) Gauss linear;
 
-writeInterval   2000;
+writeInterval   200;
 
 purgeWrite      0;
 

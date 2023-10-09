@@ -23,28 +23,10 @@ internalField		uniform 100000;
 
 boundaryField
 {
-		down
+		inOut
 		{
-				type						fixedValue;
-				value						uniform 100000;
-		}
-
-		right
-		{
-				type						fixedValue;
-				value						uniform 100000;
-		}
-
-		up
-		{
-				type						fixedValue;
-				value						uniform 100000;
-		}
-
-		meanFlow
-		{
-				type						fixedValue;
-				value						uniform 100000;
+				type            fixedValue;
+				value           $internalField;
 		}
 
 		surface
@@ -55,16 +37,10 @@ boundaryField
 		coandaUpper
 		{
 				type 						zeroGradient;
-				// type						totalPressure;
-				// value					uniform 155000.0;
-				// p0							uniform 155000.0;
 		}
 		coandaLower
 		{
 				type 						zeroGradient;
-				// type						totalPressure;
-				// value					uniform 155000.0;
-				// p0							uniform 155000.0;
 		}
 
 		defaultFaces

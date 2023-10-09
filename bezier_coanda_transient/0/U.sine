@@ -1,0 +1,90 @@
+/*---------------------------------*- C++ -*-----------------------------------*/
+//    //////////////      ///////////////
+//    //////////////      //////////////
+//         ////           ////             /////       ////  //  /// //// ////
+//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
+//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
+//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
+//     /////              ////            /////       ///// ///  ///   ///  ///
+/*---------------------------------*- C++ -*-----------------------------------*/
+
+FoamFile
+{
+		version			2.0;
+		format			ascii;
+		class				volVectorField;
+		location		"0";
+		object			U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+f								4;						 // Frequency in Hz
+alpha						0;						// AoA in Degrees
+U 							25; 					// Flow magnitude
+massflow 				0.006;
+
+dimensions			[0 1 -1 0 0 0 0];
+
+internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+
+
+boundaryField
+{
+		inOut
+		{
+				type						uniformFixedValue;
+				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+				value						uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+		}
+
+		surface
+		{
+				type						noSlip;
+		}
+
+		coandaUpper
+		{
+				type						flowRateInletVelocity;
+				massFlowRate		sine;
+				massFlowRateCoeffs {
+						frequency 		$f;
+						amplitude	 #calc "$massflow / 2";
+						level 	   #calc "$massflow / 2";
+				}
+				value 					uniform ($massflow 0 0);
+		}
+		// COANDA STEADY:
+		// {
+		//		type 						noSlip;
+		// 		type						flowRateInletVelocity;
+		// 		massFlowRate		$massflow;
+		// 		value						uniform ($massflow 0 0);
+		// }
+
+		coandaLower
+		{
+				type						flowRateInletVelocity;
+				massFlowRate		sine;
+				massFlowRateCoeffs {
+						frequency 		$f;
+						amplitude	 #calc "-1 * $massflow / 2";
+						level 	   #calc "$massflow / 2";
+				}
+				value 					uniform ($massflow 0 0);
+		}
+		// COANDA STEADY:
+		// {
+		// 		type 						noSlip;
+		// 		type						flowRateInletVelocity;
+		// 		massFlowRate		0.05;
+		// 		value						uniform (0.05 0 0);
+		// }
+
+
+		defaultFaces
+		{
+				type						empty;
+		}
+}
+
+// ************************************************************************* //

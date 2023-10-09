@@ -18,10 +18,17 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-f								4;						 // Frequency in Hz
-alpha						0;						// AoA in Degrees
-U 							25; 					// Flow magnitude
+U 							20;
+alpha								0.0;						 // Alpha in deg
 massflow 				0.006;
+pulseStart			0.2;
+pulseDuration 	0.00086;
+
+pulseDef 		{
+			type			squarePulse;
+			start 		pulseStart;
+			duration 	pulseDuration;
+}
 
 dimensions			[0 1 -1 0 0 0 0];
 
@@ -30,22 +37,7 @@ internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToR
 
 boundaryField
 {
-		down
-		{
-				type						zeroGradient;
-		}
-
-		right
-		{
-				type						zeroGradient;
-		}
-
-		up
-		{
-				type						zeroGradient;
-		}
-
-		meanFlow
+		inOut
 		{
 				type						uniformFixedValue;
 				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
@@ -59,41 +51,28 @@ boundaryField
 
 		coandaUpper
 		{
-				type						flowRateInletVelocity;
-				massFlowRate		sine;
-				massFlowRateCoeffs {
-						frequency 		$f;
-						amplitude	 #calc "$massflow / 2";
-						level 	   #calc "$massflow / 2";
+				type flowRateInletVelocity;
+				massFlowRate {
+						type scale;
+						scale $massflow;
+						value {
+									type				squarePulse;
+									start 			$pulseStart;
+									duration 		$pulseDuration;
+						}
 				}
-				value 					uniform ($massflow 0 0);
+				value						uniform (0 0 0);
 		}
-		// COANDA STEADY:
-		// {
-		//		type 						noSlip;
-		// 		type						flowRateInletVelocity;
-		// 		massFlowRate		$massflow;
-		// 		value						uniform ($massflow 0 0);
-		// }
+
 
 		coandaLower
-		{
-				type						flowRateInletVelocity;
-				massFlowRate		sine;
-				massFlowRateCoeffs {
-						frequency 		$f;
-						amplitude	 #calc "-1 * $massflow / 2";
-						level 	   #calc "$massflow / 2";
-				}
-				value 					uniform ($massflow 0 0);
-		}
 		// COANDA STEADY:
-		// {
-		// 		type 						noSlip;
+		{
+				type 						noSlip;
 		// 		type						flowRateInletVelocity;
 		// 		massFlowRate		0.05;
 		// 		value						uniform (0.05 0 0);
-		// }
+		}
 
 
 		defaultFaces
