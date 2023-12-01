@@ -347,7 +347,7 @@ def coanda_surfs(r,t,h,cpu,cpl=[],m=101):
     te_height = r+t+h
     foil_upper_init = bezier_curve(cpu,m)
 
-    if cpl == []:
+    if len(cpl) == []:
         cpl = cpu*np.array([1,-1])
     else:
         pass
@@ -365,7 +365,7 @@ def coanda_foil(r,t,h,cpu,cpl=[],m=101):
     te_height = r+t+h
     foil_upper_init = bezier_curve(cpu,m)
 
-    if cpl == []:
+    if len(cpl) == 0:
         cpl = cpu*np.array([1,-1])
     else:
         pass

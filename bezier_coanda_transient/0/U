@@ -18,11 +18,12 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-U 							20;
-alpha								0.0;						 // Alpha in deg
-massflow 				0.006;
-pulseStart			0.2;
-pulseDuration 	0.00086;
+pulseStart				0.2;				 // Start time of pulse
+pulseDuration 	  0.0003;
+alpha							0.0;						 // Alpha in deg
+U									25.0;				 // flow magnitude
+massflow_u				0.0;				 // mass flow rate
+massflow_l				0.0;				 // mass flow rate
 
 pulseDef 		{
 			type			squarePulse;
@@ -54,7 +55,7 @@ boundaryField
 				type flowRateInletVelocity;
 				massFlowRate {
 						type scale;
-						scale $massflow;
+						scale 0.003;
 						value {
 									type				squarePulse;
 									start 			$pulseStart;

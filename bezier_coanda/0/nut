@@ -29,7 +29,7 @@ boundaryField
     }
     surface
     {
-        type            calculated;
+        type            nutUSpaldingWallFunction;
         value           uniform 0;
     }
     coandaLower

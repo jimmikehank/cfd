@@ -19,34 +19,34 @@ FoamFile
     inOut
     {
         type            patch;
-        nFaces          210;
-        startFace       26061;
+        nFaces          380;
+        startFace       124729;
     }
     coandaUpper
     {
         type            patch;
-        nFaces          5;
-        startFace       26271;
+        nFaces          6;
+        startFace       125109;
     }
     coandaLower
     {
         type            patch;
-        nFaces          5;
-        startFace       26276;
+        nFaces          6;
+        startFace       125115;
     }
     surface
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          218;
-        startFace       26281;
+        nFaces          390;
+        startFace       125121;
     }
     defaultFaces
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          26280;
-        startFace       26499;
+        nFaces          125120;
+        startFace       125511;
     }
 )
 

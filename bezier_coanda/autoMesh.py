@@ -2,12 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from bezier_foil import *
 import sys
+import time
 from os import path
 import argparse
 
 # This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
 
-retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','james_test.py','FFD']
+retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','james_test.py','FFD','processing.py']
 file_delete = []
 U_filename = './0/U'
 T_filename = './0/T'
@@ -19,7 +20,8 @@ parser.add_argument('--runName', default = 'fail_check', type = str, help = 'Nam
 parser.add_argument('--aoa', default = 0., type = float, help = 'Specified angle of attack in degrees, \nDefault: 0.0')
 parser.add_argument('--clean', default = False, type = bool, help = 'Run clean function. \nDefault: False')
 parser.add_argument('--store', default = False, type = bool, help = 'Run store function. \nDefault: False')
-parser.add_argument('--mdot', default = 0.0, type = float, help = 'Mass flow for coanda')
+parser.add_argument('--mdot', default = 0.0, type = float, help = 'Mass flow for coanda in kg/s')
+parser.add_argument('--meanFlow', default = 25.0, type = float, help = 'Mean flow speed for simulation in m/s \n Default: 25.0')
 args = parser.parse_args()
 
 iteration = args.iter
@@ -28,29 +30,30 @@ runName = args.runName
 aoa = args.aoa
 clean_bool = args.clean
 store_bool = args.store
-mdot = np.around(args.mdot,4)
+mdot = np.around(args.mdot,6)
+meanflow = args.meanFlow
 
-chord_length = 0.3
+chord_length = 1.0
 
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
 
 def store(retain,name):
     import os
     import shutil
-    ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints']
+    print(retain)
+    ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints','processing.py']
     copy = ['0','system','constant','dynamicCode']
     dirs = os.listdir()
     delete = []
     for item in dirs:
-        if item[0:3] == 'pro':
+        if item[0:9] == 'processor':
             delete.append(item)
     target = name
-    # casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
-    casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
+    casefile = "/home/james/Documents/research/completed_cases/reynolds_dependence/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
-        os.mkdir(casefile)
+        os.system("mkdir -p {}".format(casefile))
         existing = []
     for item in dirs:
         if item in delete:
@@ -61,7 +64,6 @@ def store(retain,name):
             shutil.copytree(item,casefile+item)
 
 def cleanup(retain):
-    print(retain)
     import shutil
     import os
     dirs = os.listdir()
@@ -121,11 +123,22 @@ def change_line_massflow(U_filename,mdot):
         g.writelines(test_lines)
         g.close()
 
+def change_line_meanflow(U_filename,U):
+    line = 22
+    with open(U_filename,'r') as f:
+        test_lines = f.readlines()
+        f.close()
+        new_line = 'U\t\t\t\t\t\t\t\t\t{};\t\t\t\t // flow magnitude\n'.format(U)
+        test_lines[line] = new_line
+    with open(U_filename,'w') as g:
+        g.writelines(test_lines)
+        g.close()
+
 def change_line(U_filename,alpha):
     with open(U_filename,'r') as f:
         test_lines = f.readlines()
         f.close()
-    new_line = 'alpha\t\t\t\t\t\t\t\t{};\t\t\t\t\t\t // Alpha in deg\n'.format(alpha)
+    new_line = 'alpha\t\t\t\t\t\t\t{};\t\t\t\t\t\t // Alpha in deg\n'.format(alpha)
     test_lines[21] = new_line
     with open(U_filename,'w') as g:
         g.writelines(test_lines)
@@ -137,15 +150,17 @@ if store_bool:
 if clean_bool:
     cleanup(retain)
 
+print("\n ----- AutoMesh started! -----\n\nAutoMesh Parameters:\nMass flow: {}\nAngle of Attack: {}\nMean flowspeed: {}\n".format(mdot, aoa, meanflow))
 change_line_massflow(U_filename,mdot)
-change_line_Tbound(T_filename,mdot)
 change_line(U_filename,aoa)
+change_line_meanflow(U_filename, meanflow)
+time.sleep(2.5)
 
 def arg_handle():
     # Default Values
     scale = 1
-    Rc = 0.14 * .0254       # Coanda cylinder radius
-    te = 0.009 * .0254      # R/te = 20
+    Rc = 0.12 * .0254       # Coanda cylinder radius
+    te = 0.008 * .0254      # R/te = 20
     tu = 0.009 * .0254      # Upper surface thickness at exit
     return Rc, te, tu
 
@@ -239,16 +254,41 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x_L = 60
-blocks_y_L = 60
-blocks_x_R = 60
+# Works up to Re = 1.5e6
+# # Chord length 0.3m
+# blocks_x_L = 40
+# blocks_y_L = 40
+# blocks_x_R = 80
+# blocks_y_R = blocks_y_L
+# blocks_y_co = 8
+# blocks_x_flat = 15
+# grade_x_L = 2
+# egrade_x = 10
+# egrade_o = 10
+# grade_y = 800
+
+# Chord length 0.5m
+blocks_x_L = 90
+blocks_y_L = 160
+blocks_x_R = 160
 blocks_y_R = blocks_y_L
-blocks_y_co = 5
-blocks_x_flat = 15
+blocks_y_co = 6
+blocks_x_flat = 20
 grade_x_L = 2
 egrade_x = 10
 egrade_o = 10
 grade_y = 800
+
+# blocks_x_L = 125
+# blocks_y_L = 125
+# blocks_x_R = 200
+# blocks_y_R = blocks_y_L
+# blocks_y_co = 12
+# blocks_x_flat = 12
+# grade_x_L = 2
+# egrade_x = 10
+# egrade_o = 10
+# grade_y = 1200
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
@@ -305,7 +345,7 @@ blocks = [
     '\t\thex (26 34 14 10 27 35 15 11) ({} {} 1) simpleGrading ( 1  {}  1) // 2\n'.format(blocks_x_R, blocks_y_R, grade_y),
     '\t\thex (34 36  2 14 35 37  3 15) ({} {} 1) simpleGrading ({}  {}  1) // 3\n'.format(blocks_x_flat, blocks_y_L, grade_x_L, grade_y),
     '\t\thex (36  4  0  2 37  5  1  3) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) {}  {} ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 4\n'.format(blocks_x_L, blocks_y_L, egrade_x, 1/egrade_x, egrade_o, egrade_o, egrade_x, 1/egrade_x, grade_y, grade_y, grade_y, grade_y),
-    '\t\thex (24 32 34 26 25 33 35 27) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_R, blocks_y_co-1, 1),
+    '\t\thex (24 32 34 26 25 33 35 27) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_R, blocks_y_co-1, 2),
     '\t\thex (22 30 32 24 23 31 33 25) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_x_R, blocks_y_co, 1),
     ');\n\n'
 ]
