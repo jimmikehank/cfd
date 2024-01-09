@@ -63,16 +63,18 @@ boundaryField
 		coandaLower
 		// COANDA STEADY:
 		{
-				type						flowRateInletVelocity;
-				massFlowRate		$massflow_l;
-				value						uniform ($massflow_l 0 0);
+//				type						flowRateInletVelocity;
+//				massFlowRate		$massflow_l;
+//				value						uniform ($massflow_l 0 0);
+		type zeroGradient;
 		}
 
 		coandaUpper
 		{
-				type						flowRateInletVelocity;
-				massFlowRate		$massflow_u;
-				value						uniform ($massflow_u 0 0);
+//				type						flowRateInletVelocity;
+//				massFlowRate		$massflow_u;
+//				value						uniform ($massflow_u 0 0);
+		type zeroGradient;
 		}
 
 

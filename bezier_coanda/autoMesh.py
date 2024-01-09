@@ -12,6 +12,8 @@ retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'outpu
 file_delete = []
 U_filename = './0/U'
 T_filename = './0/T'
+k_filename = './0/k'
+eps_filename = './0/omega'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--iter', default = 0, type = int, help = 'Iteration for selection of optimization control points')
@@ -33,14 +35,14 @@ store_bool = args.store
 mdot = np.around(args.mdot,6)
 meanflow = args.meanFlow
 
-chord_length = 1.0
+chord_length = 0.5
 
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
 
 def store(retain,name):
     import os
     import shutil
-    print(retain)
+    # print(retain)
     ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints','processing.py']
     copy = ['0','system','constant','dynamicCode']
     dirs = os.listdir()
@@ -143,6 +145,29 @@ def change_line(U_filename,alpha):
     with open(U_filename,'w') as g:
         g.writelines(test_lines)
         g.close()
+
+def change_line_komega(k_file, eps_file, U, c):
+    omega = 10 * U / c
+    k = omega * 1.5e-6
+
+    with open(k_file,'r') as f:
+        lines = f.readlines()
+        f.close()
+    new_line = 'internalField   uniform {};\n'.format(k)
+    lines[19] = new_line
+    with open(k_file,'w') as f:
+        f.writelines(lines)
+        f.close()
+
+    with open(eps_file, 'r') as f:
+        lines = f.readlines()
+        f.close()
+    new_line = 'internalField uniform {};\n'.format(omega)
+    lines[19] = new_line
+    with open(eps_file, 'w') as f:
+        f.writelines(lines)
+        f.close()
+
 #---------- Initialization of Coanda Definition --------------#
 
 if store_bool:
@@ -154,14 +179,16 @@ print("\n ----- AutoMesh started! -----\n\nAutoMesh Parameters:\nMass flow: {}\n
 change_line_massflow(U_filename,mdot)
 change_line(U_filename,aoa)
 change_line_meanflow(U_filename, meanflow)
+# change_line_komega(k_filename, eps_filename, meanflow, chord_length)
+
 time.sleep(2.5)
 
 def arg_handle():
     # Default Values
     scale = 1
     Rc = 0.12 * .0254       # Coanda cylinder radius
-    te = 0.008 * .0254      # R/te = 20
-    tu = 0.009 * .0254      # Upper surface thickness at exit
+    te = 0.009 * .0254      # R/te = 20
+    tu = 0.012 * .0254      # Upper surface thickness at exit
     return Rc, te, tu
 
 r,h,t = arg_handle()
@@ -254,41 +281,42 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-# Works up to Re = 1.5e6
-# # Chord length 0.3m
-# blocks_x_L = 40
-# blocks_y_L = 40
-# blocks_x_R = 80
+# Chord length 0.3m
+# blocks_x_L = 50
+# blocks_y_L = 50
+# blocks_x_R = 70
 # blocks_y_R = blocks_y_L
-# blocks_y_co = 8
+# blocks_y_co = 2
 # blocks_x_flat = 15
 # grade_x_L = 2
 # egrade_x = 10
 # egrade_o = 10
 # grade_y = 800
 
-# Chord length 0.5m
-blocks_x_L = 90
-blocks_y_L = 160
-blocks_x_R = 160
+
+# Chord 0.5
+blocks_x_L = int(70)
+blocks_y_L = int(80)
+blocks_x_R = int(100)
 blocks_y_R = blocks_y_L
-blocks_y_co = 6
-blocks_x_flat = 20
+blocks_y_co = 2
+blocks_x_flat = int(12)
 grade_x_L = 2
 egrade_x = 10
 egrade_o = 10
-grade_y = 800
+grade_y = 1200
 
+# Chord 1.0+
 # blocks_x_L = 125
-# blocks_y_L = 125
+# blocks_y_L = 155
 # blocks_x_R = 200
 # blocks_y_R = blocks_y_L
-# blocks_y_co = 12
-# blocks_x_flat = 12
+# blocks_y_co = 3
+# blocks_x_flat = 10
 # grade_x_L = 2
 # egrade_x = 10
 # egrade_o = 10
-# grade_y = 1200
+# grade_y = 1400
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
@@ -346,7 +374,7 @@ blocks = [
     '\t\thex (34 36  2 14 35 37  3 15) ({} {} 1) simpleGrading ({}  {}  1) // 3\n'.format(blocks_x_flat, blocks_y_L, grade_x_L, grade_y),
     '\t\thex (36  4  0  2 37  5  1  3) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) {}  {} ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 4\n'.format(blocks_x_L, blocks_y_L, egrade_x, 1/egrade_x, egrade_o, egrade_o, egrade_x, 1/egrade_x, grade_y, grade_y, grade_y, grade_y),
     '\t\thex (24 32 34 26 25 33 35 27) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_R, blocks_y_co-1, 2),
-    '\t\thex (22 30 32 24 23 31 33 25) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_x_R, blocks_y_co, 1),
+    '\t\thex (22 30 32 24 23 31 33 25) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_x_R, blocks_y_co, 2),
     ');\n\n'
 ]
 

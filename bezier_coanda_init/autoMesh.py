@@ -34,6 +34,7 @@ mdot = np.around(args.mdot,6)
 meanflow = args.meanFlow
 
 chord_length = 0.3
+symmetry = True
 
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
 initial_dir = '/home/james/Documents/research/cfd/bezier_coanda_transient/'
@@ -257,9 +258,9 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Works up to Re = 1.5e6
 # Chord length 0.3m
-blocks_x_L = 60
+blocks_x_L = 50
 blocks_y_L = 60
-blocks_x_R = 60
+blocks_x_R = 80
 blocks_y_R = blocks_y_L
 blocks_y_co = 5
 blocks_x_flat = 15

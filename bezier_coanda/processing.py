@@ -53,7 +53,7 @@ def check_force(folder):
 def cmu_openloop(cmu, U, c, b, rho):
     import numpy as np
     Q = 0.5 * rho * U ** 2 * c * b
-    mdot = np.sqrt(cmu * Q / (150 / 0.007573))
+    mdot = np.sqrt(cmu * Q / (190 / 0.007573))
     return mdot
 
 def re_convert(re, rho, c, mu = 1.82e-5):
@@ -64,7 +64,7 @@ def run_fun(parallel = False):
     import os
     if parallel:
         decompose = "decomposePar"
-        run = "mpirun -np 6 rhoSimpleFoam -parallel"
+        run = "mpirun -np 4 rhoSimpleFoam -parallel"
         reconstruct = "reconstructPar -latestTime"
         os.system(decompose)
         os.system(run)
@@ -99,6 +99,7 @@ def single_run(cmu_target, cmu_command, re_command, rho, mu, c, b, eps, urf, par
         print("\n\tFinal Values:\n")
         print("Vjet: {}\nCmu: {}\nCmu error: {}".format(max_velocity('./'), cmu_actual, e))
         save_command = "python3 autoMesh.py --store True --runName /c{}/cmu{}/re{}".format(c,cmu_target,re_command)
+        # save_command = "python3 autoMesh.py --store True --runName /c{}/cmu{}".format(c,cmu_target,re_command)
         os.system(save_command)
         return 0
     else:

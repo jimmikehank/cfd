@@ -33,7 +33,7 @@ store_bool = args.store
 mdot = np.around(args.mdot,6)
 meanflow = args.meanFlow
 
-chord_length = 1.0
+chord_length = 0.3
 
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
 initial_dir = '/home/james/Documents/research/cfd/bezier_coanda_transient/'
@@ -124,7 +124,7 @@ if store_bool:
 if clean_bool:
     cleanup(retain)
 
-print("\n ----- AutoMesh started! -----\n\nAutoMesh Parameters:\nMass flow: {}\nAngle of Attack: {}\nMean flowspeed: {}\n".format(mdot, aoa, meanflow))
+print("\n ----- AutoMesh started! -----\n\nAutoMesh Parameters:\nMass flow: {}\nAngle of Attack: {}\nMean flowspeed: {}\nChord length: {}\n".format(mdot, aoa, meanflow, chord_length))
 change_line_massflow(U_filename,mdot)
 change_line(U_filename,aoa)
 change_line_meanflow(U_filename, meanflow)
@@ -230,9 +230,9 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Works up to Re = 1.5e6
 # Chord length 0.3m
-blocks_x_L = 60
+blocks_x_L = 50
 blocks_y_L = 60
-blocks_x_R = 60
+blocks_x_R = 80
 blocks_y_R = blocks_y_L
 blocks_y_co = 5
 blocks_x_flat = 15

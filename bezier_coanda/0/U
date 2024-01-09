@@ -20,8 +20,8 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 alpha							0.0;						 // Alpha in deg
-U									50.55555555555556;				 // flow magnitude
-massflow_u				0.009398;				 // mass flow rate
+U									70.0;				 // flow magnitude
+massflow_u				0.010554;				 // mass flow rate
 massflow_l				0.0;				 // mass flow rate
 
 
