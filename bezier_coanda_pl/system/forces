@@ -12,15 +12,15 @@ forces
     libs          ("libforces.so");
 
     writeControl  timeStep;
-    writeInterval  250;
+    writeInterval  3000;
 
     log           no;
 
-    patches       ("surface" "coandaUpper" "coandaLower");
-    rho           rho;     // Indicates incompressible
+    patches       ("surface");
+    rho           rho;
     log           true;
 
-    CofR          (0 0 0);    // Rotation around centre line of propeller
+    CofR          (-0.225 0 0);    // Rotation around centre line of propeller
 }
 
 

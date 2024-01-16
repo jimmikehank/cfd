@@ -19,62 +19,42 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-alpha						0;						// AoA in Degrees
-U 							20; 					// Flow magnitude
-massflow_l			0.005;				 // mass flow rate
-massflow_u			0;
+alpha				0.0;				 // Angle of Attack
+U								25.0;						 // Mean Flow Speed
 
 
 dimensions			[0 1 -1 0 0 0 0];
 
-// internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
-internalField		uniform  (0 0 0);
+internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+
 
 
 boundaryField
 {
-		down
+		inOut
 		{
-				type						zeroGradient;
-		}
-
-		right
-		{
-				type						zeroGradient;
-		}
-
-		up
-		{
-				type						zeroGradient;
-		}
-
-		meanFlow
-		{
-				type						uniformFixedValue;
-				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
-				value						uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+				type            inletOutlet;
+				inletValue      $internalField;
+				value           $internalField;
 		}
 
 		surface
 		{
 				type						noSlip;
 		}
+    surfInner
+    {
+        type						noSlip;
+    }
 
 		coandaLower
-		// COANDA STEADY:
 		{
-//				type						flowRateInletVelocity;
-//				massFlowRate		$massflow_l;
-//				value						uniform ($massflow_l 0 0);
-		type zeroGradient;
+				type 						zeroGradient;
 		}
 
 		coandaUpper
 		{
-//				type						flowRateInletVelocity;
-//				massFlowRate		$massflow_u;
-//				value						uniform ($massflow_u 0 0);
-		type zeroGradient;
+				type 						zeroGradient;
 		}
 
 

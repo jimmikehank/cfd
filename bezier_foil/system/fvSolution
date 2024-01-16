@@ -17,7 +17,7 @@ FoamFile
 
 solvers
 {
-    p
+    "(p|p_rgh|G)"
     {
         solver          GAMG;
         tolerance       1e-8;
@@ -25,7 +25,7 @@ solvers
         smoother        GaussSeidel;
     }
 
-    "(U|e|nuTilda)"
+    "(U|T|e|h|nuTilda|k|omega|epsilon)"
     {
         solver          PBiCGStab;
         preconditioner  DILU;
@@ -37,13 +37,13 @@ solvers
 
 SIMPLE
 {
-    nNonOrthogonalCorrectors 3;
+    nNonOrthogonalCorrectors 1;
 
     residualControl
     {
-        p               1.6e-5;
-        U               1e-5;
-        nuTilda         1e-5;
+        p               2.5e-5;
+        U               2.5e-5;
+        nuTilda         2.7e-5;
     }
 }
 
@@ -51,15 +51,13 @@ relaxationFactors
 {
     fields
     {
-        p               0.3;
-        rho             0.01;
+        "(p|p_rgh|rho)"                     0.30;
     }
     equations
     {
-        U               0.7;
-        e               0.7;
-        nuTilda         0.7;
+        "(U|T|e|h|nuTilda|k|epsilon|omega)" 0.70;
     }
+
 }
 
 potentialFlow

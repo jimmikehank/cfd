@@ -1,0 +1,69 @@
+/*---------------------------------*- C++ -*-----------------------------------*/
+//    //////////////      ///////////////
+//    //////////////      //////////////
+//         ////           ////             /////       ////  //  /// //// ////
+//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
+//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
+//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
+//     /////              ////            /////       ///// ///  ///   ///  ///
+/*---------------------------------*- C++ -*-----------------------------------*/
+
+// STEADY STATE BLOWING
+FoamFile
+{
+		version			2.0;
+		format			ascii;
+		class				volVectorField;
+		location		"0";
+		object			U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+alpha				0.0;				 // Angle of Attack
+U								30.0;						 // Mean Flow Speed
+massflow_u				0.0;				 // mass flow rate
+massflow_l				0.0;				 // mass flow rate
+
+
+dimensions			[0 1 -1 0 0 0 0];
+
+internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+
+
+boundaryField
+{
+		inOut
+		{
+				type            inletOutlet;
+				inletValue      $internalField;
+				value           $internalField;
+		}
+		surface
+		{
+				type            fixedValue;
+				value           uniform (0 0 0);
+		}
+
+		coandaUpper
+		// COANDA STEADY:
+		{
+				type						flowRateInletVelocity;
+				massFlowRate		$massflow_u;
+				value						uniform ($massflow_u 0 0);
+		}
+
+		coandaLower
+		{
+				type            flowRateInletVelocity;
+				massFlowRate		$massflow_l;
+				value						uniform ($massflow_l 0 0);
+		}
+
+
+		defaultFaces
+		{
+				type						empty;
+		}
+}
+
+// ************************************************************************* //

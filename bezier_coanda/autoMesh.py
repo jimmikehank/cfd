@@ -35,7 +35,7 @@ store_bool = args.store
 mdot = np.around(args.mdot,6)
 meanflow = args.meanFlow
 
-chord_length = 0.5
+chord_length = 0.3
 
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
 
@@ -282,29 +282,29 @@ for j in range(1,np.shape(lower)[0]-1):
 # Finally: Define the blocking and grading parameters!
 
 # Chord length 0.3m
-# blocks_x_L = 50
-# blocks_y_L = 50
-# blocks_x_R = 70
-# blocks_y_R = blocks_y_L
-# blocks_y_co = 2
-# blocks_x_flat = 15
-# grade_x_L = 2
-# egrade_x = 10
-# egrade_o = 10
-# grade_y = 800
-
-
-# Chord 0.5
-blocks_x_L = int(70)
-blocks_y_L = int(80)
-blocks_x_R = int(100)
+blocks_x_L = 50
+blocks_y_L = 60
+blocks_x_R = 70
 blocks_y_R = blocks_y_L
-blocks_y_co = 2
-blocks_x_flat = int(12)
+blocks_y_co = 3
+blocks_x_flat = 10
 grade_x_L = 2
 egrade_x = 10
 egrade_o = 10
-grade_y = 1200
+grade_y = 900
+
+
+# Chord 0.5
+# blocks_x_L = int(70)
+# blocks_y_L = int(80)
+# blocks_x_R = int(100)
+# blocks_y_R = blocks_y_L
+# blocks_y_co = 3
+# blocks_x_flat = int(12)
+# grade_x_L = 2
+# egrade_x = 10
+# egrade_o = 10
+# grade_y = 1200
 
 # Chord 1.0+
 # blocks_x_L = 125

@@ -23,43 +23,30 @@ internalField		uniform 100000;
 
 boundaryField
 {
-		down
+		inOut
 		{
 				type						fixedValue;
-				value						uniform 100000;
-		}
-
-		right
-		{
-				type						fixedValue;
-				value						uniform 100000;
-		}
-
-		up
-		{
-				type						fixedValue;
-				value						uniform 100000;
-		}
-
-		meanFlow
-		{
-				type						fixedValue;
-				value						uniform 100000;
+				value						$internalField;
 		}
 
 		surface
 		{
 				type						zeroGradient;
 		}
+    surfInner
+    {
+        type		zeroGradient;
+    }
 
 		coandaUpper
 		{
+				// type zeroGradient;
 				type 						fixedValue;
-				value					uniform 110000.0;
-				// p0							uniform 155000.0;
+				value						uniform 105000.0;
 		}
 		coandaLower
 		{
+				// type zeroGradient;
 				type 						fixedValue;
 				value						uniform 100000;
 		}

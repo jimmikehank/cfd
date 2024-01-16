@@ -3,13 +3,38 @@ import matplotlib.pyplot as plt
 from bezier_foil import *
 import sys
 from os import path
+import argparse
+import time
 
 # This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
 
-retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png']
+retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','processing.py']
 U_filename = './0/U'
 # Define Chord Length for all Other Scaling:
 chord_length = 0.3
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--iter', default = 0, type = int, help = 'Iteration for selection of optimization control points')
+parser.add_argument('--airfoil', default = 'naca0015', type = str, help = 'Selection of initial airfoil')
+parser.add_argument('--runName', default = 'fail_check', type = str, help = 'Name of target directory for control points')
+parser.add_argument('--aoa', default = 0., type = float, help = 'Specified angle of attack in degrees, \nDefault: 0.0')
+parser.add_argument('--clean', default = False, type = bool, help = 'Run clean function. \nDefault: False')
+parser.add_argument('--store', default = False, type = bool, help = 'Run store function. \nDefault: False')
+parser.add_argument('--mdot', default = 0.0, type = float, help = 'Mass flow for coanda in kg/s')
+parser.add_argument('--meanFlow', default = 25.0, type = float, help = 'Mean flow speed for simulation in m/s \n Default: 25.0')
+parser.add_argument('--control', default = 0, type = int, help = 'Selected variable to step in for forward finite differencing. \nValues:\n0: None\n1:Coanda Radius\n2:Coanda Opening Height\n3: Knife Edge Thickness')
+parser.add_argument('--delta', default = 1e-5, type = float, help = 'Size of step for forward differencing\nDefault: 1e-5')
+args = parser.parse_args()
+
+clean = args.clean
+airfoil = args.airfoil.lower()
+aoa = args.aoa
+meanflow = args.meanFlow
+store = args.store
+controls = args.control
+iters = args.iter
+delta = args.delta
+
 def store(retain,name):
     import os
     import shutil
@@ -37,7 +62,6 @@ def store(retain,name):
             shutil.copytree(item,casefile+item)
 
 def cleanup(retain):
-    print(retain)
     import shutil
     import os
     dirs = os.listdir()
@@ -47,55 +71,67 @@ def cleanup(retain):
         else:
             continue
 
-def change_line_massflow(U_filename,mdot):
+def change_line_aoa(U_filename,aoa):
     with open(U_filename,'r') as f:
         test_lines = f.readlines()
         f.close()
-    new_line = 'massflow\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
-    test_lines[23] = new_line
+    new_line = 'alpha\t\t\t\t{};\t\t\t\t // Angle of Attack\n'.format(aoa)
+    test_lines[21] = new_line
     with open(U_filename,'w') as g:
         g.writelines(test_lines)
         g.close()
 
-def change_line(U_filename,freq):
+def change_line_meanflow(U_filename,meanflow):
     with open(U_filename,'r') as f:
         test_lines = f.readlines()
         f.close()
-    new_line = 'f\t\t\t\t\t\t\t\t{};\t\t\t\t\t\t // Frequency in Hz\n'.format(freq)
-    test_lines[20] = new_line
+    new_line = 'U\t\t\t\t\t\t\t\t{};\t\t\t\t\t\t // Mean Flow Speed\n'.format(meanflow)
+    test_lines[22] = new_line
     with open(U_filename,'w') as g:
         g.writelines(test_lines)
         g.close()
 #---------- Initialization of Coanda Definition --------------#
 
-args = sys.argv
 
-def arg_handle(args):
-    # Default Values
-    scale = 1
-    Rc = 0.14 * .0254       # Coanda cylinder radius
-    te = 0.009 * .0254      # R/te = 20
-    tu = 0.009 * .0254      # Upper surface thickness at exit
+Ufile = './0/U'
+if clean == True:
+    cleanup(retain)
 
-    for i in range(np.size(args)):
-        current = args[i].lower()
-        if current == '-scale':
-            scale = float(args[i+1])
-            Rc = Rc * scale
-            te = te * scale
-            tu = tu * scale
-        elif current == '-save':
-            store(retain, args[i+1])
-        elif current == '-clean':
-            cleanup(retain)
-        elif current == '-freq':
-            change_line(U_filename, args[i+1])
-        elif current == '-mdot':
-            change_line_massflow(U_filename,args[i+1])
+change_line_aoa(Ufile,aoa)
+change_line_meanflow(Ufile,meanflow)
+
+
+def loadnumbers(iters):
+    filename = '/home/james/Documents/research/completed_cases/coanda_opt/{}.txt'.format(iters)
+    data = np.loadtxt(filename)
+    Rc = data[0]
+    te = data[1]
+    tu = data[2]
     return Rc, te, tu
 
-r,h,t = arg_handle(args)
+def coanda_set(iters,control,delta):
+    # Default Values
+    if iters == 0:
+        Rc = 0.12 * .0254       # Coanda cylinder radius
+        te = 0.009 * .0254      # R/te = 20
+        tu = 0.012 * .0254      # Upper surface thickness at exit
+    else:
+        Rc, te, tu = loadnumbers(iters)
 
+    if control == 0:
+        return Rc, te, tu
+    elif control == 1:
+        Rc = Rc + delta
+    elif control == 2:
+        te = te + delta
+    elif control == 3:
+        tu = tu + delta
+    return Rc, te, tu
+
+r,h,t = coanda_set(iters,controls,delta)
+
+print("Coanda Dimensions: R: {}, h: {}, t: {}".format(r,h,t))
+time.sleep(1)
 #---------- Control Variables handled by this block ----------#
 #---------- Control Variables handled by this block ----------#
 m = 101
@@ -103,7 +139,7 @@ control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.35,.06],[.5,.07],[.75,
 # control_points_init = np.array([[0,0],[0,.05],[.75,.03],[1,0]])
 cpl_init = control_points_init * np.array([1,-1])
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
-airfoil_sel = 'naca0015'
+airfoil_sel = airfoil
 symmetry = False
 file_exists = path.isfile('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
 if file_exists:
@@ -151,7 +187,6 @@ pcn = (Rc - te)*1.5
 hcn = (Rc-te)/2
 beta = np.arctan(pcn/hcn) * 180 / np.pi
 ai = 180 - 2*beta
-print(ai)
 # print(fil,p0)
 
 # Define Point Matrix:
@@ -205,17 +240,18 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x_L = 200
-blocks_y_L = 100
-blocks_x_R = 60
+blocks_x_L = 50
+blocks_y_L = 50
+blocks_x_R = 70
 blocks_y_R = blocks_y_L
-blocks_y_co = 10
-blocks_x_flat = 25
-blocks_x_in = 15
+blocks_y_co = 5
+blocks_x_flat = 10
+blocks_x_in = 10
 blocks_y_in = blocks_y_co
-grade_x_L = 10
-egrade_x = 5
-grade_y = 2500
+grade_x_L = 2
+egrade_x = 10
+egrade_o = 10
+grade_y = 1000
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',
@@ -267,19 +303,19 @@ def makepoints(points_back,back,front):
 
 blocks = [
     'blocks\n(\n',
-    '\t\thex ( 4 28  8  0  5 29  9  1) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) 1   1 ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x_L, blocks_y_L, egrade_x, 1/egrade_x, egrade_x, 1/egrade_x, grade_y, grade_y, grade_y, grade_y),
+    '\t\thex ( 4 28  8  0  5 29  9  1) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) {}  {} ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x_L, blocks_y_L, egrade_x, 1/egrade_x, 1/egrade_o, 1/egrade_o, egrade_x, 1/egrade_x, grade_y, grade_y, grade_y, grade_y),
     '\t\thex (28 26 10  8 29 27 11  9) ({} {} 1) simpleGrading ({}  {}  1) // 1\n'.format(blocks_x_flat, blocks_y_R, 1/grade_x_L, grade_y),
     '\t\thex (26 34 14 10 27 35 15 11) ({} {} 1) simpleGrading ( 1  {}  1) // 2\n'.format(blocks_x_R, blocks_y_R, grade_y),
     '\t\thex (34 36  2 14 35 37  3 15) ({} {} 1) simpleGrading ({}  {}  1) // 3\n'.format(blocks_x_flat, blocks_y_L, grade_x_L, grade_y),
-    '\t\thex (36  4  0  2 37  5  1  3) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) 1   1 ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 4\n'.format(blocks_x_L, blocks_y_L, egrade_x, 1/egrade_x, egrade_x, 1/egrade_x, grade_y, grade_y, grade_y, grade_y),
-    '\t\thex (24 32 34 26 25 33 35 27) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_R, blocks_y_co, 1),
+    '\t\thex (36  4  0  2 37  5  1  3) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) {}  {} ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 4\n'.format(blocks_x_L, blocks_y_L, egrade_x, 1/egrade_x, egrade_o, egrade_o, egrade_x, 1/egrade_x, grade_y, grade_y, grade_y, grade_y),
+    '\t\thex (24 32 34 26 25 33 35 27) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_R, blocks_y_co-2, 2),
     '\t\thex (22 30 32 24 23 31 33 25) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_x_R, blocks_y_co, 1),
-    '\t\thex (40 42 44 38 41 43 45 39) ({} {} 1) simplegrading ( 1   1  1) //11\n'.format(blocks_x_in+20,blocks_y_in),
-    '\t\thex (42 46 48 44 43 47 49 45) ({} {} 1) simpleGrading ( 1   1  1) //12\n'.format(blocks_x_in,blocks_y_in),
-    '\t\thex (46 22 24 48 47 23 25 49) ({} {} 1) simpleGrading ( 1   1  1) //13\n'.format(blocks_x_in,blocks_y_in),
-    '\t\thex (50 56 54 52 51 57 55 53) ({} {} 1) simpleGrading ( 1   1  1) //14\n'.format(blocks_x_in+20,blocks_y_in),
-    '\t\thex (56 60 58 54 57 61 59 55) ({} {} 1) simpleGrading ( 1   1  1) //15\n'.format(blocks_x_in,blocks_y_in),
-    '\t\thex (60 32 30 58 61 33 31 59) ({} {} 1) simpleGrading ( 1   1  1) //16\n'.format(blocks_x_in,blocks_y_in),
+    '\t\thex (40 42 44 38 41 43 45 39) ({} {} 1) simplegrading ( 1   1  1) // 7\n'.format(blocks_x_in+20,blocks_y_in),
+    '\t\thex (42 46 48 44 43 47 49 45) ({} {} 1) simpleGrading ( 1   1  1) // 8\n'.format(blocks_x_in,blocks_y_in),
+    '\t\thex (46 22 24 48 47 23 25 49) ({} {} 1) simpleGrading ( 1   1  1) // 9\n'.format(blocks_x_in,blocks_y_in),
+    '\t\thex (50 56 54 52 51 57 55 53) ({} {} 1) simpleGrading ( 1   1  1) //10\n'.format(blocks_x_in+20,blocks_y_in),
+    '\t\thex (56 60 58 54 57 61 59 55) ({} {} 1) simpleGrading ( 1   1  1) //11\n'.format(blocks_x_in,blocks_y_in),
+    '\t\thex (60 32 30 58 61 33 31 59) ({} {} 1) simpleGrading ( 1   1  1) //12\n'.format(blocks_x_in,blocks_y_in),
     ');\n\n'
 ]
 

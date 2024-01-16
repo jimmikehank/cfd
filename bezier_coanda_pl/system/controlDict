@@ -23,16 +23,13 @@ startTime       0;
 
 stopAt           endTime;
 
-endTime         0.003;
+endTime         3000;
 
-deltaT          5e-7;
+deltaT          1;
 
 writeControl     timeStep;
 
-    div(phi,U)      bounded Gauss linear;
-    div(div(phi,U)) Gauss linear;
-
-writeInterval   2000;
+writeInterval   3000;
 
 purgeWrite      0;
 

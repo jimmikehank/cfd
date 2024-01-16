@@ -19,7 +19,7 @@ dimensions      [0 1 -1 0 0 0 0];
 
 
 alpha						0.0;						 // AoA in Degrees
-U               30.0;
+U						120.0;						 // AoA in Degrees
 internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
 
 

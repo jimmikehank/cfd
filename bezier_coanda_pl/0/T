@@ -15,56 +15,41 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 Tinlet          298;
-
+Tcoanda         298;
 dimensions      [0 0 0 1 0 0 0];
 
 internalField   uniform $Tinlet;
 
+
 boundaryField
 {
-    meanFlow
+		inOut
+		{
+				type		inletOutlet;
+				inletValue			uniform $Tinlet;
+				value			$inletValue;
+		}
+		surface
+		{
+				type		zeroGradient;
+		}
+    surfInner
     {
-        type            inletOutlet;
-        inletValue      uniform $Tinlet;
-        value           $inletValue;
+        type		zeroGradient;
     }
-
-    coandaUpper
-    {
-        type            zeroGradient;
-    }
-
-    coandaLower
-    {
-        type            zeroGradient;
-    }
-
-    down
-    {
-        type            zeroGradient;
-    }
-
-    up
-    {
-        type            zeroGradient;
-    }
-
-    right
-    {
-        type            zeroGradient;
-    }
-
-
-
-    surface
-    {
-        type            zeroGradient;
-    }
-
-    defaultFaces
-    {
-        type            empty;
-    }
-
-    #includeEtc "caseDicts/setConstraintTypes"
+		coandaLower
+		{
+				type		zeroGradient;
+		}
+		coandaUpper
+		{
+				type		inletOutlet;
+        inletValue uniform $Tcoanda;
+				value		uniform $Tcoanda;
+		}
+		defaultFaces
+		{
+				type			empty;
+		}
+		#includeEtc "caseDicts/setConstraintTypes"
 }

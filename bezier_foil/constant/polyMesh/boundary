@@ -19,22 +19,22 @@ FoamFile
     inOut
     {
         type            patch;
-        nFaces          280;
-        startFace       19020;
+        nFaces          500;
+        startFace       50050;
     }
     surface
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          80;
-        startFace       19300;
+        nFaces          200;
+        startFace       50550;
     }
     defaultFaces
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          19200;
-        startFace       19380;
+        nFaces          50400;
+        startFace       50750;
     }
 )
 

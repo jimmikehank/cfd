@@ -7,7 +7,7 @@ import argparse
 
 # This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
 
-retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','james_test.py','FFD']
+retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', 'processing.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','james_test.py','FFD']
 file_delete = []
 U_filename = './0/U'
 T_filename = './0/T'
@@ -19,6 +19,7 @@ parser.add_argument('--runName', default = 'fail_check', type = str, help = 'Nam
 parser.add_argument('--aoa', default = 0., type = float, help = 'Specified angle of attack in degrees, \nDefault: 0.0')
 parser.add_argument('--clean', default = False, type = bool, help = 'Run clean function. \nDefault: False')
 parser.add_argument('--store', default = False, type = bool, help = 'Run store function. \nDefault: False')
+parser.add_argument('--meanFlow', default = 25.0, type = float, help = 'Mean flow speed for simulation\nDefault: 25 m/s')
 
 args = parser.parse_args()
 iteration = args.iter
@@ -27,6 +28,7 @@ runName = args.runName
 aoa = args.aoa
 clean_bool = args.clean
 store_bool = args.store
+meanflow = args.meanFlow
 
 # Define Chord Length for all Other Scaling:
 chord_length = 1
@@ -80,11 +82,22 @@ def change_line(U_filename,aoa):
         g.writelines(test_lines)
         g.close()
 
+def change_line_meanflow(U_filename,meanflow):
+    with open(U_filename,'r') as f:
+        test_lines = f.readlines()
+        f.close()
+    new_line = 'U\t\t\t\t\t\t{};\t\t\t\t\t\t // AoA in Degrees\n'.format(meanflow)
+    test_lines[21] = new_line
+    with open(U_filename,'w') as g:
+        g.writelines(test_lines)
+        g.close()
+
 #---------- Initialization of Argument Variables -------------#
 
 m = 101
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
 change_line(U_filename,aoa)
+change_line_meanflow(U_filename,meanflow)
 
 if clean_bool:
     cleanup(retain)
@@ -184,13 +197,13 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x = 40
-blocks_x_foil = 40
-blocks_y = 60
+blocks_x = 80
+blocks_x_foil = 100
+blocks_y = 70
 grade_x = 1200
 egrade_x = 10
 egrade_o = 10
-grade_y = 1000
+grade_y = 800
 grade_yo = 100
 grmul = 10
 
