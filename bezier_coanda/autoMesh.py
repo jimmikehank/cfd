@@ -8,7 +8,7 @@ import argparse
 
 # This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
 
-retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','james_test.py','FFD','processing.py']
+retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','james_test.py','FFD','processing.py','autoFD.py']
 file_delete = []
 U_filename = './0/U'
 T_filename = './0/T'
