@@ -428,3 +428,18 @@ def scale_points(faces,face_points,sens_map_wall):
         else:
             pass
     return points_mod
+
+def iterate_control_points(cpu,cpl,fd,delta):
+    cp = fd[0]
+    dir = fd[1] - 1
+    if cp != 0:
+        points = np.vstack([cpu,cpl])
+        points[cp,dir] = points[cp,dir] + delta
+        n = np.shape(cpu)[0]
+        cpu_out = points[:n,:]
+        cpl_out = points[:n,:]
+    else:
+        cpu_out = cpu
+        cpl_out = cpl
+
+    return cpu_out, cpl_out

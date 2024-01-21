@@ -8,6 +8,7 @@ import argparse
 
 # This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
 
+N = 5
 retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','james_test.py','FFD','processing.py','autoFD.py']
 file_delete = []
 U_filename = './0/U'
@@ -24,6 +25,8 @@ parser.add_argument('--clean', default = False, type = bool, help = 'Run clean f
 parser.add_argument('--store', default = False, type = bool, help = 'Run store function. \nDefault: False')
 parser.add_argument('--mdot', default = 0.0, type = float, help = 'Mass flow for coanda in kg/s')
 parser.add_argument('--meanFlow', default = 25.0, type = float, help = 'Mean flow speed for simulation in m/s \n Default: 25.0')
+parser.add_argument('--FD', default = [0, 0], type = int, nargs=2, help = "Control point, direction] to iterate on for forward difference")
+parser.add_argument('--delta', default = 1e-6, type = float, help = "Step size for forward difference")
 args = parser.parse_args()
 
 iteration = args.iter
@@ -34,7 +37,9 @@ clean_bool = args.clean
 store_bool = args.store
 mdot = np.around(args.mdot,6)
 meanflow = args.meanFlow
-
+fd = args.FD
+print(fd)
+delta = args.delta
 chord_length = 0.3
 
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
@@ -64,6 +69,8 @@ def store(retain,name):
             shutil.move(item,casefile)
         elif item in copy:
             shutil.copytree(item,casefile+item)
+
+
 
 def cleanup(retain):
     import shutil
@@ -194,7 +201,6 @@ def arg_handle():
 r,h,t = arg_handle()
 
 #---------- Control Variables handled by this block ----------#
-#---------- Control Variables handled by this block ----------#
 m = 101
 if iteration == 0:
     control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.35,.06],[.5,.07],[.75,.03],[1,0]])
@@ -214,11 +220,28 @@ if iteration == 0:
         np.savetxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel),cpu)
         np.savetxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel),cpl)
     # Command line argument handler:
-
     upper, lower, coanda = coanda_foil(r,t,h,cpu,cpl)
+    xup = np.linspace(-chord_length,upper[-1,0],5)[1:-1]
+    yup = np.ones([1,3])*0.2*chord_length
+    ylo = -1 * yup
+    fill = np.vstack([xup,yup]).T
+    cpu_reinit = np.vstack([upper[0,:],[upper[0,0],upper[0,1]+.2*chord_length],fill,upper[-1,:]]).T
+    print(cpu_reinit)
+    cpu_reinit = np.vstack([cpu_reinit,upper[-1,:]])
+    cpl_reinit = np.vstack([np.linspace(lower[0,0],lower[-1,0],4), np.linspace(lower[0,1],lower[-1,1],4)]).T
+    cpl_reinit = np.vstack([cpl_reinit,lower[-1,:]])
+    surfhi, cpu, _t = surface_opt(cpu_reinit, upper, 101)
+    surflo, cpl, _t = surface_opt(cpl_reinit, lower, 101)
+    plt.figure(figsize=[10,10])
+    plt.plot(surfhi[:,0],surfhi[:,1])
+    plt.gca().set_aspect('equal')
+    plt.savefig('./output/cputest.png')
+
 else:
     cp_up = np.loadtxt('{}/optimization/{}/{}_cpu.txt'.format(airfoil_dir, runName, iteration-1))
     cp_lo = np.loadtxt('{}/optimization/{}/{}_cpl.txt'.format(airfoil_dir, runName, iteration-1))
+    cp_up, cp_lo = iterate_control_points(cp_up, cp_lo, fd, delta)
+    print(cp_up,cp_lo)
     coanda = coanda_surfs(r,t,h, cp_up, cpl = cp_lo, m = m)
     upper = bezier_curve(cp_up, m)
     lower = bezier_curve(cp_lo, m)
