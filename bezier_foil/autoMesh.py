@@ -20,6 +20,7 @@ parser.add_argument('--aoa', default = 0., type = float, help = 'Specified angle
 parser.add_argument('--clean', default = False, type = bool, help = 'Run clean function. \nDefault: False')
 parser.add_argument('--store', default = False, type = bool, help = 'Run store function. \nDefault: False')
 parser.add_argument('--meanFlow', default = 25.0, type = float, help = 'Mean flow speed for simulation\nDefault: 25 m/s')
+parser.add_argument('--finiteTE', default = False, type = bool, help = 'Enables finite TE for meshing\nDefault: False')
 
 args = parser.parse_args()
 iteration = args.iter
@@ -29,9 +30,14 @@ aoa = args.aoa
 clean_bool = args.clean
 store_bool = args.store
 meanflow = args.meanFlow
+finiteTE = args.finiteTE
 
 # Define Chord Length for all Other Scaling:
-chord_length = 0.3
+chord_length = 1.0
+# TE Thickness / Chord Length
+te_c_ratio = 0.002
+# Spatial Resolution Multiplier
+spatial_mul = 1
 
 def store(retain, target):
     import os
@@ -120,10 +126,15 @@ if iteration == 0:
         np.savetxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel),cpU)
         np.savetxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel),cpL)
         print(cpU[-1,0]-cpU[0,0])
-
-    upper = bezfoil[0:m,:]
-    upper = upper[::-1,:]
-    lower = bezfoil[m:,:]
+    if finiteTE:
+        cpU[-1,1] += te_c_ratio * chord_length
+        cpL[-1,1] -= te_c_ratio * chord_length
+        upper = bezier_curve(cpU, m)
+        lower = bezier_curve(cpL, m)
+    else:
+        upper = bezfoil[0:m,:]
+        upper = upper[::-1,:]
+        lower = bezfoil[m:,:]
 
 else:
     cpU = np.loadtxt('{}/optimization/{}/{}_cpu.txt'.format(airfoil_dir, runName, iteration-1))
@@ -143,11 +154,13 @@ scale = 1
 
 # Other important values:
 span = 1
-farfield = 6 * chord_length
-trailing = 4 * chord_length
-theta = 90 + np.arctan(trailing/farfield)*(180/np.pi)
-# Bounding Box:
+farfield = 25 * chord_length
+trailing = 8 * chord_length
 
+# Automated Calculation, no need to touch this one
+theta = 90 + np.arctan(trailing/farfield)*(180/np.pi)
+
+# Bounding Box:
 bU =  farfield          # Upper bound
 bD = -farfield          # Lower bound
 bL = -farfield          # Left bound
@@ -165,14 +178,20 @@ back_deflection = bR*np.sin(np.pi*aoa/180)
 
 # Define Point Matrix:
 pback[0,:] = np.array([-chord_length,0])
-pback[1,:] = np.array([0,0])
+pback[1,:] = np.array([0,upper[-1,1]])
 pback[2,:] = np.array([trailing,bU])
 pback[3,:] = np.array([-radius,0])
 pback[4,:] = np.array([trailing,bD])
 pback[5,:] = np.array([bR,bL])
 pback[6,:] = np.array([bR,back_deflection])
 pback[7,:] = np.array([bR,bU])
-pback[8,:] = np.array([0,0])
+pback[8,:] = np.array([0,lower[-1,1]])
+
+if finiteTE:
+    newpts = np.zeros([2,2])
+    newpts[0,:] = np.array([bR,upper[-1,1]*10+back_deflection])
+    newpts[1,:] = np.array([bR,lower[-1,1]*10+back_deflection])
+    pback = np.vstack([pback,newpts])
 
 cpu_string_b = ''
 cpu_string_f = ''
@@ -194,14 +213,15 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x = 50
-blocks_x_foil = 50
-blocks_y = 70
+blocks_x = 50 * spatial_mul
+blocks_x_foil = 50 * spatial_mul
+blocks_y = 70 * spatial_mul
+blocks_TE = 1 * spatial_mul
 grade_x = 1200
 egrade_x = 10
 egrade_o = 10
 grade_y = 800
-grade_yo = 100
+grade_yo = 25
 grmul = 10
 
 header = [
@@ -253,14 +273,25 @@ pointsdef = makepoints(pback,bk,fr)
 
 # Block order is inside coanda plenum 0, 1, 2 then 3 is the block directly below the surface, the rest follow counter-clockwise
 
-blocks = [
-    'blocks\n(\n',
-    '\t\thex ( 0  2  4  6  1  3  5  7 ) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {}))   {}   {}   ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x_foil, blocks_y, egrade_x, 1/egrade_x, 1/egrade_o, 1/egrade_o, egrade_x, 1/egrade_x, grmul*grade_y, grade_y, grade_y, grmul*grade_y),
-    '\t\thex ( 6  8 16  0  7  9 17  1 ) ({} {} 1) edgeGrading ({}   ((.5 .5 {}) (.5 .5 {}))   ((.5 .5 {}) (.5 .5 {}))   {} {} {} {} {} 1 1 1 1) // 1\n'.format(blocks_x_foil, blocks_y, 1/egrade_o, egrade_x, 1/egrade_x, egrade_x, 1/egrade_x, 1/egrade_o, 1/(grmul*grade_y), 1/grade_y, 1/grade_y, 1/(grmul*grade_y)),
-    '\t\thex ( 8 10 12 16  9 11 13 17 ) ({} {} 1) edgeGrading ( 1 {} {} 1 {} {} {} {} 1 1 1 1 ) // 2\n'.format(blocks_x, blocks_y, grade_x, grade_x, 1/grade_y, 1/grade_yo, 1/grade_yo, 1/grade_y),
-    '\t\thex ( 2 12 14  4  3 13 15  5 ) ({} {} 1) edgeGrading ( {} 1 1 {} {} {} {} {} 1 1 1 1 ) // 3\n'.format(blocks_x, blocks_y, grade_x, grade_x, grade_y, grade_yo, grade_yo, grade_y),
-    ');\n\n'
-]
+if finiteTE:
+    blocks = [
+        'blocks\n(\n',
+        '\t\thex ( 0  2  4  6  1  3  5  7 ) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {}))   {}   {}   ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x_foil, blocks_y, egrade_x, 1/egrade_x, 1/egrade_o, 1/egrade_o, egrade_x, 1/egrade_x, grmul*grade_y, grade_y, grade_y, grmul*grade_y),
+        '\t\thex ( 6  8 16  0  7  9 17  1 ) ({} {} 1) edgeGrading ({}   ((.5 .5 {}) (.5 .5 {}))   ((.5 .5 {}) (.5 .5 {}))   {} {} {} {} {} 1 1 1 1) // 1\n'.format(blocks_x_foil, blocks_y, 1/egrade_o, egrade_x, 1/egrade_x, egrade_x, 1/egrade_x, 1/egrade_o, 1/(grmul*grade_y), 1/grade_y, 1/grade_y, 1/(grmul*grade_y)),
+        '\t\thex ( 8 10 20 16  9 11 21 17 ) ({} {} 1) edgeGrading ( 1 {} {} 1 {} {} {} {} 1 1 1 1 ) // 2\n'.format(blocks_x, blocks_y, grade_x, grade_x, 1/grade_y, 1/grade_yo, 1/grade_yo, 1/grade_y),
+        '\t\thex (16 20 18  2 17 21 19  3 ) ({} {} 1) simpleGrading ( {} 1 1 ) // 3\n'.format(blocks_x, blocks_TE, grade_x),
+        '\t\thex ( 2 18 14  4  3 19 15  5 ) ({} {} 1) edgeGrading ( {} 1 1 {} {} {} {} {} 1 1 1 1 ) // 4\n'.format(blocks_x, blocks_y, grade_x, grade_x, grade_y, grade_yo, grade_yo, grade_y),
+        ');\n\n'
+    ]
+else:
+    blocks = [
+        'blocks\n(\n',
+        '\t\thex ( 0  2  4  6  1  3  5  7 ) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {}))   {}   {}   ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 0\n'.format(blocks_x_foil, blocks_y, egrade_x, 1/egrade_x, 1/egrade_o, 1/egrade_o, egrade_x, 1/egrade_x, grmul*grade_y, grade_y, grade_y, grmul*grade_y),
+        '\t\thex ( 6  8 16  0  7  9 17  1 ) ({} {} 1) edgeGrading ({}   ((.5 .5 {}) (.5 .5 {}))   ((.5 .5 {}) (.5 .5 {}))   {} {} {} {} {} 1 1 1 1) // 1\n'.format(blocks_x_foil, blocks_y, 1/egrade_o, egrade_x, 1/egrade_x, egrade_x, 1/egrade_x, 1/egrade_o, 1/(grmul*grade_y), 1/grade_y, 1/grade_y, 1/(grmul*grade_y)),
+        '\t\thex ( 8 10 12 16  9 11 13 17 ) ({} {} 1) edgeGrading ( 1 {} {} 1 {} {} {} {} 1 1 1 1 ) // 2\n'.format(blocks_x, blocks_y, grade_x, grade_x, 1/grade_y, 1/grade_yo, 1/grade_yo, 1/grade_y),
+        '\t\thex ( 2 12 14  4  3 13 15  5 ) ({} {} 1) edgeGrading ( {} 1 1 {} {} {} {} {} 1 1 1 1 ) // 3\n'.format(blocks_x, blocks_y, grade_x, grade_x, grade_y, grade_yo, grade_yo, grade_y),
+        ');\n\n'
+    ]
 
 thetaRad = theta * np.pi/180
 mid_x = -radius * np.cos(thetaRad/2)
@@ -280,6 +311,11 @@ edges = [
 
 pointsdef = makepoints(pback,bk,fr)
 
+if finiteTE:
+    facefile = './system/facesTE'
+else:
+    facefile = './system/faces'
+
 with open('./system/blockMeshDict','w') as f:
     f.writelines(header)
     f.writelines(opener)
@@ -287,5 +323,5 @@ with open('./system/blockMeshDict','w') as f:
     f.writelines(pointsdef)
     f.writelines(blocks)
     f.writelines(edges)
-    with open('./system/faces','r') as g:
+    with open(facefile, 'r') as g:
         f.writelines(g.readlines())
