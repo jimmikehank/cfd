@@ -90,7 +90,7 @@ def retrieve_lift(folder,debug=False):
             forces = np.vstack([forces, pressure_forces + viscous_forces])
             moments = np.vstack([moments, pressure_moments + viscous_moments])
             time = np.append(time,float(file))
-    return forces, moments, time    
+    return forces, moments, time
 
 def cmu_openloop(cmu, U, c, b, rho):
     import numpy as np
@@ -106,7 +106,7 @@ def run_fun(parallel = False):
     import os
     if parallel:
         decompose = "decomposePar"
-        run = "mpirun -np 4 rhoSimpleFoam -parallel"
+        run = "mpirun -np 2 rhoSimpleFoam -parallel"
         reconstruct = "reconstructPar -latestTime"
         os.system(decompose)
         os.system(run)
@@ -123,7 +123,7 @@ def single_run(cmu_target, cmu_command, re_command, rho, mu, c, b, eps, urf, par
     print(U)
     time.sleep(3)
     mdot = cmu_openloop(cmu_command, U, c, b, rho)
-    mesh_command = "python3 autoMesh.py --clean true --mdot {} --meanFlow {} --airfoil NACA0015".format(mdot, U)
+    mesh_command = "python3 autoMesh.py --clean true --mdot {} --meanFlow {} --airfoil naca0015".format(mdot, U)
     print("AutoMesh command: {}".format(mesh_command))
     blockmesh = "blockMesh"
     run_command = "rhoSimpleFoam"
@@ -133,14 +133,16 @@ def single_run(cmu_target, cmu_command, re_command, rho, mu, c, b, eps, urf, par
     cmu_actual = cmu_calc(U, mdot, c, b, rho)
     print("Cmu Measured: {}".format(cmu_actual))
     e = cmu_feedback(cmu_target, cmu_actual)
+    if cmu_target == 0:
+        e = 0
     kp = urf
     print("Cmu error: {}".format(e))
 
-    if abs(e) < eps:
+    if abs(e) <= eps:
         print("Single run completed")
         print("\n\tFinal Values:\n")
         print("Vjet: {}\nCmu: {}\nCmu error: {}".format(max_velocity('./'), cmu_actual, e))
-        save_command = "python3 autoMesh.py --store True --runName /c{}/cmu{}/re{}".format(c,cmu_target,re_command)
+        save_command = "python3 autoMesh.py --store True --runName /c{}/cmu{}/re{}".format(c,round(cmu_target,4),re_command)
         # save_command = "python3 autoMesh.py --store True --runName /c{}/cmu{}".format(c,cmu_target,re_command)
         os.system(save_command)
         return 0

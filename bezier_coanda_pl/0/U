@@ -19,7 +19,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-alpha				0.0;				 // Angle of Attack
+alpha						0.0;				 // Angle of Attack
 U								25.0;						 // Mean Flow Speed
 
 

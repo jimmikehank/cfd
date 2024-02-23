@@ -35,7 +35,9 @@ boundaryField
 		}
 		coandaLower
 		{
-				type		zeroGradient;
+        type		inletOutlet;
+        inletValue uniform $Tcoanda;
+        value		uniform $Tcoanda;
 		}
 		coandaUpper
 		{

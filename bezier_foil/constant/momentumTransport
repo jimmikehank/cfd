@@ -19,7 +19,7 @@ simulationType RAS;
 
 RAS
 {
-    model           kEpsilon;
+    model           SpalartAllmaras;
 
     turbulence      on;
 

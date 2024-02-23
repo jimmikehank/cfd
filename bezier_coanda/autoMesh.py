@@ -6,9 +6,7 @@ import time
 from os import path
 import argparse
 
-# This function provides an optional command line input to clean up the folder in case of old test cases needing deletion.
-
-N = 5
+num_points = 5
 retain = ['0', 'constant', 'system', 'data_process.ipynb', 'autoMesh.py', 'output','bezier_foil.py', '.ipynb_checkpoints','autoCFD.py','airfoil_comparison.png','james_test.py','FFD','processing.py','autoFD.py']
 file_delete = []
 U_filename = './0/U'
@@ -18,7 +16,7 @@ eps_filename = './0/omega'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--iter', default = 0, type = int, help = 'Iteration for selection of optimization control points')
-parser.add_argument('--airfoil', default = 'NACA0012', type = str, help = 'Selection of initial airfoil')
+parser.add_argument('--airfoil', default = 'NACA0015', type = str, help = 'Selection of initial airfoil')
 parser.add_argument('--runName', default = 'fail_check', type = str, help = 'Name of target directory for control points')
 parser.add_argument('--aoa', default = 0., type = float, help = 'Specified angle of attack in degrees, \nDefault: 0.0')
 parser.add_argument('--clean', default = False, type = bool, help = 'Run clean function. \nDefault: False')
@@ -26,7 +24,8 @@ parser.add_argument('--store', default = False, type = bool, help = 'Run store f
 parser.add_argument('--mdot', default = 0.0, type = float, help = 'Mass flow for coanda in kg/s')
 parser.add_argument('--meanFlow', default = 25.0, type = float, help = 'Mean flow speed for simulation in m/s \n Default: 25.0')
 parser.add_argument('--FD', default = [0, 0], type = int, nargs=2, help = "Control point, direction] to iterate on for forward difference")
-parser.add_argument('--delta', default = 1e-6, type = float, help = "Step size for forward difference")
+parser.add_argument('--delta', default = 1e-8, type = float, help = "Step size for forward difference")
+parser.add_argument('--mdot_lower', default = 0.0, type = float, help = 'Mass flow for lower coanda, only used for vectoring')
 args = parser.parse_args()
 
 iteration = args.iter
@@ -38,16 +37,20 @@ store_bool = args.store
 mdot = np.around(args.mdot,6)
 meanflow = args.meanFlow
 fd = args.FD
-print(fd)
 delta = args.delta
 chord_length = 0.3
+mdotl = args.mdot_lower
 
 airfoil_dir = '/home/james/Documents/research/cfd/airfoils/'
+
 
 def store(retain,name):
     import os
     import shutil
+    import time
     # print(retain)
+    print("Saving run in {}".format(name))
+    time.sleep(2)
     ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints','processing.py']
     copy = ['0','system','constant','dynamicCode']
     dirs = os.listdir()
@@ -56,7 +59,7 @@ def store(retain,name):
         if item[0:9] == 'processor':
             delete.append(item)
     target = name
-    casefile = "/home/james/Documents/research/completed_cases/reynolds_dependence/{}/".format(target)
+    casefile = "/home/james/Documents/research/completed_cases/directional/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
@@ -111,21 +114,25 @@ def change_line_Tbound(T_filename,mdot):
         g.close()
 
 
-def change_line_massflow(U_filename,mdot):
+def change_line_massflow(U_filename,mdot,mdotlower=0.):
     ui = 23
     li = 24
     with open(U_filename,'r') as f:
         test_lines = f.readlines()
         f.close()
-    if mdot == 0:
+    if mdotlower != 0.:
         new_line_u = 'massflow_u\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
-        new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
-    elif mdot > 0:
-        new_line_u = 'massflow_u\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
-        new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(0.)
+        new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdotlower)
     else:
-        new_line_u = 'massflow_u\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(0.)
-        new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(-mdot)
+        if mdot == 0:
+            new_line_u = 'massflow_u\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
+            new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
+        elif mdot > 0:
+            new_line_u = 'massflow_u\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(mdot)
+            new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(0.)
+        else:
+            new_line_u = 'massflow_u\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(0.)
+            new_line_l = 'massflow_l\t\t\t\t{};\t\t\t\t // mass flow rate\n'.format(-mdot)
     test_lines[23] = new_line_u
     test_lines[24] = new_line_l
     with open(U_filename,'w') as g:
@@ -182,13 +189,13 @@ if store_bool:
 if clean_bool:
     cleanup(retain)
 
-print("\n ----- AutoMesh started! -----\n\nAutoMesh Parameters:\nMass flow: {}\nAngle of Attack: {}\nMean flowspeed: {}\n".format(mdot, aoa, meanflow))
-change_line_massflow(U_filename,mdot)
+print("\n ----- AutoMesh started! -----\n\nAutoMesh Parameters:\nMass flow: {}\nAngle of Attack: {}\nMean flowspeed: {}\nFD Mode Delta: {}".format(mdot, aoa, meanflow,delta))
+change_line_massflow(U_filename,mdot,mdotl)
 change_line(U_filename,aoa)
 change_line_meanflow(U_filename, meanflow)
 # change_line_komega(k_filename, eps_filename, meanflow, chord_length)
 
-time.sleep(2.5)
+time.sleep(1)
 
 def arg_handle():
     # Default Values
@@ -216,32 +223,18 @@ if iteration == 0:
         bezfoil = init_bezfoil(m,cpu,control_points_lower=cpl,symmetric=False)
     else:
         file = '/home/james/Documents/research/cfd/airfoils/{}-il.csv'.format(airfoil_sel)
-        bezfoil, cpu, cpl, iters = foil_opt(control_points_init, file, chord_length, 1e-7,m=m,step = 2,debug=True,control_points_lower=cpl_init,sym=symmetry)
+        bezfoil, cpu, cpl, iters = foil_opt(control_points_init, file, chord_length, 1e-8,m=m,step = 2,debug=True,control_points_lower=cpl_init,sym=symmetry)
         np.savetxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel),cpu)
         np.savetxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel),cpl)
-    # Command line argument handler:
+
     upper, lower, coanda = coanda_foil(r,t,h,cpu,cpl)
-    xup = np.linspace(-chord_length,upper[-1,0],5)[1:-1]
-    yup = np.ones([1,3])*0.2*chord_length
-    ylo = -1 * yup
-    fill = np.vstack([xup,yup]).T
-    cpu_reinit = np.vstack([upper[0,:],[upper[0,0],upper[0,1]+.2*chord_length],fill,upper[-1,:]]).T
-    print(cpu_reinit)
-    cpu_reinit = np.vstack([cpu_reinit,upper[-1,:]])
-    cpl_reinit = np.vstack([np.linspace(lower[0,0],lower[-1,0],4), np.linspace(lower[0,1],lower[-1,1],4)]).T
-    cpl_reinit = np.vstack([cpl_reinit,lower[-1,:]])
-    surfhi, cpu, _t = surface_opt(cpu_reinit, upper, 101)
-    surflo, cpl, _t = surface_opt(cpl_reinit, lower, 101)
-    plt.figure(figsize=[10,10])
-    plt.plot(surfhi[:,0],surfhi[:,1])
-    plt.gca().set_aspect('equal')
-    plt.savefig('./output/cputest.png')
+
+
 
 else:
-    cp_up = np.loadtxt('{}/optimization/{}/{}_cpu.txt'.format(airfoil_dir, runName, iteration-1))
-    cp_lo = np.loadtxt('{}/optimization/{}/{}_cpl.txt'.format(airfoil_dir, runName, iteration-1))
-    cp_up, cp_lo = iterate_control_points(cp_up, cp_lo, fd, delta)
-    print(cp_up,cp_lo)
+    cp_up = np.loadtxt('{}/optimization/{}/{}_cpu.txt'.format(airfoil_dir, runName, iteration))
+    cp_lo = np.loadtxt('{}/optimization/{}/{}_cpl.txt'.format(airfoil_dir, runName, iteration))
+
     coanda = coanda_surfs(r,t,h, cp_up, cpl = cp_lo, m = m)
     upper = bezier_curve(cp_up, m)
     lower = bezier_curve(cp_lo, m)
@@ -305,38 +298,38 @@ for j in range(1,np.shape(lower)[0]-1):
 # Finally: Define the blocking and grading parameters!
 
 # Chord length 0.3m
-blocks_x_L = 50
-blocks_y_L = 60
-blocks_x_R = 70
+blocks_x_L = 40
+blocks_y_L = 40
+blocks_x_R = 60
 blocks_y_R = blocks_y_L
 blocks_y_co = 3
 blocks_x_flat = 10
-grade_x_L = 2
+grade_x_L = 1
 egrade_x = 10
 egrade_o = 10
-grade_y = 900
+grade_y = 1000
 
-
+#
 # Chord 0.5
-# blocks_x_L = int(70)
-# blocks_y_L = int(80)
-# blocks_x_R = int(100)
+# blocks_x_L = 75
+# blocks_y_L = 75
+# blocks_x_R = 110
 # blocks_y_R = blocks_y_L
 # blocks_y_co = 3
-# blocks_x_flat = int(12)
+# blocks_x_flat = 14
 # grade_x_L = 2
 # egrade_x = 10
 # egrade_o = 10
 # grade_y = 1200
 
 # Chord 1.0+
-# blocks_x_L = 125
-# blocks_y_L = 155
-# blocks_x_R = 200
+# blocks_x_L = 145
+# blocks_y_L = 175
+# blocks_x_R = 240
 # blocks_y_R = blocks_y_L
 # blocks_y_co = 3
-# blocks_x_flat = 10
-# grade_x_L = 2
+# blocks_x_flat = 14
+# grade_x_L = 1.5
 # egrade_x = 10
 # egrade_o = 10
 # grade_y = 1400

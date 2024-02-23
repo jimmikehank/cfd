@@ -53,7 +53,7 @@ def interp_foil(bezfoil, airfoil):
     bez_mids = np.where(bezfoil[:,0] == 0)[0]
     af_mid = np.where(airfoil[:,0] == 0)[0][0]
     airfoil_upper = airfoil[0:af_mid+1,:]
-    airfoil_lower = airfoil[af_mid:,:]
+    airfoil_lower = airfoil[1+af_mid:,:]
     interp_upper_foil = interpolate.interp1d(airfoil_upper[:,0],airfoil_upper[:,1],kind='linear',fill_value='extrapolate')
     interp_lower_foil = interpolate.interp1d(airfoil_lower[:,0],airfoil_lower[:,1],kind='linear',fill_value='extrapolate')
     afint_upper = interp_upper_foil(bezfoil[0:bez_mids[1],0])
@@ -214,8 +214,7 @@ def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-12, m=101,
         plt.figure(figsize=[20,3])
         plt.plot(airfoil_raw[:,0],airfoil_raw[:,1],'b-')
         plt.plot(bezfoil[:,0],bezfoil[:,1],'r--')
-        plt.axis('equal')
-        plt.ylim([-.08,.08])
+        plt.gca().set_aspect('equal')
         plt.tick_params(axis='both',labelsize=16)
         plt.legend(['Original Airfoil','Optimized Airfoil'],fontsize=16)
         plt.savefig('airfoil_comparison.png')
@@ -228,8 +227,9 @@ def foil_opt(control_points,af_filename,chord = 1., eps=1e-6, deps=1e-12, m=101,
     else:
         return bezfoil, control_points, control_points_lower, iters
 
-def surface_opt(control_points, surf, m = 101, eps = 1e-6, deps = 1e-12, max_iters = 1e6, step = 1, debug=False):
+def surface_opt(control_points, surf, m = 101, eps = 2e-8, deps = 1e-12, max_iters = 1e6, step = 0.5, debug=False):
     import numpy as np
+    from matplotlib import pyplot as plt
     bezier = bezier_curve(control_points, m)
     err = 1
     err_prev = .5
@@ -354,16 +354,18 @@ def coanda_surfs(r,t,h,cpu,cpl=[],m=101):
 
     foil_lower_init = bezier_curve(cpl,m)
     eps = 1e-6
-    coanda_pts =np.array([[0,0],[-r,r],[-r+eps,r+h],[-r+eps*2,r+h+t],foil_upper_init[-1,:],[-r,-r],[-r+eps,-r-h],[-r+eps*2,-r-h-t],[foil_lower_init[-1,0],foil_lower_init[-1,1]]])
+    coanda_pts =np.array([[0,0],[-r,r],[-r+eps,r+h],[-r+eps*2,r+h+t],foil_upper_init[-1,:],[-r,-r],[-r+eps,-r-h],[-r+eps*2,-r-h-t],foil_lower_init[-1,:]])
     return coanda_pts
 
 
 
-def coanda_foil(r,t,h,cpu,cpl=np.array([]),m=101):
+def coanda_foil(r,t,h,cpu,cpl=np.array([]),m=201):
     import numpy as np
+    from matplotlib import pyplot as plt
 
     te_height = r+t+h
     foil_upper_init = bezier_curve(cpu,m)
+    print(te_height)
 
     if np.shape(cpl)[0] == 0:
         cpl = cpu*np.array([1,-1])
@@ -437,9 +439,173 @@ def iterate_control_points(cpu,cpl,fd,delta):
         points[cp,dir] = points[cp,dir] + delta
         n = np.shape(cpu)[0]
         cpu_out = points[:n,:]
-        cpl_out = points[:n,:]
+        cpl_out = points[n:,:]
     else:
         cpu_out = cpu
         cpl_out = cpl
 
     return cpu_out, cpl_out
+
+
+def initialize_control_points(num_points, upper, lower, chord_length):
+    import numpy as np
+    invert_vec = np.array([1,-1])
+    cl = chord_length
+    uu = upper
+    ul = lower
+
+    cpU_reinit = np.zeros([num_points,2])
+    cpL_reinit = np.zeros([num_points,2])
+
+    cpU_reinit[0,:] = [-cl,0]
+    cpU_reinit[1,:] = [-cl, cl * .1]
+    cpU_reinit[-1,:] = upper[-1,:]
+
+    cpU_reinit[2:-1,:] = np.vstack([np.linspace(-cl * .9, uu[-1,0] - cl * .2, num_points-3), np.ones([num_points-3]) * cl * .2]).T
+
+    cpL_reinit[0,:] = [-cl,0]
+    cpL_reinit[1,:] = [-cl,-cl * .1]
+    cpL_reinit[-1,:] = lower[-1,:]
+
+    cpL_reinit[2:-1,:] = np.vstack([np.linspace(-cl * .9, ul[-1,0] - cl * .2, num_points-3), -np.ones([num_points-3]) * cl * .2]).T
+
+    upper, cpU, iters_u = surface_opt(cpU_reinit, upper, debug=True)
+    lower, cpL, iters_l = surface_opt(cpL_reinit, lower, debug=True)
+    return cpU, cpL
+
+def gradient_sweep(mdot,meanflow,run_name,cp_size,targs,iter,delta):
+    import numpy as np
+    import os
+    from processing import retrieve_lift
+
+    block = "blockMesh"
+    run = "rhoSimpleFoam"
+    force = "rhoSimpleFoam -postProcess -func forces"
+    foils_dir = '/home/james/Documents/research/cfd/airfoils/'
+    airfoil = 'naca0015'
+    direcs = [1,2]
+    ii = iter
+    dFdX = np.zeros([2*cp_size,2])
+    mesh = "python3 autoMesh.py --clean true --airfoil naca0015 --mdot {} --meanFlow {} --runName {} --iter {} --delta {}".format(mdot, meanflow, run_name, ii,delta)
+    os.system(mesh)
+    os.system(block)
+    os.system(run)
+    os.system(force)
+    forces,moments,tt = retrieve_lift('./')
+    L_base = forces[-1,1]
+    if mdot != 0:
+        with open('./output/lift.txt','a') as f:
+            f.write("{}\n".format(L_base))
+            f.close()
+
+    cpu = np.loadtxt(foils_dir + 'optimization/{}/{}_cpu.txt'.format(run_name,ii))
+    cpl = np.loadtxt(foils_dir + 'optimization/{}/{}_cpl.txt'.format(run_name,ii))
+    points = np.vstack([cpu,cpl])
+    for j in targs:
+        if j != 1:
+            for k in direcs:
+                mesh = "python3 autoMesh.py --clean true --airfoil naca0015 --mdot {} --meanFlow {} --runName {} --FD {} {} --iter {} --delta {}".format(mdot, meanflow, run_name, j, k, ii, delta)
+                os.system(mesh)
+                os.system(block)
+                os.system(run)
+                os.system(force)
+                forces,moments,tt = retrieve_lift('./')
+                dFdX[j,k-1] = (forces[-1,1]-L_base)/delta
+        else:
+            k = 1
+            mesh = "python3 autoMesh.py --clean true --airfoil naca0015 --mdot {} --meanFlow {} --runName {} --FD {} {} --iter {} --delta {}".format(mdot, meanflow, run_name, j, k+1, ii, delta)
+            os.system(mesh)
+            os.system(block)
+            os.system(run)
+            os.system(force)
+            forces,moments,tt = retrieve_lift('./')
+            dFdX[j,k] = (forces[-1,1]-L_base)/delta
+
+    return dFdX
+
+def volume_calculation(cpu,cpl):
+    import numpy as np
+    from matplotlib import pyplot as plt
+    upper = bezier_curve(cpu,101)
+    lower = bezier_curve(cpl,101)
+    # plt.figure()
+    # plt.plot(upper[:,0],upper[:,1],lower[:,0],lower[:,1])
+    # plt.savefig('test_update.jpg')
+    vol = np.trapz(upper[:,1],x=upper[:,0]) - np.trapz(lower[:,1],x=lower[:,0])
+    return vol
+
+def constrain_volume(cpu_old, cpl_old, cpu_new, cpl_new, con_vol, constraint = 1.0):
+    import numpy as np
+    dx = 1e-5
+    vol_init = volume_calculation(cpu_old,cpl_old)
+    vol_upper = con_vol * (1 + constraint)
+    vol_lower = con_vol * (1 - constraint)
+
+    cp_full = np.vstack([cpu_old,cpl_old])
+    dcp_full = np.vstack([cpu_new-cpu_old,cpl_new-cpl_old])
+    dFdX = dcp_full
+    M = np.shape(cpu_old)[0]
+    N = np.shape(cp_full)[0]
+    dVdX = np.zeros([N,2])
+    mult = np.ones([N,2])
+    cont = 'y'
+
+
+    for i in range(N):
+        if i == 0 or i == N/2 or i == N/2 - 1 or i == N-1:
+            for j in range(2):
+                dFdX[i,j] = 0
+        else:
+            for j in range(2):
+                cp_new = cp_full
+                cp_new[i,j] += dx
+                vol_new = volume_calculation(cp_new[:M,:],cp_new[M:,:])
+                dVdX[i,j] = np.sign(vol_new - vol_init)/2
+
+    if vol_init > con_vol:
+        if vol_init > vol_upper:
+            dFdX = dFdX * (1 - 2 * dVdX)
+            print("upper hard constraint")
+            print(vol_init)
+            # cont = input('Continue? (y/n)')
+            if cont.lower() == 'n':
+                exit()
+            else:
+                pass
+        else:
+            dFdX = dFdX * (1 - dVdX)
+            print("upper soft constraint")
+            print(vol_init)
+            # cont = input('Continue? (y/n)')
+            if cont.lower() == 'n':
+                exit()
+            else:
+                pass
+        cp_full += dFdX
+    elif vol_init < con_vol:
+        if vol_init < vol_lower:
+            dFdX = dFdX * (1 + 2 * dVdX)
+            print("lower hard constraint")
+            print(vol_init)
+            # cont = input('Continue? (y/n)')
+            if cont.lower() == 'n':
+                exit()
+            else:
+                pass
+        else:
+            dFdX = dFdX * (1 + dVdX)
+            print("lower soft constraint")
+            print(vol_init)
+            # cont = input('Continue? (y/n)')
+            if cont.lower() == 'n':
+                exit()
+            else:
+                pass
+       # with open('/home/james/research/completed_cases/dFdX.txt') as f:
+       #     f.writelines(dFdX)
+        cp_full += dFdX
+    else:
+        cp_full += dFdX
+    cpu = cp_full[:M,:]
+    cpl = cp_full[M:,:]
+    return cpu, cpl, dFdX, dVdX,

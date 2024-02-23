@@ -24,6 +24,8 @@ parser.add_argument('--mdot', default = 0.0, type = float, help = 'Mass flow for
 parser.add_argument('--meanFlow', default = 25.0, type = float, help = 'Mean flow speed for simulation in m/s \n Default: 25.0')
 parser.add_argument('--control', default = 0, type = int, help = 'Selected variable to step in for forward finite differencing. \nValues:\n0: None\n1:Coanda Radius\n2:Coanda Opening Height\n3: Knife Edge Thickness')
 parser.add_argument('--delta', default = 1e-5, type = float, help = 'Size of step for forward differencing\nDefault: 1e-5')
+parser.add_argument('--pressUp', default = 100001, type = float, help = 'Pressure in upper plenum')
+parser.add_argument('--pressLo', default = 100001, type = float, help = 'Pressure in lower plenum')
 args = parser.parse_args()
 
 clean = args.clean
@@ -34,6 +36,8 @@ store = args.store
 controls = args.control
 iters = args.iter
 delta = args.delta
+pupper = args.pressUp
+plower = args.pressLo
 
 def store(retain,name):
     import os
@@ -47,7 +51,7 @@ def store(retain,name):
             delete.append(item)
     target = name
     # casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
-    casefile = "/media/james/Data/james/completed_cases/coanda_airfoils/{}/".format(target)
+    casefile = "/media/james/Data/james/completed_cases/directional/plenum/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
@@ -75,7 +79,7 @@ def change_line_aoa(U_filename,aoa):
     with open(U_filename,'r') as f:
         test_lines = f.readlines()
         f.close()
-    new_line = 'alpha\t\t\t\t{};\t\t\t\t // Angle of Attack\n'.format(aoa)
+    new_line = 'alpha\t\t\t\t\t\t{};\t\t\t\t // Angle of Attack\n'.format(aoa)
     test_lines[21] = new_line
     with open(U_filename,'w') as g:
         g.writelines(test_lines)
@@ -90,15 +94,31 @@ def change_line_meanflow(U_filename,meanflow):
     with open(U_filename,'w') as g:
         g.writelines(test_lines)
         g.close()
+
+def change_line_pressure(P_filename,pupper,plower):
+    with open(P_filename,'r') as f:
+        test_lines = f.readlines()
+        f.close()
+    new_line_u = 'upper_pressure uniform {};\t\t\t\t\t\t // Upper Plenum Pressure\n'.format(pupper)
+    new_line_l = 'lower_pressure uniform {};\t\t\t\t\t\t // Lower Plenum Pressure\n'.format(plower)
+    test_lines[22] = new_line_u
+    test_lines[23] = new_line_l
+    with open(P_filename,'w') as g:
+        g.writelines(test_lines)
+        g.close()
 #---------- Initialization of Coanda Definition --------------#
 
 
 Ufile = './0/U'
+Pfile = './0/p'
 if clean == True:
     cleanup(retain)
 
 change_line_aoa(Ufile,aoa)
 change_line_meanflow(Ufile,meanflow)
+change_line_pressure(Pfile, pupper, plower)
+print("Changed pressure to {}".format(pupper))
+
 
 
 def loadnumbers(iters):

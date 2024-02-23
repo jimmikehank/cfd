@@ -31,7 +31,7 @@ store_bool = args.store
 meanflow = args.meanFlow
 
 # Define Chord Length for all Other Scaling:
-chord_length = 1
+chord_length = 0.3
 
 def store(retain, target):
     import os
@@ -41,16 +41,13 @@ def store(retain, target):
     dirs = os.listdir()
     delete = []
     for item in dirs:
-        if item[0:3] == 'pro':
+        if item[0:9] == 'processor':
             delete.append(item)
     casefile = target
-    print(casefile)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
-        print(existing)
     else:
         os.mkdir(casefile)
-        print('make')
         existing = []
     for item in dirs:
         if item in delete:
@@ -146,8 +143,8 @@ scale = 1
 
 # Other important values:
 span = 1
-farfield = 25 * chord_length
-trailing = 8 * chord_length
+farfield = 6 * chord_length
+trailing = 4 * chord_length
 theta = 90 + np.arctan(trailing/farfield)*(180/np.pi)
 # Bounding Box:
 
@@ -197,8 +194,8 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x = 80
-blocks_x_foil = 100
+blocks_x = 50
+blocks_x_foil = 50
 blocks_y = 70
 grade_x = 1200
 egrade_x = 10
