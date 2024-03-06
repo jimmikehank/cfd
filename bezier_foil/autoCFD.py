@@ -3,10 +3,11 @@ import os
 import sys
 from processing import *
 
-aoa_sweep = np.arange(13,14+1,1)
+# aoa_sweep = np.arange(13,14+1,1)
+aoa_sweep = [0]
 parallel = False
 flow_speed = 40
-airfoil = 'opt1'
+airfoil = 'naca0015'
 
 blockmesh = "blockMesh"
 run_command = "rhoSimpleFoam"
@@ -28,7 +29,7 @@ if runval == 'y':
     for j in aoa_sweep:
         file_ext = str(int(np.around(j,4))).replace('-','n')
         mesh_command = "python3 autoMesh.py --clean true --aoa {} --airfoil {} --meanFlow {}".format(j,airfoil,flow_speed)
-        save_command = "python3 autoMesh.py --store True --runName {}/{}".format(testdir,file_ext)
+        # save_command = "python3 autoMesh.py --store True --runName {}/{}".format(testdir,file_ext)
         os.system(mesh_command)
         os.system(blockmesh)
         try:
@@ -36,7 +37,10 @@ if runval == 'y':
         except(KeyboardInterrupt):
             print("Simulation Cancelled by User")
             exit()
-        os.system(save_command)
+        # os.system(save_command)
+        f,m,tt = retrieve_lift('./')
+        cs = f[-1,:]/(0.5 * 1.17 * flow_speed**2 * 1)
+        print("Force coefficients: {}".format(cs))
 
 # meanflow = 50
 # aoa = 0

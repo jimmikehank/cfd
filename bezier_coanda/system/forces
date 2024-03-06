@@ -20,7 +20,7 @@ forces
     rho           rho;
     log           true;
 
-    CofR          (0 0 0);
+    CofR          (-0.225 0 0);
 }
 
 

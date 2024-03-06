@@ -116,14 +116,14 @@ def run_fun(parallel = False):
         os.system(run)
 
 
-def single_run(cmu_target, cmu_command, re_command, rho, mu, c, b, eps, urf, parallel=False):
+def single_run(cmu_target, cmu_command, re_command, rho, mu, c, b, eps, urf, airfoil='naca0015',parallel=False):
     import os
     import time
     U = re_convert(re_command, rho, c, mu)
     print(U)
     time.sleep(3)
     mdot = cmu_openloop(cmu_command, U, c, b, rho)
-    mesh_command = "python3 autoMesh.py --clean true --mdot {} --meanFlow {} --airfoil naca0015".format(mdot, U)
+    mesh_command = "python3 autoMesh.py --clean true --mdot {} --meanFlow {} --airfoil ".format(mdot, U, airfoil)
     print("AutoMesh command: {}".format(mesh_command))
     blockmesh = "blockMesh"
     run_command = "rhoSimpleFoam"
