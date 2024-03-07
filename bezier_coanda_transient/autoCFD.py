@@ -2,7 +2,7 @@ import numpy as np
 import os
 from processing import *
 
-mdot = 0.006
+mdot = 0.003
 pulse_start = 0.2
 pulse_duration = 0.0012
 meanflow = 25
