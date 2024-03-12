@@ -57,7 +57,7 @@ boundaryField
 						type scale;
 						scale 0.003;
 						value {
-									type				squarePulse;
+									type				one - squarePulse;
 									start 			$pulseStart;
 									duration 		$pulseDuration;
 						}
