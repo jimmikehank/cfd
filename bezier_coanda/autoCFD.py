@@ -50,8 +50,10 @@ for aoa in aoas:
         run = 'rhoSimpleFoam'
         save = 'python3 autoMesh.py --store true --runName aoa{}_mdot{}'.format(aoa,np.around(i,4))
 
-
-        os.system(mesh)
-        os.system(block)
-        os.system(run)
-        os.system(save)
+        try:
+            os.system(mesh)
+            os.system(block)
+            os.system(run)
+            os.system(save)
+        except(KeyboardInterrupt):
+            exit()
