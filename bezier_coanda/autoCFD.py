@@ -39,18 +39,19 @@ cmu_range= [0.02]
 ### For single modifiable runs ###
 ##################################
 
-U = 15
-cmu = 0.0
-mdot = cmu_openloop(cmu, U, c, b, rho)
-print('Mass flow selected: {}kg/s'.format(mdot))
-time.sleep(1.0)
-mesh = 'python3 autoMesh.py --clean True --airfoil {} --mdot {} --meanFlow {}'.format(airfoil, mdot, U)
+aoas = np.arange(0,10.1,2.5)
+mdot_range = np.arange(0.,0.0061,0.0005)
+re = 625000
+meanflow = re_convert(re, rho, c)
+for aoa in aoas:
+    for i in mdot_range:
+        mesh = 'python3 autoMesh.py --clean True --airfoil naca0015 --mdot {} --meanFlow {} --aoa {}'.format(i, meanflow, aoa)
+        block = 'blockMesh'
+        run = 'rhoSimpleFoam'
+        save = 'python3 autoMesh.py --store true --runName aoa{}_mdot{}'.format(aoa,np.around(i,4))
 
-os.system(mesh)
-os.system('blockMesh')
-os.system('rhoSimpleFoam')
 
-f,m,tt = retrieve_lift('./')
-cs = f[-1,:] / (0.5 * rho * U**2 * b * c)
-
-print('Forces = {}'.format(cs))
+        os.system(mesh)
+        os.system(block)
+        os.system(run)
+        os.system(save)

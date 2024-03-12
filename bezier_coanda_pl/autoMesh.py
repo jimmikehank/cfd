@@ -32,30 +32,34 @@ clean = args.clean
 airfoil = args.airfoil.lower()
 aoa = args.aoa
 meanflow = args.meanFlow
-store = args.store
+savebool = args.store
 controls = args.control
 iters = args.iter
 delta = args.delta
 pupper = args.pressUp
 plower = args.pressLo
+runName = args.runName
 
 def store(retain,name):
     import os
     import shutil
-    ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints']
+    import time
+    # print(retain)
+    print("Saving run in {}".format(name))
+    time.sleep(2)
+    ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints','processing.py']
     copy = ['0','system','constant','dynamicCode']
     dirs = os.listdir()
     delete = []
     for item in dirs:
-        if item[0:3] == 'pro':
+        if item[0:9] == 'processor':
             delete.append(item)
     target = name
-    # casefile = "/home/james/Documents/research/completed_cases/coanda_airfoils/{}/".format(target)
-    casefile = "/media/james/Data/james/completed_cases/directional/plenum/{}/".format(target)
+    casefile = "/home/james/Documents/research/completed_cases/plenum_comparison/plenum/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
-        os.mkdir(casefile)
+        os.system("mkdir -p {}".format(casefile))
         existing = []
     for item in dirs:
         if item in delete:
@@ -64,6 +68,7 @@ def store(retain,name):
             shutil.move(item,casefile)
         elif item in copy:
             shutil.copytree(item,casefile+item)
+
 
 def cleanup(retain):
     import shutil
@@ -113,6 +118,8 @@ Ufile = './0/U'
 Pfile = './0/p'
 if clean == True:
     cleanup(retain)
+if savebool == True:
+    store(retain,runName)
 
 change_line_aoa(Ufile,aoa)
 change_line_meanflow(Ufile,meanflow)

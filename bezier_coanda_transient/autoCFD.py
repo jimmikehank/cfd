@@ -4,10 +4,11 @@ from processing import *
 
 mdot = 0.003
 pulse_start = 0.2
-pulse_duration = 0.0012
-meanflow = 25
+pulse_duration = 0.001
+meanflow = 30
 parallel = True
-name = 'std_init_5'
+name = 'std_init_9'
+
 
 mesh_command = 'python3 autoMesh.py --clean true --airfoil naca0015 --mdot {} --meanFlow {}'.format(mdot, meanflow)
 blockmesh = 'blockMesh'

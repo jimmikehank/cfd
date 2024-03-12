@@ -258,11 +258,11 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Works up to Re = 1.5e6
 # Chord length 0.3m
-blocks_x_L = 50
-blocks_y_L = 60
-blocks_x_R = 80
+blocks_x_L = 40
+blocks_y_L = 40
+blocks_x_R = 60
 blocks_y_R = blocks_y_L
-blocks_y_co = 5
+blocks_y_co = 3
 blocks_x_flat = 15
 grade_x_L = 2
 egrade_x = 10

@@ -155,8 +155,15 @@ def massflow_bc(case_folder = './'):
     import numpy as np
     import os
     bool = np.bool_
-    target = case_folder + '/VTK/coandaUpper/'
-    target+= os.listdir(target)[0]
+    files = os.listdir(case_folder)
+    files = [int(file) for file in files if check_float(file)]
+    sel = max(files)
+    target = case_folder + '/VTK/coandaUpper/coandaUpper_{}.vtk'.format(sel)
+    if not os.path.exists(target):
+        os.system('foamToVTK -case {}'.format(case_folder))
+    else:
+        pass
+
     raw = pv.read(target)
     points = raw.points
     x = raw.points[:,1]
@@ -172,3 +179,9 @@ def massflow_bc(case_folder = './'):
     mdot = intRhoU * w
 
     return mdot
+
+def mdot_to_pressure_bc(mdot):
+    import numpy as np
+    poly = np.array([5.95627190e+09, 2.59037882e+08, 1.95969042e+05, 100000])
+    pressure = np.polyval(poly,mdot)
+    return pressure
