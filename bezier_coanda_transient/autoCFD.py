@@ -7,7 +7,7 @@ pulse_start = 0.2
 pulse_duration = 0.001
 meanflow = 30
 parallel = True
-name = 'std_init_9'
+name = 'std_init_12'
 
 
 mesh_command = 'python3 autoMesh.py --clean true --airfoil naca0015 --mdot {} --meanFlow {}'.format(mdot, meanflow)
@@ -62,10 +62,10 @@ if parallel:
     # save_data = input("Save data (y/n): ").lower()
     # save_data = 'y'
     # if save_data == 'y':
-    os.system(save_command)
+    # os.system(save_command)
     # else:
     #     exit()
-    os.system('rhoPimpleFoam -postProcess -func forces -case /media/james/Data/james/completed_cases/coanda_airfoils/era/{}/'.format(name))
+    # os.system('rhoPimpleFoam -postProcess -func forces -case /media/james/Data/james/completed_cases/coanda_airfoils/era/{}/'.format(name))
 else:
     run_command = 'rhoPimpleFoam'
     os.system(run_command)

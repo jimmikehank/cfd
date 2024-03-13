@@ -44,7 +44,7 @@ def check_force(folder):
     import os
     import numpy as np
     files = os.listdir(folder)
-    cleaned = [int(x) for x in files if check_float(x)]
+    cleaned = [float(x) for x in files if check_float(x)]
     if os.path.exists(folder+"/postProcessing/forces/{}".format(np.max(cleaned))):
         return False
     else:
@@ -106,3 +106,45 @@ def single_run(cmu_target, cmu_command, re_command, rho, mu, c, b, eps, urf, par
         print("For diagnostics, Vjet = {}".format(max_velocity('./')))
         time.sleep(5)
         single_run(cmu_target, cmu_command + kp*e, re_command, rho, mu, c, b, eps, urf, parallel)
+
+def retrieve_lift(folder,debug=False):
+    import os
+    import shutil
+    import numpy as np
+    
+    files = os.listdir(folder)
+    cleaned = [x for x in files if check_float(x)]
+    files = sorted(cleaned)
+    needs_forces = check_force(folder)
+    if debug:
+        print(folder,needs_forces)
+    if needs_forces:
+        force_command = "rhoSimpleFoam -postProcess -case {} -func forces".format(folder)
+        os.system(force_command)
+    else:
+        pass
+    
+    forces = np.zeros(3)
+    moments = np.zeros(3)
+    time = np.array([])
+    
+    for file in files:    
+        with open("{}/postProcessing/forces/{}/forces.dat".format(folder,file)) as f:
+            full = f.readlines()
+            line = full[3]
+            starts = []
+            ends = []
+            for i in range(len(line)):
+                if line[i] == '(' and line[i+1] != '(':
+                    starts.append(i+1)
+                elif line[i] == ')' and line[i-1] != ')':
+                    ends.append(i)
+            pressure_forces = np.array([float(x) for x in line[starts[0]:ends[0]].split()])
+            viscous_forces = np.array([float(x) for x in line[starts[1]:ends[1]].split()])
+
+            pressure_moments = np.array([float(x) for x in line[starts[2]:ends[2]].split()])
+            viscous_moments = np.array([float(x) for x in line[starts[3]:ends[3]].split()])
+            forces = np.vstack([forces, pressure_forces + viscous_forces])
+            moments = np.vstack([moments, pressure_moments + viscous_moments])
+            time = np.append(time,float(file))
+    return forces, moments, time
