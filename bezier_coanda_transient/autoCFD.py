@@ -2,12 +2,12 @@ import numpy as np
 import os
 from processing import *
 
-mdot = 0.003
+mdot = 0.002
 pulse_start = 0.2
 pulse_duration = 0.001
-meanflow = 30
+meanflow = 20
 parallel = True
-name = 'std_init_12'
+name = 'era_std_2'
 
 
 mesh_command = 'python3 autoMesh.py --clean true --airfoil naca0015 --mdot {} --meanFlow {}'.format(mdot, meanflow)
@@ -57,12 +57,12 @@ if parallel:
     except:
         input("System failed before completion, press ENTER to reconstruct.")
         os.system(reconstruct)
-        exit
+        exit()
     os.system(reconstruct)
     # save_data = input("Save data (y/n): ").lower()
     # save_data = 'y'
     # if save_data == 'y':
-    # os.system(save_command)
+    os.system(save_command)
     # else:
     #     exit()
     # os.system('rhoPimpleFoam -postProcess -func forces -case /media/james/Data/james/completed_cases/coanda_airfoils/era/{}/'.format(name))

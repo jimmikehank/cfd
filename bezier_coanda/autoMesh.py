@@ -59,7 +59,7 @@ def store(retain,name):
         if item[0:9] == 'processor':
             delete.append(item)
     target = name
-    casefile = "/home/james/Documents/research/completed_cases/plenum_comparison/simple/{}/".format(target)
+    casefile = "/home/james/Documents/research/completed_cases/opt_characterize/steady/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:

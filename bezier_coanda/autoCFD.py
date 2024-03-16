@@ -40,20 +40,22 @@ cmu_range= [0.02]
 ##################################
 
 aoas = np.arange(0,10.1,2.5)
+aoas = [0]
 mdot_range = np.arange(0.,0.0061,0.0005)
-re = 625000
-meanflow = re_convert(re, rho, c)
-for aoa in aoas:
-    for i in mdot_range:
-        mesh = 'python3 autoMesh.py --clean True --airfoil naca0015 --mdot {} --meanFlow {} --aoa {}'.format(i, meanflow, aoa)
-        block = 'blockMesh'
-        run = 'rhoSimpleFoam'
-        save = 'python3 autoMesh.py --store true --runName aoa{}_mdot{}'.format(aoa,np.around(i,4))
+re_range = np.arange(250000,875001,125000)
+for re in re_range:
+    meanflow = re_convert(re, rho, c)
+    for aoa in aoas:
+        for i in mdot_range:
+            mesh = 'python3 autoMesh.py --clean True --airfoil opt1 --mdot {} --meanFlow {} --aoa {}'.format(i, meanflow, aoa)
+            block = 'blockMesh'
+            run = 'rhoSimpleFoam'
+            save = 'python3 autoMesh.py --store true --runName /re_{}/mdot_{}'.format(int(re),np.around(i,4))
 
-        try:
-            os.system(mesh)
-            os.system(block)
-            os.system(run)
-            os.system(save)
-        except(KeyboardInterrupt):
-            exit()
+            try:
+                os.system(mesh)
+                os.system(block)
+                os.system(run)
+                os.system(save)
+            except(KeyboardInterrupt):
+                exit()
