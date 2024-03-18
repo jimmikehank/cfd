@@ -69,6 +69,7 @@ def retrieve_lift(folder,debug=False):
 
     forces = np.zeros(3)
     moments = np.zeros(3)
+    fv = np.zeros(3)
     time = np.array([])
 
     for file in files:
@@ -87,10 +88,11 @@ def retrieve_lift(folder,debug=False):
 
             pressure_moments = np.array([float(x) for x in line[starts[2]:ends[2]].split()])
             viscous_moments = np.array([float(x) for x in line[starts[3]:ends[3]].split()])
-            forces = np.vstack([forces, pressure_forces + viscous_forces])
+            forces = np.vstack([forces, pressure_forces])
+            fv = np.vstack([fv, viscous_forces])
             moments = np.vstack([moments, pressure_moments + viscous_moments])
             time = np.append(time,float(file))
-    return forces, moments, time
+    return forces, moments, time, fv
 
 def cmu_openloop(cmu, U, c, b, rho):
     import numpy as np
@@ -180,8 +182,73 @@ def massflow_bc(case_folder = './'):
 
     return mdot
 
+def thrust_pbc(case_folder='./'):
+    import pyvista as pv
+    import numpy as np
+    import os
+
+    bool = np.bool_
+    files = os.listdir(case_folder)
+    files = [int(file) for file in files if check_float(file)]
+    sel = max(files)
+    target = case_folder + '/VTK/coandaUpper/coandaUpper_{}.vtk'.format(sel)
+    if not os.path.exists(target):
+        os.system('foamToVTK -case {}'.format(case_folder))
+    else:
+        pass
+
+    raw = pv.read(target)
+    points = raw.points
+    x = raw.points[:,1]
+    z = raw.points[:,2]
+    w = np.max(z) - np.min(z)
+    U = raw.point_data['U']
+    mdot = massflow_bc(case_folder=case_folder)
+    U = np.max(U)
+    thrust = np.sum(mdot*U)
+    return thrust
+
+
 def mdot_to_pressure_bc(mdot):
     import numpy as np
     poly = np.array([5.95627190e+09, 2.59037882e+08, 1.95969042e+05, 100000])
     pressure = np.polyval(poly,mdot)
     return pressure
+
+
+def sep_angle(r,p):
+    import numpy as np
+    pexit = np.array([-r,r])
+    L = np.linalg.norm(pexit-p)
+    theta = 2 * np.arcsin((0.5*L)/r) * 180 / np.pi
+    return theta
+
+def separation_angle_find(case_folder='./',Pinf = 100000, r = 0.003048):
+    import pyvista as pv
+    import numpy as np
+    import os
+    from matplotlib import pyplot as plt
+
+    files = os.listdir(case_folder)
+    files = [int(file) for file in files if check_float(file)]
+    sel = max(files)
+    check_vtk = os.path.exists(case_folder + '/VTK/')
+    if not check_vtk:
+        os.system('foamToVTK -case {}'.format(case_folder))
+    else:
+        pass
+    target = case_folder + '/VTK/surface/surface_{}.vtk'.format(sel)
+    raw = pv.read(target)
+    x = raw.points[:,0]
+    y = raw.points[:,1]
+    p = raw.point_data['p']
+    inds = [i for i in range(len(x)) if x[i] > -r+.00001]
+    x = x[inds]
+    y = y[inds]
+    p = p[inds]
+    for i in range(len(p)):
+        if p[i] > Pinf:
+            point = np.array([x[i],y[i]])
+            return sep_angle(r,point)
+        else:
+            pass
