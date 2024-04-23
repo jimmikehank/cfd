@@ -336,13 +336,13 @@ blocks = [
     '\t\thex (34 36  2 14 35 37  3 15) ({} {} 1) simpleGrading ({}  {}  1) // 3\n'.format(blocks_x_flat, blocks_y_L, grade_x_L, grade_y),
     '\t\thex (36  4  0  2 37  5  1  3) ({} {} 1) edgeGrading (((.5 .5 {}) (.5 .5 {})) {}  {} ((.5 .5 {}) (.5 .5 {})) {} {} {} {} 1 1 1 1) // 4\n'.format(blocks_x_L, blocks_y_L, egrade_x, 1/egrade_x, egrade_o, egrade_o, egrade_x, 1/egrade_x, grade_y, grade_y, grade_y, grade_y),
     '\t\thex (24 32 34 26 25 33 35 27) ({} {} 1) simpleGrading ( 1  {}  1) // 5\n'.format(blocks_x_R, blocks_y_co-2, 2),
-    '\t\thex (22 30 32 24 23 31 33 25) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_x_R, blocks_y_co, 1),
-    '\t\thex (40 42 44 38 41 43 45 39) ({} {} 1) simplegrading ( 1   1  1) // 7\n'.format(blocks_x_in+20,blocks_y_in),
-    '\t\thex (42 46 48 44 43 47 49 45) ({} {} 1) simpleGrading ( 1   1  1) // 8\n'.format(blocks_x_in,blocks_y_in),
-    '\t\thex (46 22 24 48 47 23 25 49) ({} {} 1) simpleGrading ( 1   1  1) // 9\n'.format(blocks_x_in,blocks_y_in),
-    '\t\thex (50 56 54 52 51 57 55 53) ({} {} 1) simpleGrading ( 1   1  1) //10\n'.format(blocks_x_in+20,blocks_y_in),
-    '\t\thex (56 60 58 54 57 61 59 55) ({} {} 1) simpleGrading ( 1   1  1) //11\n'.format(blocks_x_in,blocks_y_in),
-    '\t\thex (60 32 30 58 61 33 31 59) ({} {} 1) simpleGrading ( 1   1  1) //12\n'.format(blocks_x_in,blocks_y_in),
+    '\t\thex (22 30 32 24 23 31 33 25) ({} {} 1) simpleGrading ( 1  {}  1) // 6\n'.format(blocks_x_R, blocks_y_co, 2),
+    '\t\thex (40 42 44 38 41 43 45 39) ({} {} 1) simplegrading ( 1   2  1) // 7\n'.format(blocks_x_in+20,blocks_y_in),
+    '\t\thex (42 46 48 44 43 47 49 45) ({} {} 1) simpleGrading ( 1   2  1) // 8\n'.format(blocks_x_in,blocks_y_in),
+    '\t\thex (46 22 24 48 47 23 25 49) ({} {} 1) simpleGrading ( 1   2  1) // 9\n'.format(blocks_x_in,blocks_y_in),
+    '\t\thex (50 56 54 52 51 57 55 53) ({} {} 1) simpleGrading ( 1   0.5  1) //10\n'.format(blocks_x_in+20,blocks_y_in),
+    '\t\thex (56 60 58 54 57 61 59 55) ({} {} 1) simpleGrading ( 1   0.5  1) //11\n'.format(blocks_x_in,blocks_y_in),
+    '\t\thex (60 32 30 58 61 33 31 59) ({} {} 1) simpleGrading ( 1   0.5  1) //12\n'.format(blocks_x_in,blocks_y_in),
     ');\n\n'
 ]
 
