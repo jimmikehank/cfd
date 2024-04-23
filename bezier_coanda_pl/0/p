@@ -20,7 +20,7 @@ FoamFile
 dimensions			[1 -1 -2 0 0 0 0];
 
 internalField		uniform 100000;
-upper_pressure uniform 100001;						 // Upper Plenum Pressure
+upper_pressure uniform 100000.0;						 // Upper Plenum Pressure
 lower_pressure uniform 100001;						 // Lower Plenum Pressure
 
 boundaryField

@@ -12,7 +12,7 @@ forces
     libs          ("libforces.so");
 
     writeControl  timeStep;
-    writeInterval  250;
+    writeInterval  1;
 
     log           no;
 
@@ -20,7 +20,7 @@ forces
     rho           rho;
     log           true;
 
-    CofR          (0 0 0);
+    CofR          (-0.225 0 0);
 }
 
 

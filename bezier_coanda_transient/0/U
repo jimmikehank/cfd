@@ -8,6 +8,7 @@
 //     /////              ////            /////       ///// ///  ///   ///  ///
 /*---------------------------------*- C++ -*-----------------------------------*/
 
+// STEADY STATE BLOWING
 FoamFile
 {
 		version			2.0;
@@ -18,18 +19,11 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-pulseStart				0.2;				 // Start time of pulse
-pulseDuration 	  0.0003;
+alpha							0.0;						 // Alpha in deg
 alpha							0.0;						 // Alpha in deg
 U									25.0;				 // flow magnitude
 massflow_u				0.0;				 // mass flow rate
 massflow_l				0.0;				 // mass flow rate
-
-pulseDef 		{
-			type			squarePulse;
-			start 		pulseStart;
-			duration 	pulseDuration;
-}
 
 dimensions			[0 1 -1 0 0 0 0];
 
@@ -40,39 +34,29 @@ boundaryField
 {
 		inOut
 		{
-				type						uniformFixedValue;
-				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
-				value						uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+				type            inletOutlet;
+				inletValue      $internalField;
+				value           $internalField;
 		}
-
 		surface
 		{
-				type						noSlip;
+				type            fixedValue;
+				value           uniform (0 0 0);
 		}
 
 		coandaUpper
-		{
-				type flowRateInletVelocity;
-				massFlowRate {
-						type scale;
-						scale 0.003;
-						value {
-									type				one - squarePulse;
-									start 			$pulseStart;
-									duration 		$pulseDuration;
-						}
-				}
-				value						uniform (0 0 0);
-		}
-
-
-		coandaLower
 		// COANDA STEADY:
 		{
-				type 						noSlip;
-		// 		type						flowRateInletVelocity;
-		// 		massFlowRate		0.05;
-		// 		value						uniform (0.05 0 0);
+				type						flowRateInletVelocity;
+				massFlowRate		$massflow_u;
+				value						uniform ($massflow_u 0 0);
+		}
+
+		coandaLower
+		{
+				type            flowRateInletVelocity;
+				massFlowRate		$massflow_l;
+				value						uniform ($massflow_l 0 0);
 		}
 
 

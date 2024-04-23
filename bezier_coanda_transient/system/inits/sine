@@ -1,0 +1,63 @@
+boundaryField
+{
+    inOut
+    {
+        type            uniformFixedValue;
+        uniformValue
+        {
+            type            constant;
+            value           ({} 0 0);
+        }
+        value           uniform ({} 0 0);
+    }
+    coandaUpper
+    {
+        type            flowRateInletVelocity;
+        massFlowRate
+        {
+            type            sine;
+            amplitude
+            {
+                type            constant;
+                value           {};
+            }
+            frequency       {};
+            start           0.0001;
+            level
+            {
+                type            constant;
+                value           {};
+            }
+        }
+        value           uniform ({} 0 0);
+    }
+    coandaLower
+    {
+        type            flowRateInletVelocity;
+        massFlowRate
+        {
+            type            sine;
+            amplitude
+            {
+                type            constant;
+                value           {};
+            }
+            frequency       {};
+            start           0.0001;
+            level
+            {
+                type            constant;
+                value           {};
+            }
+        }
+        value           uniform ({} 0 0);
+    }
+    surface
+    {
+        type            noSlip;
+    }
+    defaultFaces
+    {
+        type            empty;
+    }
+}

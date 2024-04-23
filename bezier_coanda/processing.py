@@ -123,7 +123,7 @@ def single_run(cmu_target, cmu_command, re_command, rho, mu, c, b, eps, urf, air
     print(U)
     time.sleep(3)
     mdot = cmu_openloop(cmu_command, U, c, b, rho)
-    mesh_command = "python3 autoMesh.py --clean true --mdot {} --meanFlow {} --airfoil ".format(mdot, U, airfoil)
+    mesh_command = "python3 autoMesh.py --clean true --mdot {} --meanFlow {} --airfoil {}".format(mdot, U, airfoil)
     print("AutoMesh command: {}".format(mesh_command))
     blockmesh = "blockMesh"
     run_command = "rhoSimpleFoam"

@@ -18,10 +18,14 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-f								4;						 // Frequency in Hz
-alpha						0;						// AoA in Degrees
-U 							25; 					// Flow magnitude
-massflow 				0.006;
+
+f									166.66666666666666;				 // coanda frequency
+alpha							0.0;						 // Alpha in deg
+U									25.0;				 // flow magnitude
+massflow_u				0.0;				 // mass flow rate
+massflow_l				0.0;				 // mass flow rate
+
+massflow					$massflow_u;
 
 dimensions			[0 1 -1 0 0 0 0];
 
@@ -53,13 +57,6 @@ boundaryField
 				}
 				value 					uniform ($massflow 0 0);
 		}
-		// COANDA STEADY:
-		// {
-		//		type 						noSlip;
-		// 		type						flowRateInletVelocity;
-		// 		massFlowRate		$massflow;
-		// 		value						uniform ($massflow 0 0);
-		// }
 
 		coandaLower
 		{
@@ -72,14 +69,6 @@ boundaryField
 				}
 				value 					uniform ($massflow 0 0);
 		}
-		// COANDA STEADY:
-		// {
-		// 		type 						noSlip;
-		// 		type						flowRateInletVelocity;
-		// 		massFlowRate		0.05;
-		// 		value						uniform (0.05 0 0);
-		// }
-
 
 		defaultFaces
 		{

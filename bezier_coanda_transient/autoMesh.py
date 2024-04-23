@@ -22,6 +22,7 @@ parser.add_argument('--clean', default = False, type = bool, help = 'Run clean f
 parser.add_argument('--store', default = False, type = bool, help = 'Run store function. \nDefault: False')
 parser.add_argument('--mdot', default = 0.0, type = float, help = 'Mass flow for coanda in kg/s')
 parser.add_argument('--meanFlow', default = 25.0, type = float, help = 'Mean flow speed for simulation in m/s \n Default: 25.0')
+parser.add_argument('--frequency', default = -1, type = float, help = 'Frequency of control effector oscillation')
 args = parser.parse_args()
 
 iteration = args.iter
@@ -32,6 +33,7 @@ clean_bool = args.clean
 store_bool = args.store
 mdot = np.around(args.mdot,6)
 meanflow = args.meanFlow
+freq = args.frequency
 
 chord_length = 0.3
 
@@ -43,14 +45,14 @@ def store(retain,name):
     import shutil
     print(retain)
     ignore = ['data_process.ipynb','autoMesh.py','bezier_foil.py','.ipynb_checkpoints','processing.py']
-    copy = ['0','system','constant','dynamicCode']
+    copy = ['0','system','constant','dynamicCode','postProcessing']
     dirs = os.listdir()
     delete = []
     for item in dirs:
         if item[0:9] == 'processor':
             delete.append(item)
     target = name
-    casefile = "/media/james/Data/james/completed_cases/coanda_airfoils/era/{}/".format(target)
+    casefile = "/media/james/Data/james/completed_cases/coanda_airfoils/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
@@ -97,6 +99,17 @@ def change_line_massflow(U_filename,mdot):
         g.writelines(test_lines)
         g.close()
 
+def change_line_freq(U_filename,freq):
+    line = 21
+    with open(U_filename,'r') as f:
+        test_lines = f.readlines()
+        f.close()
+        new_line = 'f\t\t\t\t\t\t\t\t\t{};\t\t\t\t // coanda frequency\n'.format(freq)
+        test_lines[line] = new_line
+    with open(U_filename,'w') as g:
+        g.writelines(test_lines)
+        g.close()
+
 def change_line_meanflow(U_filename,U):
     line = 23
     with open(U_filename,'r') as f:
@@ -123,6 +136,8 @@ if store_bool:
     store(retain,runName)
 if clean_bool:
     cleanup(retain)
+if not freq < 0:
+    change_line_freq(U_filename,freq)
 
 print("\n ----- AutoMesh started! -----\n\nAutoMesh Parameters:\nMass flow: {}\nAngle of Attack: {}\nMean flowspeed: {}\nChord length: {}\n".format(mdot, aoa, meanflow, chord_length))
 change_line_massflow(U_filename,mdot)

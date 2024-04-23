@@ -16,7 +16,7 @@ FoamFile
 
 dimensions      [0 2 -1 0 0 0 0];
 
-def_pl          uniform 4.5e-5;
+def_pl          uniform 4.5e-3;
 
 internalField   $def_pl;
 

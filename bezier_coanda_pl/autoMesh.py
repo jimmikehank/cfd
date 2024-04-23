@@ -55,7 +55,7 @@ def store(retain,name):
         if item[0:9] == 'processor':
             delete.append(item)
     target = name
-    casefile = "/home/james/Documents/research/completed_cases/plenum_comparison/plenum/{}/".format(target)
+    casefile = "/home/james/Documents/research/completed_cases/pl_redo/{}/".format(target)
     if os.path.exists(casefile):
         existing = os.listdir(casefile)
     else:
@@ -267,18 +267,18 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x_L = 50
-blocks_y_L = 50
-blocks_x_R = 70
+blocks_x_L = 90
+blocks_y_L = 110
+blocks_x_R = 150
 blocks_y_R = blocks_y_L
 blocks_y_co = 5
-blocks_x_flat = 10
+blocks_x_flat = 20
 blocks_x_in = 10
 blocks_y_in = blocks_y_co
 grade_x_L = 2
 egrade_x = 10
 egrade_o = 10
-grade_y = 1000
+grade_y = 1600
 
 header = [
     '/*---------------------------------*- C++ -*-----------------------------------*/\n',

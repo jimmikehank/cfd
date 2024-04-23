@@ -1,0 +1,87 @@
+/*---------------------------------*- C++ -*-----------------------------------*/
+//    //////////////      ///////////////
+//    //////////////      //////////////
+//         ////           ////             /////       ////  //  /// //// ////
+//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
+//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
+//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
+//     /////              ////            /////       ///// ///  ///   ///  ///
+/*---------------------------------*- C++ -*-----------------------------------*/
+
+FoamFile
+{
+		version			2.0;
+		format			ascii;
+		class				volVectorField;
+		location		"0";
+		object			U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+pulseStart				0.05;				 // Start time of pulse
+alpha							0.0;						 // Alpha in deg
+alpha							0.0;						 // Alpha in deg
+U									25.0;				 // flow magnitude
+massflow_u				0.0;				 // mass flow rate
+massflow_l				0.0;				 // mass flow rate
+
+pulseDuration     0.3;
+
+pulseDef 		{
+			type			squarePulse;
+			start 		$pulseStart;
+			duration 	$pulseDuration;
+}
+
+dimensions			[0 1 -1 0 0 0 0];
+
+internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+
+
+boundaryField
+{
+		inOut
+		{
+				type						uniformFixedValue;
+				uniformValue		constant (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+				value						uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+		}
+
+		surface
+		{
+				type						noSlip;
+		}
+
+		coandaUpper
+		{
+				type flowRateInletVelocity;
+				massFlowRate {
+						type scale;
+						scale $massflow_u;
+						value {
+									type				squarePulse;
+									start 			$pulseStart;
+									duration 		$pulseDuration;
+						}
+				}
+				value						uniform (0 0 0);
+		}
+
+
+		coandaLower
+		// COANDA STEADY:
+		{
+				type 						noSlip;
+		// 		type						flowRateInletVelocity;
+		// 		massFlowRate		0.05;
+		// 		value						uniform (0.05 0 0);
+		}
+
+
+		defaultFaces
+		{
+				type						empty;
+		}
+}
+
+// ************************************************************************* //

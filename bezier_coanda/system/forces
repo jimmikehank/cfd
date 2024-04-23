@@ -13,6 +13,7 @@ forces
 
     writeControl  timeStep;
     writeInterval  250;
+    // porosity      yes;
 
     log           no;
 

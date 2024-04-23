@@ -18,8 +18,8 @@ FoamFile
 dimensions      [0 1 -1 0 0 0 0];
 
 
-alpha						-11.2;						 // AoA in Degrees
-U						50.0;						 // AoA in Degrees
+alpha						0.0;						 // AoA in Degrees
+U						25.0;						 // AoA in Degrees
 internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
 
 

@@ -1,5 +1,15 @@
 # Code developed by James Henry for Bezier curve matching to airfoil coordinates.
 
+def initialize_control_points(n):
+    import numpy as np
+    init = np.array([[0,0],[0,0.05]])
+    xpts = np.linspace(0,1,n-1)
+    ypts = np.ones(n-1)*0.06
+    ypts[-1] = 0
+    new = np.vstack([xpts[1:],ypts[1:]]).T
+    output = np.vstack([init,new])
+    return output
+
 # This function generates Bernstein polynomials of order 'n'
 def bernstein(n,i,npoints):
     import numpy as np

@@ -36,8 +36,10 @@ finiteTE = args.finiteTE
 chord_length = 1.0
 # TE Thickness / Chord Length
 te_c_ratio = 0.002
+num_points = 10
 # Spatial Resolution Multiplier
 spatial_mul = 1
+symmetry = False
 
 def store(retain, target):
     import os
@@ -110,9 +112,8 @@ if store_bool:
 
 # First iteration of optimization loop, run initial shape match to airfoil for bezier curves.
 if iteration == 0:
-    control_points_init = np.array([[0,0],[0,.05],[.25,.05],[.35,.06],[.5,.06],[.75,.03],[1,0]])
+    control_points_init = initialize_control_points(num_points)
     cpl_init = control_points_init * np.array([1,-1])
-    symmetry = False
     file_exists = path.isfile('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
     if file_exists:
         cpU = np.loadtxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel))
@@ -122,7 +123,7 @@ if iteration == 0:
         bezfoil = init_bezfoil(m,cpU,control_points_lower=cpL,symmetric=symmetry)
     else:
         file = '/home/james/Documents/research/cfd/airfoils/{}-il.csv'.format(airfoil_sel)
-        bezfoil, cpU, cpL, iters = foil_opt(control_points_init, file, chord_length, 1e-6, m = m, step = 2, debug = True, control_points_lower = cpl_init, sym = symmetry)
+        bezfoil, cpU, cpL, iters = foil_opt(control_points_init, file, chord_length, 5e-8, deps=1e-12, m = m, step = 1, debug = True, control_points_lower = cpl_init, sym = symmetry)
         np.savetxt('{}/control_points/{}_cpu.txt'.format(airfoil_dir,airfoil_sel),cpU)
         np.savetxt('{}/control_points/{}_cpl.txt'.format(airfoil_dir,airfoil_sel),cpL)
         print(cpU[-1,0]-cpU[0,0])
@@ -213,8 +214,8 @@ for j in range(1,np.shape(lower)[0]-1):
 
 # Finally: Define the blocking and grading parameters!
 
-blocks_x = 50 * spatial_mul
-blocks_x_foil = 50 * spatial_mul
+blocks_x = 80 * spatial_mul
+blocks_x_foil = 80 * spatial_mul
 blocks_y = 70 * spatial_mul
 blocks_TE = 1 * spatial_mul
 grade_x = 1200

@@ -15,6 +15,7 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 Tinlet          298;
+Tcoanda         298;
 
 dimensions      [0 0 0 1 0 0 0];
 
@@ -33,12 +34,16 @@ boundaryField
 				type		zeroGradient;
 		}
 		coandaLower
-		{
-				type		zeroGradient;
+    {
+				type		inletOutlet;
+        inletValue uniform $Tcoanda;
+				value		uniform $Tcoanda;
 		}
 		coandaUpper
-		{
-				type		zeroGradient;
+    {
+				type		inletOutlet;
+        inletValue uniform $Tcoanda;
+				value		uniform $Tcoanda;
 		}
 		defaultFaces
 		{

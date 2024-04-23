@@ -27,6 +27,16 @@ def bezier_curve(control_points,Nt):
 
 # This function creates an airfoil from the Bezier curve, the coordinates
 # follow a path from TE over top surface, to lower surface back to TE
+def initialize_control_points(n):
+    import numpy as np
+    init = np.array([[0,0],[0,0.05]])
+    xpts = np.linspace(0,1,n-1)
+    ypts = np.ones(n-1)*0.06
+    ypts[-1] = 0
+    new = np.vstack([xpts[1:],ypts[1:]]).T
+    output = np.vstack([init,new])
+    return output
+
 def init_bezfoil(m, control_points_upper, control_points_lower = [],symmetric = True):
     import numpy as np
     inverse = np.array([1,-1])

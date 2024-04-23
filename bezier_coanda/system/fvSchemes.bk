@@ -34,7 +34,6 @@ divSchemes
 
     turbulence        bounded Gauss upwind;
     energy            bounded Gauss linearUpwind limited;
-
     div(phi,U)        bounded Gauss linearUpwind limited;
     div(phi,nuTilda)  $turbulence;
     div(phi,Ekp)      $energy;

@@ -2,14 +2,22 @@ import numpy as np
 import os
 from processing import *
 from bezier_foil import *
+from matplotlib import pyplot as plt
 
-casedir = '/media/james/Data/james/completed_cases/coanda_airfoils/era/era_std_2/'
 
-forces, moments, time = retrieve_lift(casedir)
+casedir = '/media/james/Data/james/completed_cases/coanda_airfoils/era/imp'
+targets = ['./']
+x = input("Target folders: {}".format(targets))
 
-lift = forces[:,1]
-drag = forces[:,0]
 
-np.savetxt('./output/lift0.txt',lift)
-np.savetxt('./output/drag0.txt',drag)
-np.savetxt('./output/time0.txt',time)
+for target in targets:
+    forces, moments, time = retrieve_lift(target)
+    l = forces[1:,1]
+    d = forces[1:,1]
+    t = time
+    plt.figure()
+    plt.plot(t,l)
+    plt.savefig('./output/test.png')
+    np.savetxt('./output/limp.txt',l)
+    np.savetxt('./output/timp.txt',t)
+    
