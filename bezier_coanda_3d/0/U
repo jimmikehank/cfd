@@ -1,0 +1,99 @@
+/*---------------------------------*- C++ -*-----------------------------------*/
+//    //////////////      ///////////////
+//    //////////////      //////////////
+//         ////           ////             /////       ////  //  /// //// ////
+//         ////     ////  ///////////   ///    ///  ///    ///   ////  ///  ///
+//  ////   ////           ///////////   ///    ///  ///    ///   ///   ///  ///
+//   //// ////            ////          ///    ///  ///    ///   ///   ///  ///
+//     /////              ////            /////       ///// ///  ///   ///  ///
+/*---------------------------------*- C++ -*-----------------------------------*/
+
+// STEADY STATE BLOWING
+FoamFile
+{
+		version			2.0;
+		format			ascii;
+		class				volVectorField;
+		location		"0";
+		object			U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+alpha							0.0;						 // Alpha in deg
+U									25.0;				 // flow magnitude
+massflow_u				0.0;				 // mass flow rate
+massflow_l				0.0;				 // mass flow rate
+
+
+dimensions			[0 1 -1 0 0 0 0];
+
+internalField		uniform  (#calc "$U * cos(degToRad($alpha))" #calc "$U*sin(degToRad($alpha))"  0);
+
+
+boundaryField
+{
+		inOut
+		{
+				type            inletOutlet;
+				inletValue      $internalField;
+				value           $internalField;
+		}
+		surface
+		{
+				type            noSlip;
+		}
+
+		coandaUpper
+		// COANDA STEADY:
+		{
+				type						codedFixedValue;
+				value	 					uniform (0  0  0);
+				name				 		semi_span_effector;
+				code
+				#{
+						const fvPatch& boundaryPatch = patch();
+						const vectorField& Cf = boundaryPatch.Cf();
+						vectorField& field = *this;
+
+						const scalar ux = 90;
+						const scalar hs = 0.05;
+						forAll(Cf, faceI)
+						{
+								const scalar z = Cf[faceI].z();
+								if (mag(z) < hs)
+								{
+										field[faceI] = vector(ux, 0, 0);
+								}
+								else
+								{
+										field[faceI] = vector(0, 0, 0);
+								}
+						}
+				#};
+
+		}
+
+		coandaLower
+		{
+				type            flowRateInletVelocity;
+				massFlowRate		$massflow_l;
+				value						uniform ($massflow_l 0 0);
+		}
+
+		front
+		{
+				type						zeroGradient;
+		}
+
+    back
+		{
+				type						zeroGradient;
+		}
+
+		defaultFaces
+		{
+				type						empty;
+		}
+}
+
+// ************************************************************************* //
